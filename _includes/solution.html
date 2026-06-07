@@ -10,7 +10,42 @@
     {% endfor %}
   </nav>
 
-  <section class="solution-section" id="{{ solution.active_tab }}">
+  {% if solution.overview %}
+    <section class="solution-section solution-overview-section" id="overview">
+      <h2>{{ solution.overview.title }}</h2>
+      <p>{{ solution.overview.description }}</p>
+      <div class="solution-card-grid">
+        {% for card in solution.overview.cards %}
+          <article class="solution-info-card">
+            <h3>{{ card.title }}</h3>
+            <p>{{ card.text }}</p>
+          </article>
+        {% endfor %}
+      </div>
+    </section>
+  {% endif %}
+
+  {% if solution.high_level_design %}
+    <section class="solution-section solution-hld-section" id="high-level-design">
+      <h2>{{ solution.high_level_design.title }}</h2>
+      <p>{{ solution.high_level_design.description }}</p>
+      <div class="solution-architecture-map">
+        {% for component in solution.high_level_design.components %}
+          <span class="solution-architecture-node">{{ component }}</span>
+          {% unless forloop.last %}
+            <span class="solution-architecture-arrow"></span>
+          {% endunless %}
+        {% endfor %}
+      </div>
+      <div class="solution-callout-list">
+        {% for note in solution.high_level_design.notes %}
+          <p>{{ note }}</p>
+        {% endfor %}
+      </div>
+    </section>
+  {% endif %}
+
+  <section class="solution-section" id="detailed-design">
     <h2>Detailed Design</h2>
     <nav class="solution-subtabs" aria-label="Detailed design sections">
       {% for tab in solution.detail_tabs %}
@@ -93,41 +128,6 @@
       </section>
     {% endfor %}
   </section>
-
-  {% if solution.overview %}
-    <section class="solution-section solution-overview-section" id="overview">
-      <h2>{{ solution.overview.title }}</h2>
-      <p>{{ solution.overview.description }}</p>
-      <div class="solution-card-grid">
-        {% for card in solution.overview.cards %}
-          <article class="solution-info-card">
-            <h3>{{ card.title }}</h3>
-            <p>{{ card.text }}</p>
-          </article>
-        {% endfor %}
-      </div>
-    </section>
-  {% endif %}
-
-  {% if solution.high_level_design %}
-    <section class="solution-section solution-hld-section" id="high-level-design">
-      <h2>{{ solution.high_level_design.title }}</h2>
-      <p>{{ solution.high_level_design.description }}</p>
-      <div class="solution-architecture-map">
-        {% for component in solution.high_level_design.components %}
-          <span class="solution-architecture-node">{{ component }}</span>
-          {% unless forloop.last %}
-            <span class="solution-architecture-arrow"></span>
-          {% endunless %}
-        {% endfor %}
-      </div>
-      <div class="solution-callout-list">
-        {% for note in solution.high_level_design.notes %}
-          <p>{{ note }}</p>
-        {% endfor %}
-      </div>
-    </section>
-  {% endif %}
 
   {% if solution.trade_offs %}
     <section class="solution-section solution-tradeoff-section" id="trade-offs">

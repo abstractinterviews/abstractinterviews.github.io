@@ -14,11 +14,11 @@
       {% assign inferred_kind = 'home' %}
     {% elsif page.page_type %}
       {% assign inferred_kind = page.page_type %}
-    {% elsif current_url contains '/06-case-studies/' %}
+    {% elsif current_url contains '/case-studies/' %}
       {% assign inferred_kind = 'practice' %}
-    {% elsif current_url contains '/07-interview-prep/' %}
+    {% elsif current_url contains '/interview-prep/' %}
       {% assign inferred_kind = 'resource' %}
-    {% elsif current_url contains '/04-databases/' %}
+    {% elsif current_url contains '/components/databases/' %}
       {% assign inferred_kind = 'deep-dive' %}
     {% endif %}
     {% assign rendered_content = content %}
@@ -30,7 +30,14 @@
     {% if inferred_kind == 'concept' and page.concept_id %}
       {% assign concept = site.data.concepts[page.concept_id] %}
     {% endif %}
-    <div class="app-shell page-{{ inferred_kind }} {% if inferred_kind == 'home' or solution or concept %}has-right-rail{% endif %}">
+    {% assign is_deep_index = false %}
+    {% assign is_deep_post = false %}
+    {% if inferred_kind == 'deep-dive-index' %}
+      {% assign is_deep_index = true %}
+    {% elsif inferred_kind == 'deep-dive-post' %}
+      {% assign is_deep_post = true %}
+    {% endif %}
+    <div class="app-shell page-{{ inferred_kind }} {% if inferred_kind == 'home' or solution or concept or is_deep_index or is_deep_post %}has-right-rail{% endif %}">
       <aside class="sidebar" aria-label="Primary navigation">
         <a class="brand" href="{{ '/' | relative_url }}" aria-label="{{ site.title }} home">
           <span class="brand-mark" aria-hidden="true">
@@ -42,39 +49,37 @@
         <nav class="guide-nav">
           <p class="nav-kicker">Get Started</p>
           <a class="nav-link {% if current_url == '/' %}is-active{% endif %}" href="{{ '/' | relative_url }}"><span class="nav-icon">H</span>Welcome</a>
-          <a class="nav-link" href="{{ '/README.md' | relative_url }}"><span class="nav-icon">?</span>How to Use This Guide</a>
-          <a class="nav-link {% if current_url contains '/01-fundamentals/' %}is-active{% endif %}" href="{{ '/01-fundamentals/' | relative_url }}"><span class="nav-icon">S</span>System Design Primer</a>
+          <a class="nav-link {% if current_url contains '/fundamentals/' %}is-active{% endif %}" href="{{ '/fundamentals/' | relative_url }}"><span class="nav-icon">S</span>System Design Primer</a>
 
           <p class="nav-kicker">Fundamentals</p>
-          <a class="nav-link {% if current_url contains '/01-fundamentals/scalability/' %}is-active{% endif %}" href="{{ '/01-fundamentals/scalability/' | relative_url }}"><span class="nav-icon">M</span>Scalability</a>
-          <a class="nav-link" href="{{ '/01-fundamentals/high-availability/' | relative_url }}"><span class="nav-icon">A</span>High Availability</a>
-          <a class="nav-link" href="{{ '/05-patterns/' | relative_url }}"><span class="nav-icon">P</span>Design Patterns</a>
-          <a class="nav-link {% if current_url contains '/01-fundamentals/cap-theorem/' %}is-active{% endif %}" href="{{ '/01-fundamentals/cap-theorem/' | relative_url }}"><span class="nav-icon">C</span>CAP Theorem</a>
-          <a class="nav-link" href="{{ '/04-databases/replication/' | relative_url }}"><span class="nav-icon">R</span>Consistency Models</a>
+          <a class="nav-link {% if current_url contains '/fundamentals/scalability/' %}is-active{% endif %}" href="{{ '/fundamentals/scalability/' | relative_url }}"><span class="nav-icon">M</span>Scalability</a>
+          <a class="nav-link" href="{{ '/fundamentals/high-availability/' | relative_url }}"><span class="nav-icon">A</span>High Availability</a>
+          <a class="nav-link {% if current_url contains '/fundamentals/patterns/' %}is-active{% endif %}" href="{{ '/fundamentals/patterns/' | relative_url }}"><span class="nav-icon">P</span>Distributed Patterns</a>
+          <a class="nav-link {% if current_url contains '/fundamentals/cap-theorem/' %}is-active{% endif %}" href="{{ '/fundamentals/cap-theorem/' | relative_url }}"><span class="nav-icon">C</span>CAP Theorem</a>
+          <a class="nav-link {% if current_url contains '/fundamentals/cap-theorem/' %}is-active{% endif %}" href="{{ '/fundamentals/cap-theorem/' | relative_url }}"><span class="nav-icon">R</span>Consistency Models</a>
 
           <p class="nav-kicker">Deep Dives</p>
-          <a class="nav-link" href="{{ '/02-components/caching/' | relative_url }}"><span class="nav-icon">C</span>Caching</a>
-          <a class="nav-link" href="{{ '/02-components/load-balancers/' | relative_url }}"><span class="nav-icon">L</span>Load Balancing</a>
-          <a class="nav-link" href="{{ '/04-databases/' | relative_url }}"><span class="nav-icon">D</span>Databases</a>
-          <a class="nav-link" href="{{ '/04-databases/sharding/' | relative_url }}"><span class="nav-icon">S</span>Sharding</a>
-          <a class="nav-link" href="{{ '/02-components/cdn/' | relative_url }}"><span class="nav-icon">E</span>CDN</a>
-          <a class="nav-link" href="{{ '/02-components/message-queues/' | relative_url }}"><span class="nav-icon">Q</span>Messaging Queues</a>
-          <a class="nav-link" href="{{ '/03-api-and-communication/' | relative_url }}"><span class="nav-icon">N</span>API and Communication</a>
-          <a class="nav-link" href="{{ '/05-patterns/' | relative_url }}"><span class="nav-icon">X</span>Distributed Patterns</a>
+          <a class="nav-link {% if current_url contains '/components/caching/' %}is-active{% endif %}" href="{{ '/components/caching/' | relative_url }}"><span class="nav-icon">C</span>Caching</a>
+          <a class="nav-link" href="{{ '/components/load-balancers/' | relative_url }}"><span class="nav-icon">L</span>Load Balancing</a>
+          <a class="nav-link {% if current_url contains '/components/databases/' %}is-active{% endif %}" href="{{ '/components/databases/' | relative_url }}"><span class="nav-icon">D</span>Databases</a>
+          <a class="nav-link" href="{{ '/components/databases/sharding/' | relative_url }}"><span class="nav-icon">S</span>Sharding</a>
+          <a class="nav-link" href="{{ '/components/cdn/' | relative_url }}"><span class="nav-icon">E</span>CDN</a>
+          <a class="nav-link" href="{{ '/components/message-queues/' | relative_url }}"><span class="nav-icon">Q</span>Messaging Queues</a>
+          <a class="nav-link {% if current_url contains '/components/api-and-communication/' %}is-active{% endif %}" href="{{ '/components/api-and-communication/' | relative_url }}"><span class="nav-icon">N</span>API and Communication</a>
+          <a class="nav-link {% if current_url contains '/fundamentals/patterns/' %}is-active{% endif %}" href="{{ '/fundamentals/patterns/' | relative_url }}"><span class="nav-icon">X</span>Distributed Patterns</a>
 
           <p class="nav-kicker">Practice</p>
-          <a class="nav-link {% if current_url contains '/06-case-studies/' %}is-active{% endif %}" href="{{ '/06-case-studies/' | relative_url }}"><span class="nav-icon">I</span>System Design Interviews</a>
-          <a class="nav-link" href="{{ '/06-case-studies/url-shortener/' | relative_url }}"><span class="nav-icon">U</span>Practice Problems</a>
-          <a class="nav-link" href="{{ '/07-interview-prep/' | relative_url }}"><span class="nav-icon">T</span>Interview Prep</a>
+          <a class="nav-link {% if current_url contains '/case-studies/' %}is-active{% endif %}" href="{{ '/case-studies/' | relative_url }}"><span class="nav-icon">I</span>System Design Interviews</a>
+          <a class="nav-link" href="{{ '/case-studies/url-shortener/' | relative_url }}"><span class="nav-icon">U</span>Practice Problems</a>
+          <a class="nav-link" href="{{ '/interview-prep/' | relative_url }}"><span class="nav-icon">T</span>Interview Prep</a>
 
           <p class="nav-kicker">Resources</p>
-          <a class="nav-link {% if current_url contains '/07-interview-prep/estimation-cheatsheet/' %}is-active{% endif %}" href="{{ '/07-interview-prep/estimation-cheatsheet/' | relative_url }}"><span class="nav-icon">K</span>Cheat Sheets</a>
+          <a class="nav-link {% if current_url contains '/interview-prep/estimation-cheatsheet/' %}is-active{% endif %}" href="{{ '/interview-prep/estimation-cheatsheet/' | relative_url }}"><span class="nav-icon">K</span>Cheat Sheets</a>
           <a class="nav-link {% if current_url contains '/glossary/' %}is-active{% endif %}" href="{{ '/glossary/' | relative_url }}"><span class="nav-icon">G</span>Glossary</a>
-          <a class="nav-link" href="{{ '/README.md' | relative_url }}"><span class="nav-icon">B</span>Further Reading</a>
+          <a class="nav-link {% if current_url contains '/interview-prep/' %}is-active{% endif %}" href="{{ '/interview-prep/' | relative_url }}"><span class="nav-icon">B</span>Further Reading</a>
         </nav>
 
         <div class="social-row" aria-label="Project links">
-          <a href="https://github.com/" aria-label="GitHub">GH</a>
           <a href="https://x.com/" aria-label="X">X</a>
           <a href="https://www.linkedin.com/" aria-label="LinkedIn">in</a>
           <a href="mailto:{{ site.email | default: '' }}" aria-label="Email">@</a>
@@ -89,8 +94,7 @@
             <kbd>⌘ K</kbd>
           </label>
           <div class="top-actions">
-            <a class="github-link" href="https://github.com/" target="_blank" rel="noreferrer">GitHub</a>
-            {% if inferred_kind == 'home' or solution or concept %}
+            {% if inferred_kind == 'home' or solution or concept or is_deep_index or is_deep_post %}
               <button class="icon-button rail-toggle" type="button" aria-label="Toggle right panel" aria-expanded="true" data-rail-toggle>☰</button>
             {% endif %}
             <button class="icon-button" type="button" aria-label="Toggle appearance">☼</button>
@@ -101,29 +105,55 @@
           {% unless inferred_kind == 'home' %}
             <div class="breadcrumbs" aria-label="Breadcrumb">
               <a href="{{ '/' | relative_url }}">Home</a>
-              {% if current_url contains '/01-fundamentals/' %}
-                <span>Fundamentals</span>
-              {% elsif current_url contains '/02-components/' %}
-                <span>Deep Dives</span>
-              {% elsif current_url contains '/03-api-and-communication/' %}
-                <span>API and Communication</span>
-              {% elsif current_url contains '/04-databases/' %}
-                <span>Deep Dive</span>
-                <span>Databases</span>
-              {% elsif current_url contains '/05-patterns/' %}
-                <span>Patterns</span>
-              {% elsif current_url contains '/06-case-studies/' %}
-                <span>Practice</span>
+              {% if current_url contains '/fundamentals/patterns/' %}
+                <a href="{{ '/fundamentals/' | relative_url }}">Fundamentals</a>
+                <a href="{{ '/fundamentals/patterns/' | relative_url }}">Patterns</a>
+                {% unless current_url == '/fundamentals/patterns/' %}
+                  <span>{{ page.title }}</span>
+                {% endunless %}
+              {% elsif current_url contains '/fundamentals/' %}
+                <a href="{{ '/fundamentals/' | relative_url }}">Fundamentals</a>
+                {% unless current_url == '/fundamentals/' %}
+                  <span>{{ page.title }}</span>
+                {% endunless %}
+              {% elsif current_url contains '/components/api-and-communication/' %}
+                <a href="{{ '/components/' | relative_url }}">Deep Dives</a>
+                <a href="{{ '/components/' | relative_url }}">Core Components</a>
+                <a href="{{ '/components/api-and-communication/' | relative_url }}">API and Communication</a>
+                {% unless current_url == '/components/api-and-communication/' %}
+                  <span>{{ page.title }}</span>
+                {% endunless %}
+              {% elsif current_url contains '/components/databases/' %}
+                <a href="{{ '/components/' | relative_url }}">Deep Dives</a>
+                <a href="{{ '/components/' | relative_url }}">Core Components</a>
+                <a href="{{ '/components/databases/' | relative_url }}">Databases</a>
+                {% unless current_url == '/components/databases/' %}
+                  <span>{{ page.title }}</span>
+                {% endunless %}
+              {% elsif current_url contains '/components/' %}
+                <a href="{{ '/components/' | relative_url }}">Deep Dives</a>
+                <a href="{{ '/components/' | relative_url }}">Core Components</a>
+                {% unless current_url == '/components/' %}
+                  <span>{{ page.title }}</span>
+                {% endunless %}
+              {% elsif current_url contains '/case-studies/' %}
+                <a href="{{ '/case-studies/' | relative_url }}">Practice</a>
                 {% if inferred_kind == 'solution' %}
-                  <span>Solutions</span>
+                  <a href="{{ '/case-studies/' | relative_url }}">Solutions</a>
                 {% endif %}
-              {% elsif current_url contains '/07-interview-prep/' %}
-                <span>Resources</span>
+                {% unless current_url == '/case-studies/' %}
+                  <span>{{ page.title }}</span>
+                {% endunless %}
+              {% elsif current_url contains '/interview-prep/' %}
+                <a href="{{ '/interview-prep/' | relative_url }}">Resources</a>
+                {% unless current_url == '/interview-prep/' %}
+                  <span>{{ page.title }}</span>
+                {% endunless %}
               {% else %}
                 <span>Resources</span>
               {% endif %}
             </div>
-            {% unless concept %}
+            {% unless concept or is_deep_index or is_deep_post %}
             <header class="doc-header">
               <div>
                 <h1>{{ solution.title | default: page.title }}</h1>
@@ -145,6 +175,10 @@
             {% include solution.html solution=solution %}
           {% elsif concept %}
             {% include concept.html concept=concept %}
+          {% elsif is_deep_index %}
+            {% include deep_dive_index.html %}
+          {% elsif is_deep_post %}
+            {% include deep_dive_post.html content=rendered_content %}
           {% elsif page.render_sections or inferred_kind == 'solution' %}
             {% assign heading_parts = rendered_content | split: '<h2 id="' %}
             {% if heading_parts.size > 1 %}
@@ -159,7 +193,7 @@
               </nav>
             {% endif %}
           {% endif %}
-          {% unless solution or concept %}
+          {% unless solution or concept or is_deep_index or is_deep_post %}
             <article class="page-content {{ inferred_kind }}-content">
               {{ rendered_content }}
             </article>
@@ -213,20 +247,7 @@
             <a href="#guide-overview">Guide Overview</a>
             <a href="#popular-topics">Popular Topics</a>
             <a href="#how-to-use">How to Use This Guide</a>
-            <a href="#contributing">Contributing</a>
           </nav>
-
-          <section class="rail-card">
-            <div class="rail-card-title"><span class="rail-card-icon">☆</span>Star this repo</div>
-            <p>If you find this guide helpful, please consider giving it a star on GitHub.</p>
-            <a class="rail-button" href="https://github.com/" target="_blank" rel="noreferrer">Star on GitHub</a>
-          </section>
-
-          <section class="rail-card">
-            <div class="rail-card-title"><span class="rail-card-icon">+</span>Contribute</div>
-            <p>Found an issue or have suggestions? Contributions are welcome.</p>
-            <a class="rail-button" href="https://github.com/" target="_blank" rel="noreferrer">Contribute</a>
-          </section>
 
           <section class="rail-card compact">
             <div class="rail-card-title"><span class="rail-card-icon">□</span>Last Updated</div>
@@ -239,7 +260,7 @@
         <div class="right-rail-inner">
           <p class="rail-kicker">On This Page</p>
           <nav class="page-toc">
-            <a href="#{{ solution.active_tab }}">Detailed Design</a>
+            <a href="#detailed-design">Detailed Design</a>
             {% for item in solution.right_rail.on_this_page %}
               <a class="{% if forloop.first %}is-active{% endif %}" href="{{ item.href }}">{{ forloop.index }}. {{ item.label }}</a>
             {% endfor %}
@@ -255,7 +276,7 @@
           <section class="rail-card action-card">
             <div class="rail-card-title"><span class="rail-card-icon">△</span>Try it yourself</div>
             <p>Want to practice this design in a mock interview?</p>
-            <a class="rail-button" href="{{ '/06-case-studies/url-shortener/problem/' | relative_url }}">Start Practice →</a>
+            <a class="rail-button" href="{{ '/case-studies/url-shortener/problem/' | relative_url }}">Start Practice →</a>
           </section>
 
           <section class="rail-card action-card">
@@ -278,12 +299,75 @@
           <section class="rail-card action-card">
             <div class="rail-card-title"><span class="rail-card-icon">△</span>Try it yourself</div>
             <p>Practice this concept with interactive examples.</p>
-            <a class="rail-button" href="{{ '/06-case-studies/' | relative_url }}">Start Practice →</a>
+            <a class="rail-button" href="{{ '/case-studies/' | relative_url }}">Start Practice →</a>
           </section>
 
           <section class="rail-card action-card">
             <div class="rail-card-title"><span class="rail-card-icon">□</span>Download Cheat Sheet</div>
             <p>Get a one-page summary of {{ concept.title | downcase }}.</p>
+            <a class="rail-button" href="#">Download PDF</a>
+          </section>
+        </div>
+      </aside>
+      {% elsif is_deep_index %}
+      <aside class="right-rail deep-rail" aria-label="Deep dive navigation">
+        <div class="right-rail-inner">
+          <p class="rail-kicker">On This Page</p>
+          <nav class="page-toc">
+            <a href="#overview">Overview</a>
+            <a href="#sub-topics">Sub Topics</a>
+            <a href="#key-takeaways">Key Takeaways</a>
+            <a href="#related-concepts">Related Concepts</a>
+          </nav>
+
+          {% if page.related_concepts %}
+            <section class="rail-card compact" id="related-concepts">
+              <div class="rail-card-title"><span class="rail-card-icon">◇</span>Related Concepts</div>
+              <nav class="rail-link-list">
+                {% for item in page.related_concepts %}
+                  <a href="{{ item.url | relative_url }}">{{ item.title }}</a>
+                {% endfor %}
+              </nav>
+            </section>
+          {% endif %}
+
+          <section class="rail-card action-card">
+            <div class="rail-card-title"><span class="rail-card-icon">□</span>Cheat Sheet</div>
+            <p>Quick summary of {{ page.title | downcase }} in one page.</p>
+            <a class="rail-button" href="{{ page.cheat_sheet_url | default: '/interview-prep/estimation-cheatsheet/' | relative_url }}">View Cheat Sheet →</a>
+          </section>
+        </div>
+      </aside>
+      {% elsif is_deep_post %}
+      <aside class="right-rail deep-rail" aria-label="Deep dive post navigation">
+        <div class="right-rail-inner">
+          <p class="rail-kicker">On This Page</p>
+          <nav class="page-toc">
+            {% if page.toc %}
+              {% for item in page.toc %}
+                <a class="{% if forloop.index == 2 %}is-active{% endif %}" href="{{ item.href }}">{{ forloop.index }}. {{ item.label }}</a>
+              {% endfor %}
+            {% else %}
+              {% assign heading_parts = rendered_content | split: '<h2 id="' %}
+              {% for heading_part in heading_parts offset:1 %}
+                {% assign heading_id = heading_part | split: '"' | first %}
+                {% assign heading_open = heading_part | split: '</h2>' | first %}
+                {% assign heading_title = heading_open | split: '>' | last | strip_html | strip %}
+                {% assign cleaned_title = heading_title | replace_first: '16. ', '' | replace_first: '15. ', '' | replace_first: '14. ', '' | replace_first: '13. ', '' | replace_first: '12. ', '' | replace_first: '11. ', '' | replace_first: '10. ', '' | replace_first: '9. ', '' | replace_first: '8. ', '' | replace_first: '7. ', '' | replace_first: '6. ', '' | replace_first: '5. ', '' | replace_first: '4. ', '' | replace_first: '3. ', '' | replace_first: '2. ', '' | replace_first: '1. ', '' %}
+                <a class="{% if forloop.first %}is-active{% endif %}" href="#{{ heading_id }}">{{ forloop.index }}. {{ cleaned_title }}</a>
+              {% endfor %}
+            {% endif %}
+          </nav>
+
+          <section class="rail-card action-card">
+            <div class="rail-card-title"><span class="rail-card-icon">△</span>Try it out</div>
+            <p>Practice this pattern with interactive diagrams.</p>
+            <a class="rail-button" href="{{ '/case-studies/' | relative_url }}">Open Playground →</a>
+          </section>
+
+          <section class="rail-card action-card">
+            <div class="rail-card-title"><span class="rail-card-icon">□</span>Download</div>
+            <p>Get this pattern as a PDF cheat sheet.</p>
             <a class="rail-button" href="#">Download PDF</a>
           </section>
         </div>
@@ -366,3 +450,4 @@
     </script>
   </body>
 </html>
+

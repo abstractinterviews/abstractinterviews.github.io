@@ -8,8 +8,7 @@ layout: default
     <h1>System Design Interview Guide</h1>
     <p>A comprehensive guide to cracking system design interviews. Learn the concepts, patterns, and practice solving real-world problems.</p>
     <div class="hero-actions">
-      <a class="primary-button" href="{{ '/01-fundamentals/' | relative_url }}">Start Learning <span aria-hidden="true">→</span></a>
-      <a class="secondary-button" href="https://github.com/" target="_blank" rel="noreferrer">View on GitHub</a>
+      <a class="primary-button" href="{{ '/fundamentals/' | relative_url }}">Start Learning <span aria-hidden="true">→</span></a>
     </div>
   </div>
   <div class="hero-visual" aria-hidden="true">
@@ -29,22 +28,22 @@ layout: default
 <section class="home-section" id="guide-overview">
   <h2><span aria-hidden="true">▣</span>Guide Overview</h2>
   <div class="overview-grid">
-    <a class="overview-card" href="{{ '/01-fundamentals/' | relative_url }}">
+    <a class="overview-card" href="{{ '/fundamentals/' | relative_url }}">
       <span class="card-orb green">B</span>
       <strong>Learn Fundamentals</strong>
       <span>Build a strong foundation with core concepts and principles.</span>
     </a>
-    <a class="overview-card" href="{{ '/02-components/' | relative_url }}">
+    <a class="overview-card" href="{{ '/components/' | relative_url }}">
       <span class="card-orb blue">N</span>
       <strong>Explore Deep Dives</strong>
       <span>Go deep into important components and topics.</span>
     </a>
-    <a class="overview-card" href="{{ '/06-case-studies/' | relative_url }}">
+    <a class="overview-card" href="{{ '/case-studies/' | relative_url }}">
       <span class="card-orb amber">P</span>
       <strong>Practice Problems</strong>
       <span>Practice with interview questions and complete walkthroughs.</span>
     </a>
-    <a class="overview-card" href="{{ '/07-interview-prep/' | relative_url }}">
+    <a class="overview-card" href="{{ '/interview-prep/' | relative_url }}">
       <span class="card-orb violet">Z</span>
       <strong>Ace Interviews</strong>
       <span>Apply your knowledge and sharpen your interview flow.</span>
@@ -55,16 +54,16 @@ layout: default
 <section class="home-section" id="popular-topics">
   <h2><span aria-hidden="true">⌁</span>Popular Topics</h2>
   <div class="topic-grid">
-    <a class="topic-card" href="{{ '/02-components/load-balancers/' | relative_url }}"><span class="topic-icon violet">L</span><strong>Load Balancer Design</strong><span>Design a scalable load balancer</span></a>
-    <a class="topic-card" href="{{ '/06-case-studies/chat-messaging/' | relative_url }}"><span class="topic-icon green">C</span><strong>Chat System Design</strong><span>Design a real-time chat system</span></a>
-    <a class="topic-card" href="{{ '/06-case-studies/url-shortener/' | relative_url }}"><span class="topic-icon green">U</span><strong>URL Shortener Design</strong><span>Design a URL shortener like bit.ly</span></a>
-    <a class="topic-card" href="{{ '/03-api-and-communication/websockets/' | relative_url }}"><span class="topic-icon red">V</span><strong>Video Streaming Design</strong><span>Design a video streaming platform</span></a>
-    <a class="topic-card" href="{{ '/06-case-studies/news-feed/' | relative_url }}"><span class="topic-icon blue">N</span><strong>News Feed Design</strong><span>Design a scalable news feed system</span></a>
-    <a class="topic-card" href="{{ '/06-case-studies/ecommerce-inventory-management-system/' | relative_url }}"><span class="topic-icon amber">E</span><strong>E-commerce Design</strong><span>Design a scalable e-commerce platform</span></a>
+    <a class="topic-card" href="{{ '/components/load-balancers/' | relative_url }}"><span class="topic-icon violet">L</span><strong>Load Balancer Design</strong><span>Design a scalable load balancer</span></a>
+    <a class="topic-card" href="{{ '/case-studies/chat-messaging/' | relative_url }}"><span class="topic-icon green">C</span><strong>Chat System Design</strong><span>Design a real-time chat system</span></a>
+    <a class="topic-card" href="{{ '/case-studies/url-shortener/' | relative_url }}"><span class="topic-icon green">U</span><strong>URL Shortener Design</strong><span>Design a URL shortener like bit.ly</span></a>
+    <a class="topic-card" href="{{ '/components/api-and-communication/websockets/' | relative_url }}"><span class="topic-icon red">V</span><strong>Video Streaming Design</strong><span>Design a video streaming platform</span></a>
+    <a class="topic-card" href="{{ '/case-studies/news-feed/' | relative_url }}"><span class="topic-icon blue">N</span><strong>News Feed Design</strong><span>Design a scalable news feed system</span></a>
+    <a class="topic-card" href="{{ '/case-studies/ecommerce-inventory-management-system/' | relative_url }}"><span class="topic-icon amber">E</span><strong>E-commerce Design</strong><span>Design a scalable e-commerce platform</span></a>
   </div>
   <div class="split-actions">
-    <a href="{{ '/06-case-studies/' | relative_url }}">View all practice problems <span aria-hidden="true">→</span></a>
-    <a href="{{ '/07-interview-prep/common-questions/' | relative_url }}">View all solutions <span aria-hidden="true">→</span></a>
+    <a href="{{ '/case-studies/' | relative_url }}">View all practice problems <span aria-hidden="true">→</span></a>
+    <a href="{{ '/interview-prep/common-questions/' | relative_url }}">View all solutions <span aria-hidden="true">→</span></a>
   </div>
 </section>
 
@@ -83,5 +82,6 @@ layout: default
 </section>
 
 <footer class="home-footer">
-  <p>© 2026 System Design Interview Guide. Built with Jekyll and GitHub Pages.</p>
+  <p>© 2026 System Design Interview Guide.</p>
 </footer>
+

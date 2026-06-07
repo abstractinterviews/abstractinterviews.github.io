@@ -1,0 +1,64 @@
+<section class="deep-index-shell">
+  <header class="deep-index-hero">
+    <div class="deep-index-icon" aria-hidden="true">{{ page.hero_icon | default: "C" }}</div>
+    <div class="deep-index-heading">
+      <h1>{{ page.deep_title | default: page.title }}</h1>
+      <p>{{ page.subtitle }}</p>
+      <div class="deep-badges">
+        {% for badge in page.badges %}
+          <span>{{ badge }}</span>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="deep-index-visual" aria-hidden="true">
+      <span></span><span></span><span></span>
+    </div>
+  </header>
+
+  {% if page.stats %}
+    <section class="deep-stats" aria-label="Deep dive stats">
+      {% for stat in page.stats %}
+        <article>
+          <strong>{{ stat.value }}</strong>
+          <span>{{ stat.label }}</span>
+        </article>
+      {% endfor %}
+    </section>
+  {% endif %}
+
+  <section class="deep-summary-card" id="overview">
+    <div>
+      <h2>Overview</h2>
+      <p>{{ page.overview }}</p>
+    </div>
+    {% if page.key_takeaways %}
+      <div id="key-takeaways">
+        <h3>Key Takeaways</h3>
+        <ul class="positive-list">
+          {% for item in page.key_takeaways %}
+            <li>{{ item }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+  </section>
+
+  {% if page.subtopics %}
+    <section class="deep-subtopics" id="sub-topics">
+      <h2>Sub Topics</h2>
+      <div class="deep-topic-list">
+        {% for topic in page.subtopics %}
+          <a class="deep-topic-card" href="{{ topic.url | relative_url }}">
+            <span class="deep-topic-icon {{ topic.color | default: 'blue' }}">{{ topic.icon | default: forloop.index }}</span>
+            <span>
+              <strong>{{ forloop.index }}. {{ topic.title }}</strong>
+              <em>{{ topic.description }}</em>
+            </span>
+            <small>{{ topic.read_time }}</small>
+            <b aria-hidden="true">›</b>
+          </a>
+        {% endfor %}
+      </div>
+    </section>
+  {% endif %}
+</section>

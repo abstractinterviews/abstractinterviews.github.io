@@ -2,98 +2,101 @@ pages:
   - title: Welcome
     url: /
   - title: Fundamentals
-    url: /01-fundamentals/
+    url: /fundamentals/
   - title: Scalability and Performance
-    url: /01-fundamentals/scalability/
+    url: /fundamentals/scalability/
   - title: CAP Theorem and Consistency Models
-    url: /01-fundamentals/cap-theorem/
+    url: /fundamentals/cap-theorem/
   - title: High Availability and Fault Tolerance
-    url: /01-fundamentals/high-availability/
+    url: /fundamentals/high-availability/
   - title: Back-of-the-Envelope Estimation
-    url: /01-fundamentals/estimation/
+    url: /fundamentals/estimation/
   - title: Core Components
-    url: /02-components/
+    url: /components/
   - title: Load Balancers
-    url: /02-components/load-balancers/
+    url: /components/load-balancers/
   - title: Caching Strategies
-    url: /02-components/caching/
+    url: /components/caching/
+  - title: Cache Aside Pattern
+    url: /components/caching/cache-aside-pattern/
   - title: CDN and Edge Computing
-    url: /02-components/cdn/
+    url: /components/cdn/
   - title: Message Queues and Event Streaming
-    url: /02-components/message-queues/
+    url: /components/message-queues/
   - title: Rate Limiting
-    url: /02-components/rate-limiting/
+    url: /components/rate-limiting/
   - title: Service Discovery and Health Checks
-    url: /02-components/service-discovery/
+    url: /components/service-discovery/
   - title: API and Communication
-    url: /03-api-and-communication/
+    url: /components/api-and-communication/
   - title: REST APIs
-    url: /03-api-and-communication/rest/
+    url: /components/api-and-communication/rest/
   - title: GraphQL
-    url: /03-api-and-communication/graphql/
+    url: /components/api-and-communication/graphql/
   - title: gRPC
-    url: /03-api-and-communication/grpc/
+    url: /components/api-and-communication/grpc/
   - title: WebSockets
-    url: /03-api-and-communication/websockets/
+    url: /components/api-and-communication/websockets/
   - title: API Gateway
-    url: /03-api-and-communication/api-gateway/
+    url: /components/api-and-communication/api-gateway/
   - title: Databases
-    url: /04-databases/
+    url: /components/databases/
   - title: SQL vs NoSQL
-    url: /04-databases/sql-vs-nosql/
+    url: /components/databases/sql-vs-nosql/
   - title: Sharding Strategies
-    url: /04-databases/sharding/
+    url: /components/databases/sharding/
   - title: Replication and Failover
-    url: /04-databases/replication/
+    url: /components/databases/replication/
   - title: Schema Design and Evolution
-    url: /04-databases/schema-design/
+    url: /components/databases/schema-design/
   - title: Distributed Transactions
-    url: /04-databases/distributed-transactions/
+    url: /components/databases/distributed-transactions/
   - title: Time-Series and Specialized Stores
-    url: /04-databases/specialized-stores/
+    url: /components/databases/specialized-stores/
   - title: Distributed Patterns
-    url: /05-patterns/
+    url: /fundamentals/patterns/
   - title: Circuit Breaker
-    url: /05-patterns/circuit-breaker/
+    url: /fundamentals/patterns/circuit-breaker/
   - title: CQRS
-    url: /05-patterns/cqrs/
+    url: /fundamentals/patterns/cqrs/
   - title: Event Sourcing
-    url: /05-patterns/event-sourcing/
+    url: /fundamentals/patterns/event-sourcing/
   - title: Transactional Outbox
-    url: /05-patterns/outbox/
+    url: /fundamentals/patterns/outbox/
   - title: Saga Pattern
-    url: /05-patterns/saga/
+    url: /fundamentals/patterns/saga/
   - title: 2PC vs Eventual Consistency
-    url: /05-patterns/2pc-vs-eventual/
+    url: /fundamentals/patterns/2pc-vs-eventual/
   - title: Case Studies
-    url: /06-case-studies/
+    url: /case-studies/
   - title: Design URL Shortener
-    url: /06-case-studies/url-shortener/problem/
+    url: /case-studies/url-shortener/problem/
   - title: URL Shortener Solution
-    url: /06-case-studies/url-shortener/
+    url: /case-studies/url-shortener/
   - title: Chat / Messaging System
-    url: /06-case-studies/chat-messaging/
+    url: /case-studies/chat-messaging/
   - title: Notification Service
-    url: /06-case-studies/notification-service/
+    url: /case-studies/notification-service/
   - title: Rate Limiter
-    url: /06-case-studies/rate-limiter/
+    url: /case-studies/rate-limiter/
   - title: News Feed
-    url: /06-case-studies/news-feed/
+    url: /case-studies/news-feed/
   - title: Distributed Cache
-    url: /06-case-studies/distributed-cache/
+    url: /case-studies/distributed-cache/
   - title: API Gateway Case Study
-    url: /06-case-studies/api-gateway/
+    url: /case-studies/api-gateway/
   - title: E-Commerce Inventory Management
-    url: /06-case-studies/ecommerce-inventory-management-system/
+    url: /case-studies/ecommerce-inventory-management-system/
   - title: Interview Prep
-    url: /07-interview-prep/
+    url: /interview-prep/
   - title: Interview Framework
-    url: /07-interview-prep/interview-framework/
+    url: /interview-prep/interview-framework/
   - title: Estimation Cheat Sheet
-    url: /07-interview-prep/estimation-cheatsheet/
+    url: /interview-prep/estimation-cheatsheet/
   - title: Common Mistakes
-    url: /07-interview-prep/common-mistakes/
+    url: /interview-prep/common-mistakes/
   - title: System Design Interview Questions
-    url: /07-interview-prep/common-questions/
+    url: /interview-prep/common-questions/
   - title: Glossary
     url: /glossary/
+

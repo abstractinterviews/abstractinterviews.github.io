@@ -66,7 +66,7 @@ module SolutionDataGenerator
         "title" => @page.data["title"],
         "subtitle" => @page.data["subtitle"] || first_paragraph(@content),
         "difficulty" => @page.data["difficulty"] || "Medium",
-        "active_tab" => @page.data["active_tab"] || "detailed-design",
+        "active_tab" => @page.data["active_tab"] || "overview",
         "tabs" => tabs_for(sections),
         "detail_tabs" => detailed_sections.map.with_index { |section, index| { "id" => section["id"], "label" => "#{index + 1}. #{section["short_title"] || section["title"]}" } },
         "overview" => overview,

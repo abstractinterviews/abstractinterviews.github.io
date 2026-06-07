@@ -1,0 +1,48 @@
+<article class="deep-post-shell">
+  <header class="deep-post-header">
+    <div>
+      <h1>{{ page.title }}</h1>
+      <p>{{ page.subtitle }}</p>
+      <div class="deep-badges">
+        {% if page.difficulty %}
+          <span>Difficulty: {{ page.difficulty }}</span>
+        {% endif %}
+        {% if page.read_time %}
+          <span>{{ page.read_time }}</span>
+        {% endif %}
+        <span>Deep Dive</span>
+      </div>
+    </div>
+    <nav class="deep-post-pager" aria-label="Subtopic navigation">
+      {% if page.previous_topic %}
+        <a href="{{ page.previous_topic.url | relative_url }}"><span>← Prev</span><strong>{{ page.previous_topic.title }}</strong></a>
+      {% endif %}
+      {% if page.next_topic %}
+        <a href="{{ page.next_topic.url | relative_url }}"><span>Next →</span><strong>{{ page.next_topic.title }}</strong></a>
+      {% endif %}
+    </nav>
+  </header>
+
+  {% assign heading_parts = include.content | split: '<h2 id="' %}
+  {% if page.post_tabs %}
+    <nav class="deep-post-tabs" aria-label="Post sections">
+      {% for tab in page.post_tabs %}
+        <a class="{% if forloop.first %}is-active{% endif %}" href="{{ tab.href }}">{{ tab.label }}</a>
+      {% endfor %}
+    </nav>
+  {% elsif heading_parts.size > 1 %}
+    <nav class="deep-post-tabs" aria-label="Post sections">
+      {% for heading_part in heading_parts offset:1 limit:6 %}
+        {% assign heading_id = heading_part | split: '"' | first %}
+        {% assign heading_open = heading_part | split: '</h2>' | first %}
+        {% assign heading_title = heading_open | split: '>' | last | strip_html | strip %}
+        {% assign cleaned_title = heading_title | replace_first: '16. ', '' | replace_first: '15. ', '' | replace_first: '14. ', '' | replace_first: '13. ', '' | replace_first: '12. ', '' | replace_first: '11. ', '' | replace_first: '10. ', '' | replace_first: '9. ', '' | replace_first: '8. ', '' | replace_first: '7. ', '' | replace_first: '6. ', '' | replace_first: '5. ', '' | replace_first: '4. ', '' | replace_first: '3. ', '' | replace_first: '2. ', '' | replace_first: '1. ', '' %}
+        <a class="{% if forloop.first %}is-active{% endif %}" href="#{{ heading_id }}">{{ cleaned_title }}</a>
+      {% endfor %}
+    </nav>
+  {% endif %}
+
+  <div class="deep-post-content page-content">
+    {{ include.content }}
+  </div>
+</article>

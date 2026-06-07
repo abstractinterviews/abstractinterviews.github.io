@@ -1,10 +1,10 @@
 ---
-__generated_from: 06-case-studies/url-shortener/index.md
+__generated_from: case-studies/url-shortener/index.md
 __generated_note: Edit the source Markdown, not this file.
 title: URL Shortener Design - Solution
 subtitle: Design a URL shortening service like bit.ly.
 difficulty: Medium
-active_tab: detailed-design
+active_tab: overview
 tabs:
 - id: overview
   label: Overview
