@@ -14,11 +14,15 @@ Two-phase commit favors strict atomicity; eventual consistency favors availabili
 
 *Figure 1: Side-by-side of 2PC coordinator prepare/commit and eventual consistency with async reconciliation.*
 
-## Why It Matters
+## Topic: Why It Matters
+
+### Sub-topic: Motivation
 
 This is not a theoretical choice. It determines whether the system blocks on coordination or accepts temporary divergence and repairs it later.
 
-## Comparison
+## Topic: Comparison
+
+### Sub-topic: Decision Criteria
 
 | Dimension | 2PC | Eventual Consistency |
 | --- | --- | --- |
@@ -27,7 +31,9 @@ This is not a theoretical choice. It determines whether the system blocks on coo
 | Complexity | Coordinator and locking | Reconciliation and conflict handling |
 | Latency | Higher due to coordination | Lower for the write path |
 
-## Decision Guide
+## Topic: Decision Guide
+
+### Sub-topic: Decision Criteria
 
 | Use Case | Better Fit | Why |
 | --- | --- | --- |
@@ -35,7 +41,9 @@ This is not a theoretical choice. It determines whether the system blocks on coo
 | Catalog updates | Eventual consistency | Temporary mismatch is acceptable |
 | Social feeds | Eventual consistency | Scale and freshness matter more than atomicity |
 
-## Typical Eventual Flow
+## Topic: Typical Eventual Flow
+
+### Sub-topic: Request Flow
 
 ```mermaid
 flowchart LR
@@ -46,7 +54,9 @@ flowchart LR
 	R --> C[Reconciliation]
 ```
 
-## Interview Framing
+## Topic: Interview Framing
+
+### Sub-topic: Answer Structure
 
 1. Start from business criticality, not database fashion.
 2. Identify where temporary inconsistency is acceptable.

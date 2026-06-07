@@ -11,7 +11,9 @@ read_time: "8 min read"
 
 In dynamic distributed systems, service instances appear and disappear frequently. Discovery and health checks ensure clients route traffic only to healthy instances.
 
-## 1. Service Discovery Models
+## Topic: Service Discovery Models
+
+### Sub-topic: System Shape
 
 ```mermaid
 flowchart LR
@@ -25,7 +27,9 @@ flowchart LR
     R -.remove from endpoint set.-> C
 ```
 
-## Client-side discovery
+## Topic: Client-side discovery
+
+### Sub-topic: Key Idea
 
 - Client queries registry (or receives endpoints) and load-balances locally.
 
@@ -37,7 +41,9 @@ Cons:
 
 - More client complexity
 
-## Server-side discovery
+## Topic: Server-side discovery
+
+### Sub-topic: Key Idea
 
 - Client sends request to load balancer/proxy.
 - Proxy discovers healthy backends.
@@ -51,7 +57,9 @@ Cons:
 
 - More responsibility on proxy layer
 
-## 2. Service Registry
+## Topic: Service Registry
+
+### Sub-topic: Implementation Detail
 
 Registry stores active instances and metadata:
 
@@ -70,7 +78,9 @@ Instances register at startup and heartbeat periodically.
 | Kubernetes service discovery | Container orchestration environments | Cluster-specific behavior and DNS caching |
 | Service mesh control plane | Rich policy and telemetry | Operational complexity |
 
-## 3. Health Check Types
+## Topic: Health Check Types
+
+### Sub-topic: Options and Selection
 
 - Liveness: process is alive
 - Readiness: instance is ready for traffic
@@ -78,7 +88,9 @@ Instances register at startup and heartbeat periodically.
 
 Avoid expensive dependency checks in high-frequency liveness probes.
 
-## 4. Heartbeats and Timeouts
+## Topic: Heartbeats and Timeouts
+
+### Sub-topic: Implementation Detail
 
 - Short heartbeat intervals detect failure quickly.
 - Too aggressive intervals can create churn.
@@ -86,7 +98,9 @@ Avoid expensive dependency checks in high-frequency liveness probes.
 
 Use separate timers for heartbeat expiry, readiness drain, and client endpoint cache TTL. If all three are too short, a partial network issue can eject healthy instances and amplify an incident.
 
-## 5. Service Mesh and Sidecars
+## Topic: Service Mesh and Sidecars
+
+### Sub-topic: Key Idea
 
 Service meshes can provide:
 
@@ -98,7 +112,9 @@ Service meshes can provide:
 
 Trade-off: operational complexity.
 
-## 6. Failure Scenarios
+## Topic: Failure Scenarios
+
+### Sub-topic: Failure Awareness
 
 - Registry partition or outage
 - Stale endpoints in client caches
@@ -114,7 +130,9 @@ Mitigations:
 - Registry high availability deployment
 - Zone-aware routing and gradual endpoint draining
 
-## 7. Interview Framing
+## Topic: Interview Framing
+
+### Sub-topic: Answer Structure
 
 1. Explain discovery model choice.
 2. Explain registration and heartbeat flow.

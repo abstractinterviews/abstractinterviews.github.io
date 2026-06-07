@@ -43,13 +43,17 @@ next_topic:
   url: "/components/caching/"
 ---
 
-## What is Cache Aside?
+## Topic: What is Cache Aside?
+
+### Sub-topic: Definition
 
 In Cache Aside, the application is responsible for managing the cache. It first checks the cache. If the key is missing, it reads from the database, stores the result in cache, and returns data to the caller.
 
 > Most commonly used pattern due to its simplicity and flexibility.
 
-## Flow Overview
+## Topic: Flow Overview
+
+### Sub-topic: Request Flow
 
 1. Check cache for the requested key.
 2. On cache miss, read from the database.
@@ -57,7 +61,9 @@ In Cache Aside, the application is responsible for managing the cache. It first 
 4. Return data to the application.
 5. Future requests are served from cache until expiry or invalidation.
 
-## Sequence Diagram
+## Topic: Sequence Diagram
+
+### Sub-topic: Request Flow
 
 ```mermaid
 sequenceDiagram
@@ -82,7 +88,9 @@ sequenceDiagram
 
 > On cache hit, data is returned immediately. On miss, DB is queried and cache is updated.
 
-## Read Flow
+## Topic: Read Flow
+
+### Sub-topic: Request Flow
 
 ```python
 def get_user(user_id):
@@ -96,7 +104,9 @@ def get_user(user_id):
     return user
 ```
 
-## Write Flow
+## Topic: Write Flow
+
+### Sub-topic: Request Flow
 
 For writes, update the database first and then invalidate the cache entry. The next read repopulates the cache with fresh data.
 
@@ -106,7 +116,9 @@ def update_user(user_id, patch):
     redis.delete(f"user:{user_id}")
 ```
 
-## Pros and Cons
+## Topic: Pros and Cons
+
+### Sub-topic: Decision Criteria
 
 | Pros | Cons |
 | --- | --- |
@@ -115,14 +127,18 @@ def update_user(user_id, patch):
 | Cache failures can degrade gracefully | Duplicate cache-fill logic can spread |
 | Good for read-heavy data | Hot keys may cause stampedes |
 
-## When to Use
+## Topic: When to Use
+
+### Sub-topic: Key Idea
 
 - Read-heavy workloads
 - Data can tolerate brief staleness
 - Cache is an optimization, not the source of truth
 - Application needs explicit control over cache behavior
 
-## Gotchas
+## Topic: Gotchas
+
+### Sub-topic: Failure Awareness
 
 - Add TTL jitter to avoid synchronized expiry.
 - Use request coalescing for hot keys.

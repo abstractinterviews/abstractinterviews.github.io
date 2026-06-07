@@ -11,45 +11,61 @@ read_time: "9 min read"
 
 Rate limiting protects services from abuse, overload, and noisy neighbors by controlling request volume.
 
-## 1. Why Rate Limit
+## Topic: Why Rate Limit
+
+### Sub-topic: Motivation
 
 - Prevent denial-of-service and brute-force behavior
 - Protect expensive dependencies
 - Enforce fair usage across clients
 - Stabilize system under bursty demand
 
-## 2. Common Algorithms
+## Topic: Common Algorithms
+
+### Sub-topic: Options and Selection
 
 ![Rate limiting architecture with API gateway, token bucket limiter, Redis counters, and 429 responses.](../assets/rate-limiting-architecture.png)
 
 *Figure 1: Distributed Rate Limiting Architecture*
 
-## Fixed window counter
+## Topic: Fixed window counter
+
+### Sub-topic: Key Idea
 
 - Count requests in fixed intervals.
 - Simple but bursty at window boundaries.
 
-## Sliding window log
+## Topic: Sliding window log
+
+### Sub-topic: Key Idea
 
 - Track timestamped requests.
 - Accurate but memory heavy.
 
-## Sliding window counter
+## Topic: Sliding window counter
+
+### Sub-topic: Key Idea
 
 - Approximate sliding behavior with lower overhead.
 
-## Token bucket
+## Topic: Token bucket
+
+### Sub-topic: Key Idea
 
 - Tokens refill at fixed rate; requests consume tokens.
 - Supports controlled bursts.
 
-## Leaky bucket
+## Topic: Leaky bucket
+
+### Sub-topic: Key Idea
 
 - Smooths request outflow at steady pace.
 
 Token bucket is often a practical default.
 
-## 3. Scope and Keys
+## Topic: Scope and Keys
+
+### Sub-topic: Key Idea
 
 Limits can be applied per:
 
@@ -61,7 +77,9 @@ Limits can be applied per:
 
 Use hierarchical limits for better control (global + per-tenant + per-user).
 
-## 4. Distributed Rate Limiting
+## Topic: Distributed Rate Limiting
+
+### Sub-topic: Key Idea
 
 In multi-instance systems, counters must be shared.
 
@@ -70,7 +88,9 @@ Typical approach:
 - Redis + Lua scripts for atomic counter updates
 - Low-latency in-memory local fallback where strictness is relaxed
 
-## 5. Response Contract
+## Topic: Response Contract
+
+### Sub-topic: Implementation Detail
 
 When rejecting requests:
 
@@ -84,7 +104,9 @@ Example headers:
 - `X-RateLimit-Remaining`
 - `X-RateLimit-Reset`
 
-## 6. Failure Modes
+## Topic: Failure Modes
+
+### Sub-topic: Failure Awareness
 
 - Clock skew affecting windows
 - Redis outage causing open/closed failure debate
@@ -93,7 +115,9 @@ Example headers:
 
 Choose fail-open vs fail-closed based on endpoint criticality.
 
-## 7. Interview Framing
+## Topic: Interview Framing
+
+### Sub-topic: Answer Structure
 
 1. Define what is being protected.
 2. Choose algorithm and explain why.

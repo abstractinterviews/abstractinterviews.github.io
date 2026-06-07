@@ -14,11 +14,15 @@ CQRS separates read and write models so each side can be optimized for a differe
 
 *Figure 1: Command side writing to source store and event bus, query side serving denormalized read views.*
 
-## Why It Exists
+## Topic: Why It Exists
+
+### Sub-topic: Motivation
 
 Many systems do not have symmetric read and write behavior. Writes may need validation, deduplication, and durable storage, while reads need low latency and query-friendly shapes. CQRS accepts that asymmetry instead of forcing one model to do both jobs.
 
-## When To Use It
+## Topic: When To Use It
+
+### Sub-topic: Key Idea
 
 | Situation | Why CQRS Helps | Risk |
 | --- | --- | --- |
@@ -26,7 +30,9 @@ Many systems do not have symmetric read and write behavior. Writes may need vali
 | Workflow systems | Commands stay strict while reads stay flexible | More moving parts |
 | Event-driven domains | Events naturally feed read projections | Rebuild complexity |
 
-## Typical Flow
+## Topic: Typical Flow
+
+### Sub-topic: Request Flow
 
 ```mermaid
 flowchart LR
@@ -39,14 +45,18 @@ flowchart LR
 	Q --> R
 ```
 
-## Trade-offs
+## Topic: Trade-offs
+
+### Sub-topic: Decision Criteria
 
 - Reads become faster and easier to shape for UI or reporting.
 - Writes stay focused on invariants instead of query shape.
 - Consistency becomes eventual between write and read sides.
 - Debugging gets harder because you now reason about projections as well as source state.
 
-## Interview Framing
+## Topic: Interview Framing
+
+### Sub-topic: Answer Structure
 
 1. Explain the write model as the source of truth.
 2. Describe how events or change notifications update the read model.

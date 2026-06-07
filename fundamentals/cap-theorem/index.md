@@ -15,14 +15,18 @@ CAP theorem states that in a distributed system facing a network partition, you 
 
 Partition tolerance is mandatory in real distributed systems, so trade-offs are usually between consistency and availability during partition events.
 
-## 1. CAP in Practice
+## Topic: CAP in Practice
+
+### Sub-topic: Key Idea
 
 - CP systems prioritize correctness and may reject requests during partition.
 - AP systems prioritize responses and may return stale/conflicting data.
 
 Most production systems are not globally CP or AP; they choose per operation.
 
-## 2. Consistency Spectrum
+## Topic: Consistency Spectrum
+
+### Sub-topic: Decision Criteria
 
 - Strong consistency: reads reflect latest successful write.
 - Read-after-write: a client sees its own writes.
@@ -34,13 +38,17 @@ Most production systems are not globally CP or AP; they choose per operation.
 
 *Figure 1: CAP Trade-Off and Consistency Spectrum*
 
-## 3. Typical Operation-Level Choices
+## Topic: Typical Operation-Level Choices
+
+### Sub-topic: Key Idea
 
 - Payments and inventory decrements: strong consistency preferred.
 - Social counters, feeds, recommendations: eventual consistency often acceptable.
 - User profile updates: often read-after-write is enough.
 
-## 4. Quorum Basics
+## Topic: Quorum Basics
+
+### Sub-topic: Key Idea
 
 For replicated data with N replicas:
 
@@ -51,14 +59,18 @@ If $R + W > N$, reads overlap writes and can improve freshness guarantees.
 
 Common setting: N=3, W=2, R=2.
 
-## 5. Conflict Handling in Eventually Consistent Systems
+## Topic: Conflict Handling in Eventually Consistent Systems
+
+### Sub-topic: Decision Criteria
 
 - Last-write-wins (simple, may lose updates)
 - Version vectors/vector clocks
 - CRDTs for mergeable data types
 - Application-level merge strategies
 
-## 6. Staleness and User Experience
+## Topic: Staleness and User Experience
+
+### Sub-topic: Key Idea
 
 Consistency decisions should be tied to user impact.
 
@@ -66,7 +78,9 @@ Consistency decisions should be tied to user impact.
 - Slightly stale like counts are often acceptable.
 - Delayed notification delivery may be fine if eventual delivery is guaranteed.
 
-## 7. Interview Framing
+## Topic: Interview Framing
+
+### Sub-topic: Answer Structure
 
 1. Identify which operations demand strict correctness.
 2. Assign consistency level per operation.
@@ -74,7 +88,9 @@ Consistency decisions should be tied to user impact.
 4. Describe reconciliation strategy for conflicts.
 5. Mention observability for replica lag and stale-read rates.
 
-## 8. Common Mistakes
+## Topic: Common Mistakes
+
+### Sub-topic: Failure Awareness
 
 - Claiming a system is fully consistent and always available across partitions.
 - Ignoring read/write path differences.

@@ -81,7 +81,9 @@ This section covers data store decisions, consistency trade-offs, and the physic
 
 *Figure 1: Decision tree from workload and consistency requirements to SQL/NoSQL, sharding, replication, and transaction model.*
 
-## Topics
+## Topic: Topic Map
+
+### Sub-topic: Section Directory
 
 - [SQL vs NoSQL](./sql-vs-nosql/)
 - [Sharding Strategies](./sharding/)
@@ -90,7 +92,9 @@ This section covers data store decisions, consistency trade-offs, and the physic
 - [Distributed Transactions](./distributed-transactions/)
 - [Time-Series and Specialized Stores](./specialized-stores/)
 
-## What To Look For
+## Topic: What To Look For
+
+### Sub-topic: Definition
 
 | Question | What It Reveals |
 | --- | --- |
@@ -99,7 +103,9 @@ This section covers data store decisions, consistency trade-offs, and the physic
 | Is atomicity business-critical? | Whether strict transactions matter |
 | Are schemas stable or evolving? | Whether relational or flexible models fit better |
 
-## Study Order
+## Topic: Study Order
+
+### Sub-topic: Recommended Sequence
 
 1. Start with SQL vs NoSQL to understand the baseline model.
 2. Read sharding and replication together to see how scaling and resilience interact.

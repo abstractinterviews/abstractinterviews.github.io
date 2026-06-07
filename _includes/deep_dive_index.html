@@ -61,4 +61,15 @@
       </div>
     </section>
   {% endif %}
+
+  {% if include.content %}
+    {% assign body_parts = include.content | split: '</h1>' %}
+    <article class="deep-index-body">
+      {% if body_parts.size > 1 %}
+        {{ body_parts[1] }}
+      {% else %}
+        {{ include.content }}
+      {% endif %}
+    </article>
+  {% endif %}
 </section>

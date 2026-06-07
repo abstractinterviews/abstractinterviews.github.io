@@ -15,14 +15,18 @@ GraphQL enables client-driven querying and schema-typed APIs. It is useful when 
 
 *Figure 1: GraphQL gateway resolving fields from multiple backend services with batching.*
 
-## 1. Strengths
+## Topic: Strengths
+
+### Sub-topic: Key Idea
 
 - Reduces over-fetch and under-fetch
 - One endpoint for many client shapes
 - Strong schema introspection
 - Good developer experience for frontend teams
 
-## 2. Resolver Design
+## Topic: Resolver Design
+
+### Sub-topic: System Shape
 
 Resolvers should batch, cache, and isolate downstream calls.
 
@@ -31,7 +35,9 @@ Resolvers should batch, cache, and isolate downstream calls.
 - Apply timeouts and fallback values per downstream.
 - Avoid hiding expensive distributed joins behind a simple field.
 
-## 3. Risks
+## Topic: Risks
+
+### Sub-topic: Failure Awareness
 
 - Expensive nested queries
 - Resolver fan-out latency
@@ -43,7 +49,9 @@ Resolvers should batch, cache, and isolate downstream calls.
 
 *Figure 2: Query complexity analysis with depth limits and persisted query enforcement.*
 
-## 4. Guardrails
+## Topic: Guardrails
+
+### Sub-topic: Key Idea
 
 | Risk | Guardrail |
 | --- | --- |
@@ -53,10 +61,14 @@ Resolvers should batch, cache, and isolate downstream calls.
 | Sensitive fields | Field-level authorization |
 | Cache misses | Query normalization and CDN strategy |
 
-## 5. When To Use
+## Topic: When To Use
+
+### Sub-topic: Key Idea
 
 Use GraphQL when multiple clients need different shapes from the same domain graph. Avoid it when the API is small, command-heavy, or mostly simple server-to-server traffic.
 
-## 6. Interview Framing
+## Topic: Interview Framing
+
+### Sub-topic: Answer Structure
 
 Explain why client-shaped reads matter, then cover resolver fan-out, query limits, authorization, caching, and how schema ownership prevents a monolith at the API layer.

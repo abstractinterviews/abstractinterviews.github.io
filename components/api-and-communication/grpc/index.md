@@ -15,7 +15,9 @@ gRPC is strongly typed RPC over HTTP/2 using Protobuf contracts. It is a strong 
 
 *Figure 1: Client and server generated stubs from protobuf schema with unary and streaming calls.*
 
-## 1. When It Fits
+## Topic: When It Fits
+
+### Sub-topic: Key Idea
 
 - Low-latency internal service calls
 - Strong contracts across teams
@@ -23,7 +25,9 @@ gRPC is strongly typed RPC over HTTP/2 using Protobuf contracts. It is a strong 
 - Bidirectional or server-streaming use cases
 - Polyglot services that need generated clients
 
-## 2. Contract Design
+## Topic: Contract Design
+
+### Sub-topic: System Shape
 
 Protobuf schemas are the product contract.
 
@@ -32,7 +36,9 @@ Protobuf schemas are the product contract.
 - Keep messages small and explicit.
 - Version APIs by package/service when behavior changes significantly.
 
-## 3. Call Types
+## Topic: Call Types
+
+### Sub-topic: Options and Selection
 
 | Type | Shape | Common Use |
 | --- | --- | --- |
@@ -41,7 +47,9 @@ Protobuf schemas are the product contract.
 | Client streaming | Many requests, one response | Upload or aggregation |
 | Bidirectional streaming | Many requests, many responses | Realtime coordination |
 
-## 4. Operational Concerns
+## Topic: Operational Concerns
+
+### Sub-topic: Key Idea
 
 - Propagate deadlines and cancellation.
 - Configure retries only for idempotent calls.
@@ -49,7 +57,9 @@ Protobuf schemas are the product contract.
 - Add interceptors for auth, tracing, metrics, and request logging.
 - Keep reflection/debug tooling available in non-production environments.
 
-## 5. Trade-Offs
+## Topic: Trade-Offs
+
+### Sub-topic: Decision Criteria
 
 | Benefit | Cost |
 | --- | --- |
@@ -58,6 +68,8 @@ Protobuf schemas are the product contract.
 | Streaming support | More complex client behavior |
 | Great internal APIs | Browser clients usually need a gateway |
 
-## 6. Interview Framing
+## Topic: Interview Framing
+
+### Sub-topic: Answer Structure
 
 Use gRPC when the system has many internal calls, strict contracts, or streaming needs. Compare it against REST by naming operational cost, browser support, observability, and schema evolution.

@@ -14,11 +14,15 @@ Event sourcing stores state transitions as immutable events and reconstructs cur
 
 *Figure 1: Aggregate commands producing ordered events, snapshots, and read projections.*
 
-## Why It Exists
+## Topic: Why It Exists
+
+### Sub-topic: Motivation
 
 Instead of persisting only the latest state, event sourcing records every meaningful change. That gives you a replayable audit trail and makes the history of the domain visible.
 
-## What You Gain
+## Topic: What You Gain
+
+### Sub-topic: Definition
 
 | Benefit | Why It Matters |
 | --- | --- |
@@ -27,7 +31,9 @@ Instead of persisting only the latest state, event sourcing records every meanin
 | Temporal debugging | Reproduce state at any point in time |
 | Integration | Events are a natural source for downstream systems |
 
-## Flow
+## Topic: Flow
+
+### Sub-topic: Request Flow
 
 ```mermaid
 flowchart LR
@@ -38,14 +44,18 @@ flowchart LR
 	P --> R[(Read Model)]
 ```
 
-## Operational Costs
+## Topic: Operational Costs
+
+### Sub-topic: Key Idea
 
 - The write model becomes more complex because it must validate state from event history.
 - Projections can lag behind the write model.
 - Schema evolution needs explicit versioning.
 - Replays can be expensive without snapshots.
 
-## Interview Framing
+## Topic: Interview Framing
+
+### Sub-topic: Answer Structure
 
 1. Explain why the history matters for the domain.
 2. Distinguish the event store from the read model.

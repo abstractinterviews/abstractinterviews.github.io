@@ -14,18 +14,24 @@ Saga coordinates multi-step distributed workflows and uses compensating actions 
 
 *Figure 1: Multi-service transaction steps with rollback compensation when a step fails.*
 
-## Why It Exists
+## Topic: Why It Exists
+
+### Sub-topic: Motivation
 
 Distributed systems rarely share a single database transaction boundary. Saga replaces the idea of one global ACID commit with a sequence of local commits plus compensations that restore business correctness if something goes wrong.
 
-## Orchestration vs Choreography
+## Topic: Orchestration vs Choreography
+
+### Sub-topic: Key Idea
 
 | Style | Control | Pros | Cons |
 | --- | --- | --- | --- |
 | Orchestration | Central saga coordinator | Easier to reason about and observe | Coordinator becomes critical path |
 | Choreography | Services react to events | Loosely coupled and simple to extend | Harder to trace end-to-end |
 
-## Example Flow
+## Topic: Example Flow
+
+### Sub-topic: Request Flow
 
 ```mermaid
 sequenceDiagram
@@ -44,20 +50,26 @@ sequenceDiagram
 	S-->>O: Shipment created
 ```
 
-## Compensation Examples
+## Topic: Compensation Examples
+
+### Sub-topic: Key Idea
 
 - Refund a payment after downstream failure.
 - Release reserved inventory if shipping cannot be created.
 - Cancel a booking if a confirmation step times out.
 
-## Trade-offs
+## Topic: Trade-offs
+
+### Sub-topic: Decision Criteria
 
 - Better availability than a single global transaction.
 - Easier to scale because each step is local to a service.
 - More application complexity because you must design compensations.
 - Failure handling must be idempotent and retry-safe.
 
-## Interview Framing
+## Topic: Interview Framing
+
+### Sub-topic: Answer Structure
 
 1. State the business operation that needs distributed coordination.
 2. Name each local transaction and its compensation.

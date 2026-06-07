@@ -71,7 +71,9 @@ related_concepts:
 
 This section builds the base mental models needed for every system design interview, from latency and availability to capacity and failure handling.
 
-## Topics
+## Topic: Topic Map
+
+### Sub-topic: Section Directory
 
 - [Scalability and Performance](./scalability/)
 - [CAP Theorem and Consistency Models](./cap-theorem/)
@@ -83,13 +85,17 @@ This section builds the base mental models needed for every system design interv
 
 *Figure 1: System Design Fundamentals Map*
 
-## How to Use
+## Topic: Study Path
+
+### Sub-topic: Recommended Sequence
 
 1. Read in the order listed above.
 2. Practice explaining each topic in 2 minutes.
 3. For each case study, explicitly call out which fundamental trade-offs are in play.
 
-## Core Questions
+## Topic: Core Questions
+
+### Sub-topic: Key Idea
 
 | Question | What You Should Be Able To Explain |
 | --- | --- |
@@ -98,7 +104,9 @@ This section builds the base mental models needed for every system design interv
 | How consistent does it need to be? | Strong, eventual, or hybrid consistency |
 | How much can it handle? | RPS, storage, bandwidth, and headroom |
 
-## Interview Checklist
+## Topic: Interview Checklist
+
+### Sub-topic: Answer Structure
 
 - Define workload shape before naming technologies.
 - Tie every design choice to a visible trade-off.

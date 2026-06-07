@@ -17,7 +17,9 @@ CDNs move content closer to users by caching at edge locations, reducing latency
 
 Define cacheability by content type and personalization level first. This determines whether responses can be safely shared across users.
 
-## 1. CDN Basics
+## Topic: CDN Basics
+
+### Sub-topic: Implementation Detail
 
 ![CDN Architecture](../assets/cdn-architecture.png)
 
@@ -32,7 +34,7 @@ Benefits:
 - Reduced origin bandwidth and CPU load
 - Better resilience under traffic spikes
 
-## 2. What to Cache at Edge
+## Topic: What to Cache at Edge
 
 ### Sub-topic: Cache Eligibility Checklist
 
@@ -48,7 +50,9 @@ Benefits:
 - Video and large media files
 - Generated pages when personalization is limited
 
-## 3. Cache-Control Patterns
+## Topic: Cache-Control Patterns
+
+### Sub-topic: Options and Selection
 
 - `Cache-Control: public, max-age=...`
 - `s-maxage` for shared caches
@@ -57,7 +61,7 @@ Benefits:
 
 Correct headers are as important as CDN choice.
 
-## 4. Purge and Invalidation
+## Topic: Purge and Invalidation
 
 ### Sub-topic: Invalidation Strategy
 
@@ -70,7 +74,9 @@ Prefer deterministic versioning for static assets. Use purge operations for dyna
 
 Prefer versioned static assets to avoid broad cache purges.
 
-## 5. Edge Compute Use Cases
+## Topic: Edge Compute Use Cases
+
+### Sub-topic: Key Idea
 
 - Redirects and URL rewrites
 - Header normalization
@@ -80,7 +86,9 @@ Prefer versioned static assets to avoid broad cache purges.
 
 Avoid heavy business logic at edge unless platform constraints are clear.
 
-## 6. Failure Modes
+## Topic: Failure Modes
+
+### Sub-topic: Failure Awareness
 
 - Stale content due to missing invalidation
 - Cache poisoning from incorrect keys
@@ -94,7 +102,9 @@ Mitigations:
 - Tiered caching
 - Rate limits and WAF integration
 
-## 7. Interview Framing
+## Topic: Interview Framing
+
+### Sub-topic: Answer Structure
 
 1. State which responses are edge-cacheable.
 2. Define cache keys and TTL policy.

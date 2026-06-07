@@ -14,11 +14,15 @@ Circuit breaker prevents repeated calls to failing dependencies, while bulkhead 
 
 *Figure 1: Closed-open-half-open circuit transitions with separate resource pools for bulkhead isolation.*
 
-## Why It Exists
+## Topic: Why It Exists
+
+### Sub-topic: Motivation
 
 When a downstream service becomes slow or unavailable, retries can make the outage worse. A circuit breaker cuts off repeated failures, and a bulkhead keeps one dependency from starving the whole application.
 
-## Circuit States
+## Topic: Circuit States
+
+### Sub-topic: Key Idea
 
 | State | Meaning | Typical Behavior |
 | --- | --- | --- |
@@ -26,13 +30,17 @@ When a downstream service becomes slow or unavailable, retries can make the outa
 | Open | Calls fail fast | Stop traffic to the dependency |
 | Half-open | Probe recovery | Allow a small test volume |
 
-## Bulkhead Patterns
+## Topic: Bulkhead Patterns
+
+### Sub-topic: Options and Selection
 
 - Separate thread pools per dependency.
 - Separate connection pools per backend class.
 - Queue limits per tenant or endpoint.
 
-## Failure Flow
+## Topic: Failure Flow
+
+### Sub-topic: Request Flow
 
 ```mermaid
 flowchart LR
@@ -44,7 +52,9 @@ flowchart LR
 	A --> H[Bulkhead Pool]
 ```
 
-## Practical Tuning
+## Topic: Practical Tuning
+
+### Sub-topic: Key Idea
 
 | Control | Purpose |
 | --- | --- |
@@ -53,7 +63,9 @@ flowchart LR
 | Slow-call threshold | Open on latency before full failure |
 | Concurrency cap | Prevent dependency overload |
 
-## Interview Framing
+## Topic: Interview Framing
+
+### Sub-topic: Answer Structure
 
 1. Show where retries stop and circuit breaking begins.
 2. Tie bulkheads to user impact, not just infrastructure hygiene.

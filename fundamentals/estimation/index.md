@@ -10,7 +10,9 @@ read_time: "8 min read"
 
 Estimation is a core interview skill. You do not need exact values; you need defensible approximations to justify architecture choices.
 
-## 1. Estimation Workflow
+## Topic: Estimation Workflow
+
+### Sub-topic: Request Flow
 
 1. Clarify assumptions.
 2. Estimate scale inputs (users, request rate, object size).
@@ -22,7 +24,9 @@ Estimation is a core interview skill. You do not need exact values; you need def
 
 *Figure 1: Back-of-the-Envelope Estimation Workflow*
 
-## 2. Useful Conversions
+## Topic: Useful Conversions
+
+### Sub-topic: Implementation Detail
 
 - 1 day = 86,400 seconds
 - 1 million/day is about 11.6 per second
@@ -30,7 +34,9 @@ Estimation is a core interview skill. You do not need exact values; you need def
 - 1 KB = 1,024 bytes
 - 1 GB is about 10^9 bytes (rough) or 2^30 bytes (binary)
 
-## 3. Throughput Example
+## Topic: Throughput Example
+
+### Sub-topic: Key Idea
 
 Given:
 
@@ -47,7 +53,9 @@ Average RPS:
 
 If peak is 5x average, design peak for about 58,000 RPS.
 
-## 4. Storage Example
+## Topic: Storage Example
+
+### Sub-topic: Key Idea
 
 Given:
 
@@ -63,7 +71,9 @@ One year raw:
 
 - about 43.8 TB/year before replicas/index overhead
 
-## 5. Bandwidth Example
+## Topic: Bandwidth Example
+
+### Sub-topic: Key Idea
 
 Given:
 
@@ -76,14 +86,18 @@ Peak egress:
 - about 156 MB/s
 - about 1.25 Gbps (rough)
 
-## 6. Capacity Safety Margins
+## Topic: Capacity Safety Margins
+
+### Sub-topic: Scaling Decision
 
 - Keep CPU targets conservative for critical services.
 - Plan room for cache miss spikes.
 - Consider replication and backup overhead.
 - Include growth horizon (for example, 12 to 24 months).
 
-## 7. Interview Communication Template
+## Topic: Interview Communication Template
+
+### Sub-topic: Key Idea
 
 Use this concise structure:
 
@@ -93,7 +107,9 @@ Use this concise structure:
 4. "With record size R, storage growth is S/day and T/year."
 5. "So we need sharding/replicas/cache at these thresholds."
 
-## 8. Common Mistakes
+## Topic: Common Mistakes
+
+### Sub-topic: Failure Awareness
 
 - Using average traffic for sizing without peak multiplier.
 - Ignoring replication factor in storage.

@@ -15,7 +15,9 @@ Replication copies data across nodes so systems can survive failures and scale r
 
 *Figure 1: Primary-replica topology with read replicas and automatic leader election on primary failure.*
 
-## 1. Replication Models
+## Topic: Replication Models
+
+### Sub-topic: System Shape
 
 | Model | How It Works | Trade-Off |
 | --- | --- | --- |
@@ -23,13 +25,17 @@ Replication copies data across nodes so systems can survive failures and scale r
 | Multi-primary | Multiple nodes accept writes | Conflict resolution required |
 | Leaderless quorum | Reads/writes contact multiple replicas | Tunable consistency, more coordination |
 
-## 2. Core Trade-Off
+## Topic: Core Trade-Off
+
+### Sub-topic: Decision Criteria
 
 - Async replication: better latency, possible replica lag.
 - Sync replication: stronger consistency, write latency cost.
 - Semi-sync replication: waits for at least one replica acknowledgement.
 
-## 3. Read Scaling
+## Topic: Read Scaling
+
+### Sub-topic: Scaling Decision
 
 Replicas can serve read traffic, but the app must understand staleness.
 
@@ -37,7 +43,9 @@ Replicas can serve read traffic, but the app must understand staleness.
 - Use replicas for dashboards, search, analytics, and non-critical reads.
 - Monitor replica lag and remove lagging replicas from read pools.
 
-## 4. Failover Flow
+## Topic: Failover Flow
+
+### Sub-topic: Request Flow
 
 1. Detect primary failure with health checks or consensus.
 2. Freeze or fence the old primary to prevent split brain.
@@ -45,13 +53,17 @@ Replicas can serve read traffic, but the app must understand staleness.
 4. Repoint clients and update topology metadata.
 5. Rebuild missing replicas after recovery.
 
-## 5. Failure Modes
+## Topic: Failure Modes
+
+### Sub-topic: Failure Awareness
 
 - Split brain from two primaries accepting writes.
 - Data loss if async replicas lag before promotion.
 - Read anomalies from stale replicas.
 - Slow failover due to DNS/client cache behavior.
 
-## 6. Interview Framing
+## Topic: Interview Framing
+
+### Sub-topic: Answer Structure
 
 State whether the workload needs read scale, durability, low write latency, or strict freshness. Then choose replication mode, explain failover, and describe how the system detects lag and split brain.

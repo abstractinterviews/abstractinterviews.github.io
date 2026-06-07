@@ -87,7 +87,9 @@ related_concepts:
 
 This section covers reusable infrastructure building blocks that appear in most system design interviews.
 
-## Topics
+## Topic: Topic Map
+
+### Sub-topic: Section Directory
 
 - [Load Balancers](./load-balancers/)
 - [Caching Strategies](./caching/)
@@ -99,13 +101,17 @@ This section covers reusable infrastructure building blocks that appear in most 
 ![Figure 1 - Core Components in System Design](./assets/core-components-in-system-design.png)
 
 
-## How to Study
+## Topic: Study Path
+
+### Sub-topic: Recommended Sequence
 
 1. Learn when each component is needed.
 2. Learn failure modes for each component.
 3. Practice combining two or three components into one design story.
 
-## Interview Checklist
+## Topic: Interview Checklist
+
+### Sub-topic: Answer Structure
 
 - Explain why the component exists in your design.
 - Mention at least one trade-off and one failure scenario.

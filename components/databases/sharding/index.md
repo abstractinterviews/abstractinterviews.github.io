@@ -21,7 +21,9 @@ Sharding should follow evidence: single-node saturation, sustained write pressur
 
 *Figure 1: Hash, range, and geo sharding examples with query routing and hotspot risk annotations.*
 
-## Key Points
+## Topic: Key Points
+
+### Sub-topic: Key Idea
 
 | Concern | Why It Matters |
 | --- | --- |
@@ -29,7 +31,7 @@ Sharding should follow evidence: single-node saturation, sustained write pressur
 | Resharding | Rebalancing is much harder after data growth begins |
 | Cross-shard queries | Distributed joins and transactions are expensive |
 
-## Common Sharding Models
+## Topic: Common Sharding Models
 
 ### Sub-topic: Routing and Rebalancing
 
@@ -43,7 +45,7 @@ flowchart LR
 
 Plan for online rebalancing early. If the routing layer is opaque or ad-hoc, operational complexity grows quickly as data volume increases.
 
-## Operational Safeguards
+## Topic: Operational Safeguards
 
 ### Sub-topic: Hotspot and Migration Controls
 
@@ -56,7 +58,9 @@ Plan for online rebalancing early. If the routing layer is opaque or ad-hoc, ope
 - Range sharding is useful for ordered queries but can create hotspots.
 - Geo sharding improves locality but can complicate global consistency.
 
-## Interview Framing
+## Topic: Interview Framing
+
+### Sub-topic: Answer Structure
 
 1. Explain why a single-node database is no longer enough.
 2. Describe the shard key and what workload it optimizes.

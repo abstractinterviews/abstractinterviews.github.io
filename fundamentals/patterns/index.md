@@ -93,7 +93,9 @@ This section covers the distributed-system patterns that show up repeatedly in r
 
 *Figure 1: Pattern map connecting CQRS, event sourcing, saga, circuit breaker, outbox, and consistency models.*
 
-## Topics
+## Topic: Topic Map
+
+### Sub-topic: Section Directory
 
 - [CQRS](./cqrs/)
 - [Event Sourcing](./event-sourcing/)
@@ -102,13 +104,17 @@ This section covers the distributed-system patterns that show up repeatedly in r
 - [Outbox Pattern](./outbox/)
 - [2PC vs Eventual Consistency](./2pc-vs-eventual/)
 
-## How To Read This Section
+## Topic: Study Path
+
+### Sub-topic: Recommended Sequence
 
 1. Start with CQRS and event sourcing to understand how read and write models diverge.
 2. Read saga and outbox together because both solve distributed workflow reliability.
 3. Finish with circuit breaker, bulkhead, and consistency trade-offs to understand failure behavior.
 
-## Pattern Selection Guide
+## Topic: Pattern Selection Guide
+
+### Sub-topic: Decision Criteria
 
 | Problem | Best Starting Point | What It Solves |
 | --- | --- | --- |
@@ -118,7 +124,9 @@ This section covers the distributed-system patterns that show up repeatedly in r
 | Publish events safely | Outbox | Avoid dual-write inconsistency |
 | Decide coordination model | 2PC vs eventual consistency | Trade atomicity for availability |
 
-## Study Order
+## Topic: Study Order
+
+### Sub-topic: Recommended Sequence
 
 1. Read CQRS and event sourcing to understand state modeling choices.
 2. Read saga and outbox together for workflow reliability.

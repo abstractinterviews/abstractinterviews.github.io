@@ -87,7 +87,9 @@ This section covers the communication layers that sit between users, services, a
 
 *Figure 1: Comparison map of REST, gRPC, WebSockets, GraphQL, and API Gateway with best-fit use cases.*
 
-## Topics
+## Topic: Topic Map
+
+### Sub-topic: Section Directory
 
 - [REST API Design](./rest/)
 - [gRPC and Protobuf](./grpc/)
@@ -95,7 +97,9 @@ This section covers the communication layers that sit between users, services, a
 - [GraphQL](./graphql/)
 - [API Gateway](./api-gateway/)
 
-## Choose The Right Tool
+## Topic: Choose The Right Tool
+
+### Sub-topic: Decision Criteria
 
 | Need | Good Fit | Why |
 | --- | --- | --- |
@@ -105,14 +109,18 @@ This section covers the communication layers that sit between users, services, a
 | Flexible client-side data shaping | GraphQL | Clients ask for exactly what they need |
 | Centralized policy enforcement | API Gateway | Auth, routing, throttling, and observability in one place |
 
-## How To Study
+## Topic: Study Path
+
+### Sub-topic: Recommended Sequence
 
 1. Learn the request pattern first.
 2. Tie each protocol to latency, schema, and client behavior.
 3. Always explain failure mode and observability.
 4. Compare edge policy handling against backend service responsibility.
 
-## Study Order
+## Topic: Study Order
+
+### Sub-topic: Recommended Sequence
 
 1. Start with REST for baseline API semantics and idempotency.
 2. Move to gRPC to compare typed contracts and performance.

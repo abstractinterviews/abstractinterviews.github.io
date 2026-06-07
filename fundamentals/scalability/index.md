@@ -8,106 +8,148 @@ read_time: "10 min read"
 ---
 # Scalability and Performance
 
-Scalability is the ability of a system to maintain acceptable performance as load increases.
+Scalability is the ability to keep a system useful as traffic, data, users, and feature complexity grow.
 
-## 1. Vertical vs Horizontal Scaling
-
-<div class="doc-card-grid">
-  <div class="doc-card">
-    <strong>Vertical Scaling (Add More Power)</strong>
-    <p>Add more CPU, RAM, SSD, or network capacity to a single server.</p>
-    <p>Simple to implement, but limited by hardware ceilings.</p>
-  </div>
-  <div class="doc-card">
-    <strong>Horizontal Scaling (Add More Machines)</strong>
-    <p>Add more machines, instances, or nodes to distribute load.</p>
-    <p>More complex, but virtually unlimited when designed well.</p>
-  </div>
+<div class="section-tabs" aria-label="Scalability areas">
+  <span class="is-active">Capacity</span>
+  <span>Latency</span>
+  <span>Bottlenecks</span>
+  <span>Operations</span>
 </div>
 
-## Vertical scaling (scale up)
-
-- Add CPU, memory, or faster disk to one machine.
-- Simple operationally.
-- Limited by hardware ceiling.
-- Can become a single point of failure.
-
-## Horizontal scaling (scale out)
-
-- Add more machines and distribute traffic.
-- Better long-term growth and fault isolation.
-- Requires partitioning, coordination, and observability.
-
-## 2. Key Performance Metrics
-
-- Throughput: requests per second the system can process.
-- Latency: response time per request.
-- Percentiles: p50, p95, p99 give realistic user experience.
-- Error rate: fraction of failed requests.
-- Saturation: how close resources are to limits.
-
-## 3. Latency Budget
-
-Treat each request as a latency budget distributed across components.
-
-Example budget for a 200 ms p95 endpoint:
-
-- API gateway: 15 ms
-- Auth and validation: 20 ms
-- Core business logic: 45 ms
-- Cache or database access: 90 ms
-- Serialization and network overhead: 30 ms
-
-If one component consistently exceeds budget, global latency suffers.
-
-## 4. Common Bottlenecks
-
-- CPU-bound compute hotspots
-- Synchronous network fan-out
-- Slow database queries or missing indexes
-- Lock contention in shared resources
-- Cache misses causing database thundering herd
-- Chatty service-to-service calls
-
-## 5. Practical Scaling Patterns
-
-- Stateless app tier behind load balancer
-- Read-through or cache-aside caching
-- Database read replicas
-- Partitioning/sharding by key
-- Async processing via queues and workers
-- CDN for static and edge-cachable content
+<div class="doc-callout">
+  <strong>Scale the bottleneck, not the diagram.</strong>
+  <p>Good scalability answers start with workload shape, identify the limiting resource, and then scale the tier that is actually under pressure.</p>
+</div>
 
 ![Scalable architecture with clients, load balancer, stateless app tier, cache, primary database, read replicas, and async workers.](../assets/scalability-performance.png)
 
-*Figure 1: Scalability and Performance Architecture*
+*Figure 1: Scalable architecture with traffic distribution, cache, database replicas, and asynchronous workers.*
 
-## 6. Useful Queueing Intuition
+## Topic: Topic Map
 
-As utilization approaches 100%, latency rises sharply. Keep critical services below full saturation, especially under bursty traffic.
+### Sub-topic: Section Directory
 
-## 7. Performance Tuning Workflow
+- Scaling strategy: decide when to scale up, scale out, cache, shard, or queue.
+- Performance signals: track throughput, latency percentiles, errors, and saturation.
+- Bottleneck analysis: find the resource that limits the whole request path.
+- Scaling patterns: apply common app, data, cache, and async patterns.
+- Operational playbook: measure, tune, protect, and degrade safely.
 
-1. Measure baseline with p95 and p99.
-2. Identify top bottleneck from traces/metrics.
+## Topic: Scaling Strategy
+
+### Sub-topic: Vertical vs Horizontal Scaling
+
+| Strategy | Best Fit | Limit |
+| --- | --- | --- |
+| Vertical scaling | Early systems, simple bottlenecks, single-node resource pressure | Hardware ceiling and single-node blast radius |
+| Horizontal scaling | Growing traffic, availability needs, independent stateless workers | Coordination, routing, and data partition complexity |
+
+Start vertically when it buys simplicity. Move horizontally when growth, fault isolation, or deployment safety matters.
+
+### Sub-topic: Read, Write, and Storage Growth
+
+Different growth shapes need different scaling moves:
+
+- Read-heavy systems often benefit from cache and read replicas.
+- Write-heavy systems usually need partitioning, batching, or async ingestion.
+- Storage-heavy systems eventually need sharding, archival, compaction, or tiered storage.
+- Burst-heavy systems need queues, rate limits, and backpressure.
+
+## Topic: Performance Signals
+
+### Sub-topic: Metrics To Track
+
+| Signal | What It Tells You |
+| --- | --- |
+| Throughput | How much work the system completes per second |
+| p95/p99 latency | What real users experience under load |
+| Error rate | Whether the system is failing or shedding work |
+| Saturation | Which resource is approaching its limit |
+| Queue depth | Whether producers are outpacing consumers |
+
+### Sub-topic: Latency Budget
+
+Treat every request as a budget shared across services and dependencies.
+
+| Component | Example Budget |
+| --- | ---: |
+| API gateway | 15 ms |
+| Auth and validation | 20 ms |
+| Business logic | 45 ms |
+| Cache or database access | 90 ms |
+| Serialization and network overhead | 30 ms |
+
+If one dependency regularly exceeds budget, the whole request path becomes slow even when average latency looks healthy.
+
+## Topic: Bottleneck Analysis
+
+### Sub-topic: Common Bottlenecks
+
+- CPU-bound compute hotspots.
+- Slow database queries or missing indexes.
+- Lock contention in shared resources.
+- Cache misses causing thundering herd behavior.
+- Synchronous fan-out to many downstream services.
+- Large payloads or chatty service-to-service calls.
+
+### Sub-topic: Queueing Intuition
+
+As utilization approaches 100%, latency rises sharply. Keep critical services below full saturation and use admission control before queues grow without bound.
+
+## Topic: Scaling Patterns
+
+### Sub-topic: Application Tier
+
+- Keep application nodes stateless where possible.
+- Place instances behind load balancers.
+- Autoscale on saturation, queue depth, or p95 latency.
+- Use rolling or canary deployments to avoid capacity cliffs.
+
+### Sub-topic: Data and Cache Tier
+
+- Use cache-aside or read-through caching for hot reads.
+- Add read replicas for read-heavy database workloads.
+- Shard when one data node cannot handle storage, write load, or hot tenants.
+- Move slow or bursty work to queues and workers.
+
+### Sub-topic: Edge and Async Tier
+
+- Use CDN for static assets and cacheable public responses.
+- Use queues to absorb spikes and isolate slow dependencies.
+- Use batch processing for expensive non-interactive work.
+- Use backpressure so producers cannot overwhelm consumers.
+
+## Topic: Operational Playbook
+
+### Sub-topic: Tuning Loop
+
+1. Measure baseline p95 and p99 latency.
+2. Identify the top bottleneck from traces and metrics.
 3. Change one thing at a time.
 4. Re-measure under representative load.
-5. Keep regression tests for latency-sensitive paths.
+5. Keep regression checks for latency-sensitive paths.
 
-## 8. Interview Framing
+### Sub-topic: Overload Controls
 
-When discussing scalability:
+- Rate-limit before downstream systems collapse.
+- Fail fast when dependency timeout budgets are exceeded.
+- Degrade non-critical features before core flows fail.
+- Prefer bounded queues and retry budgets over infinite retries.
 
-1. Clarify expected QPS, peak multiplier, and growth horizon.
-2. Define read/write ratio and data size assumptions.
-3. Describe bottleneck boundaries.
-4. Explain how the architecture scales each tier.
-5. Mention fallback behavior under overload.
+## Topic: Interview Framing
 
-## 9. Quick Pitfalls
+### Sub-topic: Answer Structure
+
+1. Clarify users, QPS, peak multiplier, read/write ratio, and data growth.
+2. Identify the first likely bottleneck.
+3. Scale the application, cache, database, and async tiers separately.
+4. Explain overload behavior and graceful degradation.
+5. Mention metrics that prove the scaling plan is working.
+
+### Sub-topic: Common Pitfalls
 
 - Optimizing average latency while ignoring p99.
-- Scaling app servers while database stays single-node.
-- No backpressure strategy for bursts.
-- Ignoring cache invalidation and consistency impact.
-
+- Scaling app servers while the database remains single-node.
+- Adding cache without explaining invalidation or stampede control.
+- Ignoring backpressure for bursts.

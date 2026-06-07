@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
     <meta name="description" content="{{ page.excerpt | default: site.description | strip_html | normalize_whitespace }}" />
+    <link rel="icon" type="image/png" href="{{ '/assets/logo.png' | relative_url }}" />
+    <link rel="apple-touch-icon" href="{{ '/assets/logo.png' | relative_url }}" />
     <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}" />
   </head>
   <body>
@@ -55,8 +57,7 @@
           <a class="nav-link {% if current_url contains '/fundamentals/scalability/' %}is-active{% endif %}" href="{{ '/fundamentals/scalability/' | relative_url }}"><span class="nav-icon">M</span>Scalability</a>
           <a class="nav-link" href="{{ '/fundamentals/high-availability/' | relative_url }}"><span class="nav-icon">A</span>High Availability</a>
           <a class="nav-link {% if current_url contains '/fundamentals/patterns/' %}is-active{% endif %}" href="{{ '/fundamentals/patterns/' | relative_url }}"><span class="nav-icon">P</span>Distributed Patterns</a>
-          <a class="nav-link {% if current_url contains '/fundamentals/cap-theorem/' %}is-active{% endif %}" href="{{ '/fundamentals/cap-theorem/' | relative_url }}"><span class="nav-icon">C</span>CAP Theorem</a>
-          <a class="nav-link {% if current_url contains '/fundamentals/cap-theorem/' %}is-active{% endif %}" href="{{ '/fundamentals/cap-theorem/' | relative_url }}"><span class="nav-icon">R</span>Consistency Models</a>
+          <a class="nav-link {% if current_url contains '/fundamentals/cap-theorem/' %}is-active{% endif %}" href="{{ '/fundamentals/cap-theorem/' | relative_url }}"><span class="nav-icon">C</span>CAP &amp; Consistency</a>
 
           <p class="nav-kicker">Deep Dives</p>
           <a class="nav-link {% if current_url contains '/components/caching/' %}is-active{% endif %}" href="{{ '/components/caching/' | relative_url }}"><span class="nav-icon">C</span>Caching</a>
@@ -176,7 +177,7 @@
           {% elsif concept %}
             {% include concept.html concept=concept %}
           {% elsif is_deep_index %}
-            {% include deep_dive_index.html %}
+            {% include deep_dive_index.html content=rendered_content %}
           {% elsif is_deep_post %}
             {% include deep_dive_post.html content=rendered_content %}
           {% elsif page.render_sections or inferred_kind == 'solution' %}

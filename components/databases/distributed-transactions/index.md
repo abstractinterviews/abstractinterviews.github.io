@@ -15,7 +15,9 @@ Distributed writes across services need consistency patterns beyond a single DB 
 
 *Figure 1: Comparison of two-phase commit coordinator flow and saga compensation workflow.*
 
-## 1. Why They Are Hard
+## Topic: Why They Are Hard
+
+### Sub-topic: Motivation
 
 - Multiple services own different data stores.
 - Network calls can time out after work succeeds.
@@ -23,7 +25,9 @@ Distributed writes across services need consistency patterns beyond a single DB 
 - Locks held across services reduce availability.
 - Partial failure is normal, not exceptional.
 
-## 2. Options
+## Topic: Options
+
+### Sub-topic: Options and Selection
 
 | Pattern | Use When | Cost |
 | --- | --- | --- |
@@ -32,11 +36,15 @@ Distributed writes across services need consistency patterns beyond a single DB 
 | Saga | Workflow can be compensated | Eventual consistency and business rollback logic |
 | Outbox | Need reliable event publish after DB write | Relay and idempotent consumers required |
 
-## 3. Two-Phase Commit
+## Topic: Two-Phase Commit
+
+### Sub-topic: Key Idea
 
 2PC asks participants to prepare, then commit. It gives strong atomicity, but participants can block while waiting for the coordinator. Use sparingly for high-value invariants where availability trade-offs are acceptable.
 
-## 4. Saga Pattern
+## Topic: Saga Pattern
+
+### Sub-topic: Options and Selection
 
 A saga breaks a workflow into local transactions. If a later step fails, earlier steps are semantically undone with compensation.
 
@@ -45,7 +53,9 @@ A saga breaks a workflow into local transactions. If a later step fails, earlier
 - Create shipment.
 - If shipment fails, refund payment and release inventory.
 
-## 5. Idempotency and Recovery
+## Topic: Idempotency and Recovery
+
+### Sub-topic: Key Idea
 
 Every distributed transaction strategy needs replay safety.
 
@@ -54,6 +64,8 @@ Every distributed transaction strategy needs replay safety.
 - Make consumers idempotent.
 - Reconcile stuck workflows with background jobs.
 
-## 6. Interview Framing
+## Topic: Interview Framing
+
+### Sub-topic: Answer Structure
 
 Start by naming the invariant. If it must be atomic, discuss 2PC or a single-owner boundary. If it can converge, choose saga/outbox and describe compensation, retries, idempotency, and reconciliation.

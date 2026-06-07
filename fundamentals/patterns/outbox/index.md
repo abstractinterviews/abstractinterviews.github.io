@@ -14,11 +14,15 @@ Outbox ensures database state changes and event publication are reliably linked 
 
 *Figure 1: Transaction writes business row and outbox row, relay publishes to broker, consumer processes idempotently.*
 
-## Why It Exists
+## Topic: Why It Exists
+
+### Sub-topic: Motivation
 
 If a service updates its database and then publishes an event separately, a crash between those operations creates inconsistency. The outbox pattern stores the event in the same transaction as the business change and publishes it later.
 
-## Flow
+## Topic: Flow
+
+### Sub-topic: Request Flow
 
 ```mermaid
 flowchart LR
@@ -30,7 +34,9 @@ flowchart LR
 	B --> C[Consumers]
 ```
 
-## Delivery Guarantees
+## Topic: Delivery Guarantees
+
+### Sub-topic: Key Idea
 
 | Concern | What Outbox Provides | What You Still Need |
 | --- | --- | --- |
@@ -38,13 +44,17 @@ flowchart LR
 | Duplicate publication | Possible on retries | Idempotent consumers |
 | Ordering | Preserved per row or partition | Careful partitioning strategy |
 
-## Implementation Notes
+## Topic: Implementation Notes
+
+### Sub-topic: Key Idea
 
 - Keep the outbox payload compact and versioned.
 - Use a relay that marks rows as published or advances a cursor.
 - Make consumers idempotent because at-least-once delivery is common.
 
-## Interview Framing
+## Topic: Interview Framing
+
+### Sub-topic: Answer Structure
 
 1. Start from the dual-write problem.
 2. Show how the transaction encloses both the business row and the outbox row.

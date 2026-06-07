@@ -15,7 +15,9 @@ Choose by access patterns, consistency needs, and operational constraints, not t
 
 *Figure 1: Comparison matrix for transactional consistency, schema flexibility, joins, and horizontal scale.*
 
-## Practical Heuristics
+## Topic: Practical Heuristics
+
+### Sub-topic: Key Idea
 
 | Situation | Better Fit | Why |
 | --- | --- | --- |
@@ -23,14 +25,18 @@ Choose by access patterns, consistency needs, and operational constraints, not t
 | Massive key/value or document scale | NoSQL | Easier horizontal scale and flexible modeling |
 | Mixed workloads | Polyglot persistence | Different data shapes deserve different stores |
 
-## What To Ask
+## Topic: What To Ask
+
+### Sub-topic: Definition
 
 - Do we need joins, foreign keys, and strict transactions?
 - Is the schema stable or still evolving quickly?
 - Is horizontal scale more important than relational modeling?
 - Do read and write patterns differ enough to justify multiple stores?
 
-## Interview Framing
+## Topic: Interview Framing
+
+### Sub-topic: Answer Structure
 
 1. Start from access patterns, not database labels.
 2. Explain the consequence of weaker consistency if you pick NoSQL.

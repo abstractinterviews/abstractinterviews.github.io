@@ -89,7 +89,9 @@ related_concepts:
 
 Improve latency and reduce database load by storing frequently accessed data closer to users.
 
-## Hero Diagram
+## Topic: Hero Diagram
+
+### Sub-topic: Key Idea
 
 How Caching Works
 
@@ -107,59 +109,65 @@ flowchart LR
     end
 ```
 
-## Quick Summary
+## Topic: Quick Summary
+
+### Sub-topic: Key Idea
 
 Caching stores frequently accessed data in a fast storage layer so future requests can be served quickly.
 
-### Benefits
+### Sub-topic: Benefits
 
 - Reduces latency
 - Reduces database load
 - Improves scalability
 - Decreases bandwidth cost
 
-### Trade-offs
+### Sub-topic: Trade-offs
 
 - Risk of stale data
 - Cache invalidation complexity
 - Extra memory cost
 - Cache stampede risk
 
-## Why Caching?
+## Topic: Why Caching?
+
+### Sub-topic: Motivation
 
 Caching helps us optimize for speed and scale.
 
-### Without Cache
+### Sub-topic: Without Cache
 
 - ~200ms average response time
 - High database load
 - Reads are expensive
 
-### With Cache
+### Sub-topic: With Cache
 
 - ~5ms average response time
 - Low database load
 - Reads are cheap
 
-### When It Helps
+### Sub-topic: When It Helps
 
 - Data is read more often than it is written
 - Slightly stale data is acceptable
 - The same data is requested repeatedly
 - Use caching to make the common case fast
 
-## Core Mental Model
+## Topic: Core Mental Model
+
+### Sub-topic: System Shape
 
 Think of caching like a library.
 
-### Library Analogy
+### Sub-topic: Library Analogy
 
 - A book is requested often
 - Keep it near the librarian desk
 - Avoid walking to the storage room
 - Fast access for everyone
 
-### In System Design
+### Sub-topic: In System Design
 
 | Real World | System Design |
 | --- | --- |
@@ -167,11 +175,13 @@ Think of caching like a library.
 | Librarian Desk | Cache |
 | Book | Data |
 
-## Architecture Overview
+## Topic: Architecture Overview
+
+### Sub-topic: System Shape
 
 Most production systems use cache-aside for application-level caching.
 
-### Request Flow
+### Sub-topic: Request Flow
 
 ```mermaid
 flowchart LR
@@ -184,7 +194,7 @@ flowchart LR
     A --> U
 ```
 
-### Key Metrics
+### Sub-topic: Key Metrics
 
 | Metric | Target |
 | --- | --- |
@@ -194,11 +204,13 @@ flowchart LR
 | Throughput | High |
 | Cost | Low |
 
-## Types of Caching
+## Topic: Types of Caching
+
+### Sub-topic: Options and Selection
 
 Caching can happen at multiple layers.
 
-### Common Layers
+### Sub-topic: Common Layers
 
 - Browser or mobile client cache
 - CDN and edge cache
@@ -206,11 +218,13 @@ Caching can happen at multiple layers.
 - Application cache such as Redis or Memcached
 - Database page cache
 
-## Cache Patterns
+## Topic: Cache Patterns
+
+### Sub-topic: Options and Selection
 
 Choose the caching pattern based on read/write behavior and consistency needs.
 
-### Core Patterns
+### Sub-topic: Core Patterns
 
 | Pattern | How It Works | Best For |
 | --- | --- | --- |
@@ -219,22 +233,26 @@ Choose the caching pattern based on read/write behavior and consistency needs.
 | Write-through | Write cache and DB synchronously | Fresh cache after writes |
 | Write-back | Write cache first, persist later | Fast writes with durability trade-off |
 
-## Eviction Policies
+## Topic: Eviction Policies
+
+### Sub-topic: Key Idea
 
 Eviction decides what leaves the cache when memory is full.
 
-### Common Policies
+### Sub-topic: Common Policies
 
 - LRU: least recently used
 - LFU: least frequently used
 - FIFO: first in, first out
 - TTL expiration
 
-## Trade-offs
+## Topic: Trade-offs
+
+### Sub-topic: Decision Criteria
 
 Caching improves speed, but it introduces consistency and operational risks.
 
-### Common Trade-offs
+### Sub-topic: Common Trade-offs
 
 | Benefit | Cost |
 | --- | --- |
@@ -243,18 +261,18 @@ Caching improves speed, but it introduces consistency and operational risks.
 | Higher throughput | Extra infrastructure |
 | Lower repeated compute | Cache stampede risk |
 
-## Real World Examples
+## Topic: Real World Examples
 
-### Examples
+### Sub-topic: Examples
 
 - User profiles cached by user ID
 - Product pages cached at CDN edge
 - Feed ranking results cached briefly
 - Feature flags cached by service
 
-## Interview Perspective
+## Topic: Interview Perspective
 
-### Framing
+### Sub-topic: Framing
 
 - Define what data is cached and for how long
 - Explain invalidation strategy
@@ -262,18 +280,18 @@ Caching improves speed, but it introduces consistency and operational risks.
 - Explain behavior when cache is unavailable
 - Mention hit ratio, miss penalty, and p99 goals
 
-## Common Interview Questions
+## Topic: Common Interview Questions
 
-### Questions
+### Sub-topic: Questions
 
 - What happens if the cache is down?
 - How do you prevent cache stampede?
 - How do you invalidate stale data?
 - What should and should not be cached?
 
-## Cheat Sheet
+## Topic: Cheat Sheet
 
-### Rules of Thumb
+### Sub-topic: Rules of Thumb
 
 - Cache read-heavy and expensive data
 - Add TTL jitter to avoid synchronized expiration

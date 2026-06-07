@@ -17,25 +17,31 @@ Queues and streams decouple services, absorb spikes, and enable asynchronous pro
 
 Use queues when each job should be processed by one worker, and use streams when many consumers need independent replayable access to the same event history.
 
-## 1. Queue vs Stream
+## Topic: Queue vs Stream
+
+### Sub-topic: Key Idea
 
 ![Side-by-side comparison of message queue flow and event stream architecture.](../assets/message-queue-vs-event-stream.png)
 
 *Figure 1: Message Queue vs Event Stream*
 
-## Message queue
+## Topic: Message queue
+
+### Sub-topic: Key Idea
 
 - Work-distribution model
 - Consumer processes and acknowledges message
 - Often used for background jobs and task execution
 
-## Event stream
+## Topic: Event stream
+
+### Sub-topic: Key Idea
 
 - Append-only log model
 - Multiple consumers can read independently
 - Often used for event-driven architectures and analytics
 
-## 2. Why Use Them
+## Topic: Why Use Them
 
 ### Sub-topic: Workload Fit
 
@@ -51,7 +57,9 @@ Use queues when each job should be processed by one worker, and use streams when
 - Enable retries and failure recovery
 - Support fan-out to multiple consumers
 
-## 3. Delivery Semantics
+## Topic: Delivery Semantics
+
+### Sub-topic: Options and Selection
 
 - At-most-once: may lose messages, no duplicates
 - At-least-once: no loss preferred, duplicates possible
@@ -59,27 +67,33 @@ Use queues when each job should be processed by one worker, and use streams when
 
 Most practical systems use at-least-once plus idempotent consumers.
 
-## 4. Ordering Guarantees
+## Topic: Ordering Guarantees
+
+### Sub-topic: Key Idea
 
 - Global ordering is expensive and often unnecessary.
 - Partition-level ordering is common and practical.
 - Use a stable partition key for entity-level ordering.
 
-## 5. Retry and Dead Letter Strategy
+## Topic: Retry and Dead Letter Strategy
+
+### Sub-topic: Options and Selection
 
 1. Retry transient failures with backoff and jitter.
 2. Cap retry attempts.
 3. Send poison messages to dead-letter queue.
 4. Provide replay tooling for recovery.
 
-## 6. Consumer Design Rules
+## Topic: Consumer Design Rules
+
+### Sub-topic: System Shape
 
 - Make handlers idempotent.
 - Keep processing bounded and observable.
 - Commit offsets/acks only after successful processing.
 - Support safe reprocessing.
 
-## 7. Backpressure
+## Topic: Backpressure
 
 ### Sub-topic: Protective Controls
 
@@ -94,7 +108,9 @@ Important metrics:
 - Retry volume
 - Dead-letter rate
 
-## 8. Interview Framing
+## Topic: Interview Framing
+
+### Sub-topic: Answer Structure
 
 1. Explain why async is needed.
 2. Choose queue or stream model.

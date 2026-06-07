@@ -42,7 +42,12 @@
     </nav>
   {% endif %}
 
+  {% assign post_body_parts = include.content | split: '</h1>' %}
   <div class="deep-post-content page-content">
-    {{ include.content }}
+    {% if post_body_parts.size > 1 %}
+      {{ post_body_parts[1] }}
+    {% else %}
+      {{ include.content }}
+    {% endif %}
   </div>
 </article>

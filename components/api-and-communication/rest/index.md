@@ -15,7 +15,9 @@ REST is resource-oriented HTTP communication with predictable semantics, cache f
 
 *Figure 1: REST design showing resources, HTTP verbs, status codes, and idempotency behavior.*
 
-## 1. Resource Modeling
+## Topic: Resource Modeling
+
+### Sub-topic: System Shape
 
 Model stable business nouns, not backend procedures.
 
@@ -24,7 +26,9 @@ Model stable business nouns, not backend procedures.
 - Use query parameters for filtering, sorting, and pagination.
 - Avoid deeply nested URLs once relationships become many-to-many.
 
-## 2. HTTP Semantics
+## Topic: HTTP Semantics
+
+### Sub-topic: Options and Selection
 
 | Method | Intent | Idempotent | Typical Use |
 | --- | --- | --- | --- |
@@ -34,7 +38,9 @@ Model stable business nouns, not backend procedures.
 | PATCH | Partial update | Usually | Update selected fields |
 | DELETE | Remove resource | Yes | Delete or deactivate resource |
 
-## 3. Reliability Practices
+## Topic: Reliability Practices
+
+### Sub-topic: Key Idea
 
 - Use idempotency keys for retried mutations.
 - Set explicit timeout budgets per endpoint.
@@ -46,7 +52,9 @@ Model stable business nouns, not backend procedures.
 
 *Figure 2: Request retry flow with idempotency keys and safe duplicate handling.*
 
-## 4. Versioning and Compatibility
+## Topic: Versioning and Compatibility
+
+### Sub-topic: Implementation Detail
 
 Prefer additive changes when possible.
 
@@ -55,7 +63,9 @@ Prefer additive changes when possible.
 - Use URI versions for major breaking changes or header versions for product/API programs that need finer routing.
 - Publish deprecation windows and usage metrics.
 
-## 5. Caching and Performance
+## Topic: Caching and Performance
+
+### Sub-topic: Key Idea
 
 REST works well with HTTP caching when reads are stable.
 
@@ -64,7 +74,9 @@ REST works well with HTTP caching when reads are stable.
 - Separate hot public reads from authenticated mutation paths.
 - Avoid over-fetching by supporting field masks only where needed.
 
-## 6. Interview Framing
+## Topic: Interview Framing
+
+### Sub-topic: Answer Structure
 
 1. Define resources and access patterns.
 2. Choose methods and status codes from semantics.

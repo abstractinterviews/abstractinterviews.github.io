@@ -15,7 +15,9 @@ WebSockets keep persistent full-duplex connections for low-latency push communic
 
 *Figure 1: Persistent websocket connection flow through gateway to pub-sub and presence services.*
 
-## 1. Core Concerns
+## Topic: Core Concerns
+
+### Sub-topic: Key Idea
 
 - Connection scaling and sharding
 - Heartbeats and idle timeout
@@ -23,7 +25,9 @@ WebSockets keep persistent full-duplex connections for low-latency push communic
 - Offline delivery and reconnect replay
 - Backpressure for slow consumers
 
-## 2. Connection Architecture
+## Topic: Connection Architecture
+
+### Sub-topic: System Shape
 
 A common design uses stateless gateway nodes plus shared state stores.
 
@@ -32,7 +36,9 @@ A common design uses stateless gateway nodes plus shared state stores.
 - Pub/sub broadcasts messages to gateway nodes.
 - Durable storage keeps messages that must survive reconnects.
 
-## 3. Delivery Semantics
+## Topic: Delivery Semantics
+
+### Sub-topic: Options and Selection
 
 | Need | Design Choice |
 | --- | --- |
@@ -41,20 +47,26 @@ A common design uses stateless gateway nodes plus shared state stores.
 | Ordered channel messages | Per-room sequence number |
 | Reconnect replay | Store last acknowledged offset |
 
-## 4. Scaling Strategy
+## Topic: Scaling Strategy
+
+### Sub-topic: Scaling Decision
 
 - Partition connections by user ID, tenant, or room.
 - Keep routing metadata in a fast shared store.
 - Use sticky sessions only when the load balancer and failover plan support it.
 - Separate fan-out paths from request/response APIs.
 
-## 5. Failure Modes
+## Topic: Failure Modes
+
+### Sub-topic: Failure Awareness
 
 - Gateway crash drops connections; clients must reconnect with jitter.
 - Slow consumers can build unbounded buffers.
 - Network partitions can create stale presence.
 - Large rooms can overload fan-out workers.
 
-## 6. Interview Framing
+## Topic: Interview Framing
+
+### Sub-topic: Answer Structure
 
 Clarify whether the system needs best-effort updates or durable delivery. Then explain connection management, fan-out, ordering, replay, and how clients recover after disconnects.

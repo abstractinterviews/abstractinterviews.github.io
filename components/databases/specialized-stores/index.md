@@ -15,7 +15,9 @@ Specialized databases optimize specific workloads better than general-purpose st
 
 *Figure 1: Mapping of workload types to time-series, search, graph, and columnar stores.*
 
-## 1. Common Fits
+## Topic: Common Fits
+
+### Sub-topic: Key Idea
 
 | Workload | Store Type | Why |
 | --- | --- | --- |
@@ -25,7 +27,9 @@ Specialized databases optimize specific workloads better than general-purpose st
 | Analytics | Columnar warehouse | Compression and scan efficiency |
 | Caching/session data | Key-value store | Low latency simple access |
 
-## 2. Time-Series Stores
+## Topic: Time-Series Stores
+
+### Sub-topic: Key Idea
 
 Time-series systems optimize append-heavy writes and time-bounded reads.
 
@@ -34,7 +38,9 @@ Time-series systems optimize append-heavy writes and time-bounded reads.
 - Apply retention policies aggressively.
 - Avoid unbounded label cardinality.
 
-## 3. Search Stores
+## Topic: Search Stores
+
+### Sub-topic: Key Idea
 
 Search engines are read-optimized indexes, not usually the source of truth.
 
@@ -43,7 +49,9 @@ Search engines are read-optimized indexes, not usually the source of truth.
 - Tune analyzers, synonyms, and ranking.
 - Rebuild indexes safely with aliases.
 
-## 4. Graph Stores
+## Topic: Graph Stores
+
+### Sub-topic: Key Idea
 
 Graph databases fit relationship-heavy traversals.
 
@@ -52,10 +60,14 @@ Graph databases fit relationship-heavy traversals.
 - Dependency graphs
 - Identity and permission relationships
 
-## 5. Polyglot Persistence Risk
+## Topic: Polyglot Persistence Risk
+
+### Sub-topic: Failure Awareness
 
 Each extra store adds operational cost: backups, schema evolution, monitoring, security, and data synchronization. Use specialized stores when the workload benefit is clear.
 
-## 6. Interview Framing
+## Topic: Interview Framing
+
+### Sub-topic: Answer Structure
 
 Explain the source of truth first, then justify the specialized read/write store. Cover sync pipeline, staleness, backfill, and failure behavior.

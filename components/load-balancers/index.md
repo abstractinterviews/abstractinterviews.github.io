@@ -9,123 +9,141 @@ read_time: "10 min read"
 
 # Load Balancers
 
-Load balancers distribute traffic across backend instances to improve availability, utilization, and scalability.
+Load balancers distribute traffic across backend instances so the system can scale horizontally, route around failure, and roll out changes safely.
 
-## Topic: Traffic Distribution Strategy
+<div class="section-tabs" aria-label="Load balancer areas">
+  <span class="is-active">Routing</span>
+  <span>Health</span>
+  <span>Deployments</span>
+  <span>Failure Modes</span>
+</div>
 
-### Sub-topic: Capacity and Availability Goals
-
-Before choosing an algorithm, define expected steady-state load, burst multiplier, and failover behavior. A load balancer is not just traffic plumbing; it is the control point for resilience and controlled rollout.
-
-## 1. Why Load Balancers Matter
-
-- Remove single-server bottlenecks
-- Improve resilience by routing around unhealthy nodes
-- Enable horizontal scaling
-- Support zero-downtime deployments
-
-## 2. L4 vs L7
-
-### Sub-topic: Decision Matrix
-
-| Requirement | L4 | L7 |
-| --- | --- | --- |
-| Lowest overhead | Strong fit | Moderate overhead |
-| Path/header routing | Limited | Strong fit |
-| Auth and policy hooks | Minimal | Rich support |
-| Session-aware routing | Limited | Strong support |
-
-## Layer 4 (transport level)
-
-- Routes based on IP and port
-- Fast and simple
-- Limited request-aware routing
-
-## Layer 7 (application level)
-
-- Routes by URL path, host, headers, cookies
-- Supports advanced policies: auth, canary, sticky sessions
-- More CPU overhead than L4
+<div class="doc-callout">
+  <strong>A load balancer is a control point.</strong>
+  <p>It is not just a traffic splitter. It decides which instances receive work, which instances are removed, and how safely new versions receive traffic.</p>
+</div>
 
 ![Load balancing architecture showing L7 traffic distribution, health checks, and failover.](../assets/load-balancing-architecture.png)
 
-*Figure 1: Load Balancing Architecture*
+*Figure 1: Load balancing with clients, L7 routing, health checks, backend pools, and failover behavior.*
 
-## 3. Common Routing Algorithms
+## Topic: Topic Map
 
-### Sub-topic: Algorithm Selection Heuristics
+### Sub-topic: Section Directory
 
-- Round robin for homogeneous backends.
-- Least connections for uneven request duration.
-- Hash-based routing when stickiness is required.
+- Routing model: choose L4 or L7 based on request-awareness needs.
+- Algorithm selection: match routing policy to workload shape.
+- Health and failover: remove unsafe backends without causing churn.
+- Deployment control: shift traffic safely during releases.
+- Operations: observe saturation, imbalance, and tail latency.
 
-- Round robin
-- Weighted round robin
-- Least connections
-- Least response time
-- Hash-based (for stickiness)
+## Topic: Routing Model
 
-Choose based on workload and session behavior.
+### Sub-topic: L4 vs L7 Decision
 
-## 4. Health Checks
+| Requirement | Layer 4 | Layer 7 |
+| --- | --- | --- |
+| Lowest overhead | Strong fit | Moderate overhead |
+| Path/header routing | Limited | Strong fit |
+| TLS termination and auth hooks | Limited | Strong fit |
+| Session-aware routing | Limited | Strong fit |
+| Protocol simplicity | Strong fit | More moving parts |
 
-### Sub-topic: Health Signal Quality
+Use L4 when throughput and simplicity dominate. Use L7 when routing needs HTTP-aware policy, canaries, auth, path-based routing, or request-level observability.
 
-Keep health checks fast, deterministic, and representative. Overly deep checks can cause false negatives during partial dependency incidents.
+### Sub-topic: Routing Algorithms
+
+| Algorithm | Best Fit | Watch Out |
+| --- | --- | --- |
+| Round robin | Similar backends and similar request cost | Ignores slow or busy nodes |
+| Weighted round robin | Mixed backend capacity | Bad weights create imbalance |
+| Least connections | Long-lived or uneven request duration | Needs accurate connection tracking |
+| Least response time | Latency-sensitive workloads | Can oscillate if measurements are noisy |
+| Hash-based routing | Sticky sessions or cache locality | Can create hotspots |
+
+## Topic: Health and Failover
+
+### Sub-topic: Health Checks
 
 Load balancers rely on health checks to avoid unhealthy instances.
 
-- Liveness checks: process is up
-- Readiness checks: instance can serve traffic
-- Deep checks: dependency-aware checks (use sparingly)
+- Liveness: the process is alive.
+- Readiness: the instance can safely receive traffic.
+- Deep checks: dependencies are healthy enough for serving traffic.
 
-## 5. Session Affinity
+Keep frequent checks fast and deterministic. Expensive deep checks can cause false negatives during partial dependency incidents.
 
-Sticky sessions route a user to the same backend instance.
+### Sub-topic: Failover Behavior
 
-Pros:
+Good failover removes bad targets without overreacting.
 
-- Useful for legacy stateful apps
+- Use grace periods during startup and shutdown.
+- Drain existing connections before removing a backend.
+- Avoid ejecting too many instances at once.
+- Keep enough healthy capacity for peak traffic after failover.
 
-Cons:
+## Topic: Traffic Control
 
-- Uneven load distribution
-- Harder failover behavior
-- Reduced elasticity
+### Sub-topic: Session Affinity
 
-Prefer stateless services with shared session stores when possible.
+Sticky sessions route a user or client to the same backend.
 
-## 6. Observability and SLOs
+Use it when:
 
-### Sub-topic: What To Measure
+- Legacy services keep local session state.
+- Cache locality matters.
+- Long-lived connections need stable placement.
+
+Avoid it when:
+
+- It creates hot backends.
+- It hides statefulness that should move to shared storage.
+- It makes failover uneven or slow.
+
+### Sub-topic: Deployment Patterns
+
+| Pattern | How Traffic Moves | Use Case |
+| --- | --- | --- |
+| Rolling update | Gradually replace instances | Routine releases |
+| Blue/green | Switch traffic between two full environments | Fast rollback |
+| Canary | Send a small percentage to new version | Risk-controlled rollout |
+| Weighted routing | Split by explicit percentages | Gradual migrations |
+
+All deployment patterns need safe health checks, metrics-based rollback, and gradual traffic shifting.
+
+## Topic: Operational Signals
+
+### Sub-topic: Metrics To Watch
 
 | Metric | Why It Matters |
 | --- | --- |
 | p95/p99 upstream latency | Detect queueing and overload early |
 | Backend error rate by target | Catch unhealthy instances quickly |
+| Active connections per backend | Detect imbalance |
 | Connection saturation | Prevent balancer tier bottlenecks |
 | Failover convergence time | Validate resilience behavior |
 
-## 7. Deployment Patterns
+### Sub-topic: Failure Modes
 
-- Blue/green
-- Canary
-- Rolling updates
+- Misconfigured health checks causing mass eviction.
+- Overloaded load balancer tier.
+- Imbalanced distribution due to stickiness or bad weights.
+- TLS termination bottlenecks.
+- Retry storms when clients and balancers both retry aggressively.
 
-All require safe health checks, metrics-based rollback, and gradual traffic shifting.
+## Topic: Interview Framing
 
-## 8. Failure Modes
+### Sub-topic: Answer Structure
 
-- Misconfigured health checks causing mass eviction
-- Overloaded balancer tier
-- Imbalanced distribution due to stickiness
-- TLS termination bottlenecks
+1. State whether the design needs L4, L7, or both.
+2. Pick a routing algorithm and explain why it matches the workload.
+3. Explain health checks, draining, and failover.
+4. Explain deployment strategy and rollback.
+5. Mention observability: backend saturation, error rate, tail latency, and traffic imbalance.
 
-## 9. Interview Framing
+### Sub-topic: Common Pitfalls
 
-1. Decide L4 or L7 for the use case.
-2. State routing algorithm and why.
-3. Explain health-check design.
-4. Explain deployment and rollback safety.
-5. Mention observability: error rate, backend saturation, tail latency.
-
+- Treating load balancing as round robin only.
+- Forgetting backend health and connection draining.
+- Using sticky sessions without explaining failure behavior.
+- Ignoring load balancer capacity as its own bottleneck.
