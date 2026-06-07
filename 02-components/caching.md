@@ -1,99 +1,205 @@
-# Caching Strategies
+---
+layout: default
+title: "Caching"
+page_type: concept
+concept_id: caching
+subtitle: "Improve latency and reduce database load by storing frequently accessed data closer to users."
+difficulty: Beginner
+read_time: "8 min read"
+concept_label: Core Concept
+---
 
-Caching reduces latency and backend load by serving frequently requested data from fast storage.
+# Caching
 
-## 1. When to Cache
+Improve latency and reduce database load by storing frequently accessed data closer to users.
 
-Use caching when:
+## Hero Diagram
 
-- Data is read frequently
-- Backend calls are expensive
-- Slight staleness is acceptable for some paths
+How Caching Works
 
-Avoid caching blindly for strongly consistent write-critical paths unless correctness is preserved.
+```mermaid
+flowchart LR
+    subgraph miss["First Request (Miss)"]
+      U1[User] --> C1[(Cache)]
+      C1 -- MISS --> D1[(Database)]
+      D1 --> C1
+      C1 --> U1
+    end
+    subgraph hit["Next Request (Hit)"]
+      U2[User] --> C2[(Cache)]
+      C2 -- HIT<br/>~1-5ms --> U2
+    end
+```
 
-## 2. Cache Placement
+## Quick Summary
 
-- Client cache (browser/mobile)
-- CDN/edge cache
+Caching stores frequently accessed data in a fast storage layer so future requests can be served quickly.
+
+### Benefits
+
+- Reduces latency
+- Reduces database load
+- Improves scalability
+- Decreases bandwidth cost
+
+### Trade-offs
+
+- Risk of stale data
+- Cache invalidation complexity
+- Extra memory cost
+- Cache stampede risk
+
+## Why Caching?
+
+Caching helps us optimize for speed and scale.
+
+### Without Cache
+
+- ~200ms average response time
+- High database load
+- Reads are expensive
+
+### With Cache
+
+- ~5ms average response time
+- Low database load
+- Reads are cheap
+
+### When It Helps
+
+- Data is read more often than it is written
+- Slightly stale data is acceptable
+- The same data is requested repeatedly
+- Use caching to make the common case fast
+
+## Core Mental Model
+
+Think of caching like a library.
+
+### Library Analogy
+
+- A book is requested often
+- Keep it near the librarian desk
+- Avoid walking to the storage room
+- Fast access for everyone
+
+### In System Design
+
+| Real World | System Design |
+| --- | --- |
+| Storage Room | Database |
+| Librarian Desk | Cache |
+| Book | Data |
+
+## Architecture Overview
+
+Most production systems use cache-aside for application-level caching.
+
+### Request Flow
+
+```mermaid
+flowchart LR
+    U[User] --> G[API Gateway]
+    G --> A[Application]
+    A --> C[(Cache / Redis)]
+    C -- HIT<br/>1-5ms --> A
+    C -- MISS --> D[(Database<br/>50-200ms)]
+    D --> A
+    A --> U
+```
+
+### Key Metrics
+
+| Metric | Target |
+| --- | --- |
+| Cache Hit Ratio | 90-99% |
+| Latency (Hit) | 1-5 ms |
+| Latency (Miss) | 50-200 ms |
+| Throughput | High |
+| Cost | Low |
+
+## Types of Caching
+
+Caching can happen at multiple layers.
+
+### Common Layers
+
+- Browser or mobile client cache
+- CDN and edge cache
 - Reverse proxy cache
-- Application cache (Redis/Memcached)
+- Application cache such as Redis or Memcached
 - Database page cache
 
-Most systems use multiple layers.
+## Cache Patterns
 
-## 3. Core Strategies
+Choose the caching pattern based on read/write behavior and consistency needs.
 
-![Caching strategies diagram with cache-aside flow, write-through, and write-back patterns.](./assets/caching-strategies-web-applications.png)
+### Core Patterns
 
-*Figure 1: Caching Strategies for Web Applications*
+| Pattern | How It Works | Best For |
+| --- | --- | --- |
+| Cache-aside | App reads cache, falls back to DB, then fills cache | Common read-heavy services |
+| Read-through | Cache service fetches source on miss | Centralized cache logic |
+| Write-through | Write cache and DB synchronously | Fresh cache after writes |
+| Write-back | Write cache first, persist later | Fast writes with durability trade-off |
 
-## Cache-aside (lazy loading)
+## Eviction Policies
 
-1. Read cache.
-2. On miss, read database.
-3. Populate cache.
+Eviction decides what leaves the cache when memory is full.
 
-Pros: simple and widely used.
+### Common Policies
 
-## Read-through
+- LRU: least recently used
+- LFU: least frequently used
+- FIFO: first in, first out
+- TTL expiration
 
-Application reads from cache service that fetches source on miss.
+## Trade-offs
 
-Pros: centralizes cache logic.
+Caching improves speed, but it introduces consistency and operational risks.
 
-## Write-through
+### Common Trade-offs
 
-Writes go to cache and backing store synchronously.
+| Benefit | Cost |
+| --- | --- |
+| Lower latency | Stale reads |
+| Lower database load | Invalidation complexity |
+| Higher throughput | Extra infrastructure |
+| Lower repeated compute | Cache stampede risk |
 
-Pros: fresh cache after write.
-Cons: higher write latency.
+## Real World Examples
 
-## Write-back (write-behind)
+### Examples
 
-Write to cache first, persist later asynchronously.
+- User profiles cached by user ID
+- Product pages cached at CDN edge
+- Feed ranking results cached briefly
+- Feature flags cached by service
 
-Pros: fast writes.
-Cons: risk of data loss on failure.
+## Interview Perspective
 
-## 4. Invalidation and TTL
+### Framing
 
-There are two hard things in distributed systems: cache invalidation and naming.
+- Define what data is cached and for how long
+- Explain invalidation strategy
+- Explain consistency impact
+- Explain behavior when cache is unavailable
+- Mention hit ratio, miss penalty, and p99 goals
 
-Practical tools:
+## Common Interview Questions
 
-- TTL-based expiration
-- Explicit key invalidation on writes
-- Versioned keys
-- Event-driven invalidation
+### Questions
 
-## 5. Eviction Policies
+- What happens if the cache is down?
+- How do you prevent cache stampede?
+- How do you invalidate stale data?
+- What should and should not be cached?
 
-- LRU (least recently used)
-- LFU (least frequently used)
-- FIFO
-- TTL-expired eviction
+## Cheat Sheet
 
-Choose policy based on access patterns.
+### Rules of Thumb
 
-## 6. Cache Failure Scenarios
-
-- Thundering herd on mass expiration
-- Cache stampede on hot-key miss
-- Hot keys causing uneven shard load
-- Stale data due to missed invalidation
-
-Mitigations:
-
-- Jittered TTLs
-- Request coalescing/single-flight
-- Hot-key replication
-- Circuit breakers and graceful fallback
-
-## 7. Interview Framing
-
-1. Define what data is cached and for how long.
-2. Explain invalidation strategy.
-3. Explain consistency impact.
-4. Explain failure behavior when cache is down.
-5. Mention hit ratio, miss penalty, and p99 goals.
+- Cache read-heavy and expensive data
+- Add TTL jitter to avoid synchronized expiration
+- Use request coalescing for hot keys
+- Treat the database as the source of truth unless using a deliberate write-back design

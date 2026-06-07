@@ -1,3 +1,8 @@
+---
+layout: default
+title: "API and Communication"
+---
+
 # API and Communication
 
 This section covers client-service and service-service communication styles used in system design.
@@ -13,3 +18,4 @@ This section covers client-service and service-service communication styles used
 - [WebSockets and Real-Time](./websockets.md)
 - [GraphQL](./graphql.md)
 - [API Gateway](./api-gateway.md)
+

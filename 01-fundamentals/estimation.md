@@ -1,3 +1,8 @@
+---
+layout: default
+title: "Back-of-the-Envelope Estimation"
+---
+
 # Back-of-the-Envelope Estimation
 
 Estimation is a core interview skill. You do not need exact values; you need defensible approximations to justify architecture choices.
@@ -91,3 +96,4 @@ Use this concise structure:
 - Ignoring replication factor in storage.
 - Forgetting index overhead.
 - Not stating assumptions clearly.
+

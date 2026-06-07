@@ -1,3 +1,8 @@
+---
+layout: default
+title: "Patterns"
+---
+
 # Patterns
 
 This section covers commonly used distributed-system patterns and where they fit.
@@ -14,3 +19,4 @@ This section covers commonly used distributed-system patterns and where they fit
 - [Circuit Breaker and Bulkhead](./circuit-breaker.md)
 - [Outbox Pattern](./outbox.md)
 - [2PC vs Eventual Consistency](./2pc-vs-eventual.md)
+

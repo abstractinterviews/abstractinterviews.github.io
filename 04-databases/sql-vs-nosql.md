@@ -1,3 +1,8 @@
+---
+layout: default
+title: "SQL vs NoSQL"
+---
+
 # SQL vs NoSQL
 
 Choose by access patterns, consistency needs, and operational constraints, not trends.
@@ -11,3 +16,4 @@ Choose by access patterns, consistency needs, and operational constraints, not t
 - Strong transactional workflows: SQL first.
 - Massive key/value or document scale: NoSQL fit.
 - Mixed workloads: polyglot persistence.
+

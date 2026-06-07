@@ -1,3 +1,8 @@
+---
+layout: default
+title: "High Availability and Fault Tolerance"
+---
+
 # High Availability and Fault Tolerance
 
 High availability (HA) means the system remains usable despite failures. Fault tolerance means the system can continue operating when components fail.
@@ -78,3 +83,4 @@ If a cache tier fails:
 - Infinite retries creating retry storms.
 - Assuming replication alone guarantees availability.
 - Missing runbooks and unreliable failover drills.
+

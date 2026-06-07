@@ -1,3 +1,8 @@
+---
+layout: default
+title: "Notification Service"
+---
+
 # Notification Service
 
 Focus: multi-channel fan-out, deduplication, retries, preference controls.
@@ -14,3 +19,4 @@ Create architecture showing event intake, template render, channel routing, retr
 - Template rendering
 - Channel adapters (email, SMS, push)
 - Retry + DLQ + suppression rules
+

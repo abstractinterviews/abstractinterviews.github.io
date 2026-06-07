@@ -1,3 +1,8 @@
+---
+layout: default
+title: "CAP Theorem and Consistency Models"
+---
+
 # CAP Theorem and Consistency Models
 
 CAP theorem states that in a distributed system facing a network partition, you can choose at most one of:
@@ -71,3 +76,4 @@ Consistency decisions should be tied to user impact.
 - Claiming a system is fully consistent and always available across partitions.
 - Ignoring read/write path differences.
 - Not defining what happens during partition or region isolation.
+

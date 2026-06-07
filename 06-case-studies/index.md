@@ -1,3 +1,8 @@
+---
+layout: default
+title: "Case Studies"
+---
+
 # Case Studies
 
 This section contains full system design walkthroughs for common interview prompts.
@@ -23,3 +28,4 @@ Create a cover infographic titled "System Design Case Studies". Show cards for E
 2. Follow the high-level design before reading the deep dive.
 3. Compare the trade-offs section against your own design choices.
 4. Practice explaining the system in 5 minutes and then in 15 minutes.
+

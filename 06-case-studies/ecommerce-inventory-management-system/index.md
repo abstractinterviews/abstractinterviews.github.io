@@ -1,3 +1,8 @@
+---
+layout: default
+title: "E-Commerce Inventory Management System"
+---
+
 # E-Commerce Inventory Management System
 
 This case study shows how to design inventory for a large e-commerce platform that must sell exact stock, prevent overselling, and stay available during flash sales.
@@ -210,3 +215,4 @@ If you need to explain this design quickly in an interview, use this sequence:
 ---
 
 This folder is intended to be read top to bottom as a complete interview walkthrough, with the diagrams providing the visual architecture and the README carrying the explanation.
+

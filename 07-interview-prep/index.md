@@ -1,3 +1,8 @@
+---
+layout: default
+title: "Interview Prep"
+---
+
 # Interview Prep
 
 This section helps structure answers under interview time pressure.
@@ -14,3 +19,4 @@ Create a timeline visual for 45-minute interview with clear stage durations and 
 - [Estimation Cheat Sheet](./estimation-cheatsheet.md)
 - [Common Mistakes](./common-mistakes.md)
 - [50 Common Questions](./common-questions.md)
+

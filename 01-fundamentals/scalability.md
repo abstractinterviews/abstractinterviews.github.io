@@ -1,8 +1,26 @@
+---
+layout: default
+title: "Scalability and Performance"
+---
+
 # Scalability and Performance
 
 Scalability is the ability of a system to maintain acceptable performance as load increases.
 
 ## 1. Vertical vs Horizontal Scaling
+
+<div class="doc-card-grid">
+  <div class="doc-card">
+    <strong>Vertical Scaling (Add More Power)</strong>
+    <p>Add more CPU, RAM, SSD, or network capacity to a single server.</p>
+    <p>Simple to implement, but limited by hardware ceilings.</p>
+  </div>
+  <div class="doc-card">
+    <strong>Horizontal Scaling (Add More Machines)</strong>
+    <p>Add more machines, instances, or nodes to distribute load.</p>
+    <p>More complex, but virtually unlimited when designed well.</p>
+  </div>
+</div>
 
 ## Vertical scaling (scale up)
 
@@ -89,3 +107,4 @@ When discussing scalability:
 - Scaling app servers while database stays single-node.
 - No backpressure strategy for bursts.
 - Ignoring cache invalidation and consistency impact.
+

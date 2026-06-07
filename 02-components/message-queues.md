@@ -1,3 +1,8 @@
+---
+layout: default
+title: "Message Queues and Event Streaming"
+---
+
 # Message Queues and Event Streaming
 
 Queues and streams decouple services, absorb spikes, and enable asynchronous processing.
@@ -74,3 +79,4 @@ Important metrics:
 3. Define delivery and ordering requirements.
 4. Explain retry, DLQ, and replay model.
 5. Explain consumer idempotency.
+

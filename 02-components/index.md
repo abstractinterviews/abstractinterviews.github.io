@@ -1,3 +1,8 @@
+---
+layout: default
+title: "Core Components"
+---
+
 # Core Components
 
 This section covers reusable infrastructure building blocks that appear in most system design interviews.
@@ -25,3 +30,4 @@ This section covers reusable infrastructure building blocks that appear in most 
 - Explain why the component exists in your design.
 - Mention at least one trade-off and one failure scenario.
 - Describe observability and operational safeguards.
+

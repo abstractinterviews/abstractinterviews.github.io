@@ -1,3 +1,8 @@
+---
+layout: default
+title: "Service Discovery and Health Checks"
+---
+
 # Service Discovery and Health Checks
 
 In dynamic distributed systems, service instances appear and disappear frequently. Discovery and health checks ensure clients route traffic only to healthy instances.
@@ -93,3 +98,4 @@ Mitigations:
 3. Explain liveness/readiness behavior.
 4. Explain stale-endpoint and registry-failure handling.
 5. Mention metrics: success rate, endpoint churn, probe failure ratio.
+

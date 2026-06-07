@@ -1,3 +1,8 @@
+---
+layout: default
+title: "Common Mistakes to Avoid"
+---
+
 # Common Mistakes to Avoid
 
 - Jumping to technologies before requirements
@@ -11,3 +16,4 @@ Figure Name: Figure 1 - Common Mistakes Radar
 Alt Text: Visual radar of frequent system design interview mistakes and prevention cues.
 Create infographic with mistake categories and corrective actions.
 ```
+

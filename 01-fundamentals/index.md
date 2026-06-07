@@ -1,3 +1,8 @@
+---
+layout: default
+title: "Fundamentals"
+---
+
 # Fundamentals
 
 This section builds the base mental models needed for every system design interview.
@@ -26,3 +31,4 @@ This section builds the base mental models needed for every system design interv
 - Identify consistency requirements by operation.
 - Mention failure modes and recovery strategy.
 - Validate design capacity with quick estimates.
+

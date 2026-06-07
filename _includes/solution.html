@@ -1,0 +1,163 @@
+{% assign solution = include.solution %}
+
+<section class="solution-shell">
+  <nav class="solution-tabs" aria-label="Solution sections">
+    {% for tab in solution.tabs %}
+      <a class="{% if tab.id == solution.active_tab %}is-active{% endif %}" href="#{{ tab.id }}">
+        <span class="solution-tab-icon">{{ tab.icon | slice: 0 }}</span>
+        {{ tab.label }}
+      </a>
+    {% endfor %}
+  </nav>
+
+  <section class="solution-section" id="{{ solution.active_tab }}">
+    <h2>Detailed Design</h2>
+    <nav class="solution-subtabs" aria-label="Detailed design sections">
+      {% for tab in solution.detail_tabs %}
+        <a class="{% if forloop.first %}is-active{% endif %}" href="#{{ tab.id }}">{{ tab.label }}</a>
+      {% endfor %}
+    </nav>
+
+    {% assign primary_section = solution.sections | first %}
+    <div class="solution-detail-grid">
+      <div class="solution-main-detail">
+        <section id="{{ primary_section.id }}" class="solution-detail-block">
+          <h3>1. {{ primary_section.title }}</h3>
+          <p>{{ primary_section.description }}</p>
+
+          <div class="solution-flow-card">
+            <div class="solution-flow-participants" style="--participant-count: {{ primary_section.participants.size }}">
+              {% for participant in primary_section.participants %}
+                <span>{{ participant }}</span>
+              {% endfor %}
+            </div>
+            <div class="solution-flow-lanes" style="--participant-count: {{ primary_section.participants.size }}">
+              {% for participant in primary_section.participants %}
+                <span></span>
+              {% endfor %}
+            </div>
+            <div class="solution-flow-steps" style="--participant-count: {{ primary_section.participants.size }}">
+              {% for step in primary_section.flow_steps %}
+                <div class="solution-flow-step" style="grid-column: {{ step.from }} / {{ step.end }};">
+                  <span class="flow-number">{{ step.number }}</span>
+                  <span class="flow-line"></span>
+                  <span class="flow-label">{{ step.label }}</span>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+
+          <table class="solution-step-table">
+            <thead>
+              <tr>
+                <th>Step</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for row in primary_section.step_table %}
+                <tr>
+                  <td>{{ row.step }}</td>
+                  <td>{{ row.description }}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </section>
+      </div>
+
+      <aside class="solution-notes" aria-label="Solution notes">
+        <section class="solution-note-card key-points">
+          <h3>Key Points</h3>
+          <ul>
+            {% for point in primary_section.key_points %}
+              <li>{{ point }}</li>
+            {% endfor %}
+          </ul>
+        </section>
+        <section class="solution-note-card tech-choices">
+          <h3>Tech Choices</h3>
+          <ul>
+            {% for choice in primary_section.tech_choices %}
+              <li>{{ choice }}</li>
+            {% endfor %}
+          </ul>
+        </section>
+      </aside>
+    </div>
+
+    {% for detail_section in solution.sections offset:1 %}
+      <section id="{{ detail_section.id }}" class="solution-detail-block solution-summary-block">
+        <h3>{{ forloop.index | plus: 1 }}. {{ detail_section.title }}</h3>
+        <p>{{ detail_section.description }}</p>
+      </section>
+    {% endfor %}
+  </section>
+
+  {% if solution.overview %}
+    <section class="solution-section solution-overview-section" id="overview">
+      <h2>{{ solution.overview.title }}</h2>
+      <p>{{ solution.overview.description }}</p>
+      <div class="solution-card-grid">
+        {% for card in solution.overview.cards %}
+          <article class="solution-info-card">
+            <h3>{{ card.title }}</h3>
+            <p>{{ card.text }}</p>
+          </article>
+        {% endfor %}
+      </div>
+    </section>
+  {% endif %}
+
+  {% if solution.high_level_design %}
+    <section class="solution-section solution-hld-section" id="high-level-design">
+      <h2>{{ solution.high_level_design.title }}</h2>
+      <p>{{ solution.high_level_design.description }}</p>
+      <div class="solution-architecture-map">
+        {% for component in solution.high_level_design.components %}
+          <span class="solution-architecture-node">{{ component }}</span>
+          {% unless forloop.last %}
+            <span class="solution-architecture-arrow"></span>
+          {% endunless %}
+        {% endfor %}
+      </div>
+      <div class="solution-callout-list">
+        {% for note in solution.high_level_design.notes %}
+          <p>{{ note }}</p>
+        {% endfor %}
+      </div>
+    </section>
+  {% endif %}
+
+  {% if solution.trade_offs %}
+    <section class="solution-section solution-tradeoff-section" id="trade-offs">
+      <h2>{{ solution.trade_offs.title }}</h2>
+      <table class="solution-tradeoff-table">
+        <thead>
+          <tr>
+            <th>Choice</th>
+            <th>Benefit</th>
+            <th>Cost</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in solution.trade_offs.items %}
+            <tr>
+              <td>{{ item.choice }}</td>
+              <td>{{ item.benefit }}</td>
+              <td>{{ item.cost }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </section>
+  {% endif %}
+
+  {% if solution.code %}
+    <section class="solution-section solution-code-section" id="code">
+      <h2>{{ solution.code.title }}</h2>
+      <p>{{ solution.code.description }}</p>
+      <pre><code class="language-{{ solution.code.language }}">{{ solution.code.snippet | escape }}</code></pre>
+    </section>
+  {% endif %}
+</section>

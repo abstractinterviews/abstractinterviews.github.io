@@ -1,3 +1,8 @@
+---
+layout: default
+title: "Rate Limiter System"
+---
+
 # Rate Limiter System
 
 Focus: distributed counters, fairness, strict/soft limits, tenant isolation.
@@ -14,3 +19,4 @@ Create architecture for global and per-tenant limits with fallback behavior when
 - Redis atomic counters
 - Hierarchical limits
 - Metrics and abuse analytics
+

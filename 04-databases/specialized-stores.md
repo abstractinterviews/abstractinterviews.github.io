@@ -1,3 +1,8 @@
+---
+layout: default
+title: "Time-Series and Specialized Stores"
+---
+
 # Time-Series and Specialized Stores
 
 Specialized databases optimize specific workloads better than general-purpose stores.
@@ -12,3 +17,4 @@ Specialized databases optimize specific workloads better than general-purpose st
 - Full-text queries: search engine
 - Relationship-heavy traversals: graph DB
 - OLAP analytics: columnar warehouse
+

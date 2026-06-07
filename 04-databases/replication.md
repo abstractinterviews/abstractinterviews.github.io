@@ -1,3 +1,8 @@
+---
+layout: default
+title: "Replication and Failover"
+---
+
 # Replication and Failover
 
 Replication improves availability and read scale; failover preserves continuity during node failures.
@@ -10,3 +15,4 @@ Replication improves availability and read scale; failover preserves continuity 
 
 - Async replication: better latency, possible replica lag.
 - Sync replication: stronger consistency, write latency cost.
+

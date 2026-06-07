@@ -1,3 +1,8 @@
+---
+layout: default
+title: "WebSockets and Real-Time"
+---
+
 # WebSockets and Real-Time
 
 WebSockets keep persistent full-duplex connections for low-latency push communication.
@@ -18,3 +23,4 @@ WebSockets keep persistent full-duplex connections for low-latency push communic
 - Stateless gateway + shared pub/sub
 - Token-based connection auth
 - Backpressure for slow consumers
+

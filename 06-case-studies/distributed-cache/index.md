@@ -1,3 +1,8 @@
+---
+layout: default
+title: "Distributed Cache System"
+---
+
 # Distributed Cache System
 
 Focus: partitioning, replication, eviction, consistency, failover.
@@ -14,3 +19,4 @@ Create architecture showing consistent hashing, replication, eviction policies, 
 - Primary-replica cache nodes
 - Eviction and TTL policy
 - Hot key detection and mitigation
+

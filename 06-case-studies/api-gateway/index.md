@@ -1,3 +1,8 @@
+---
+layout: default
+title: "API Gateway System"
+---
+
 # API Gateway System
 
 Focus: unified edge, auth, routing, policy enforcement, observability.
@@ -14,3 +19,4 @@ Create complete gateway architecture with plugin chain and failure handling unde
 - Request shaping and validation
 - Per-route throttling
 - Unified logging and tracing
+

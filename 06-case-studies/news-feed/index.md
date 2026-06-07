@@ -1,3 +1,8 @@
+---
+layout: default
+title: "News Feed System"
+---
+
 # News Feed System
 
 Focus: feed generation, ranking, fan-out strategies, cache invalidation.
@@ -14,3 +19,4 @@ Create architecture comparing fan-out-on-write and fan-out-on-read with trade-of
 - Feed index generation
 - Ranking and relevance service
 - Read-time pagination and cache
+

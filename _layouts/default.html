@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
+    <meta name="description" content="{{ page.excerpt | default: site.description | strip_html | normalize_whitespace }}" />
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}" />
+  </head>
+  <body>
+    {% assign current_url = page.url %}
+    {% assign inferred_kind = 'concept' %}
+    {% if current_url == '/' %}
+      {% assign inferred_kind = 'home' %}
+    {% elsif page.page_type %}
+      {% assign inferred_kind = page.page_type %}
+    {% elsif current_url contains '/06-case-studies/' %}
+      {% assign inferred_kind = 'practice' %}
+    {% elsif current_url contains '/07-interview-prep/' %}
+      {% assign inferred_kind = 'resource' %}
+    {% elsif current_url contains '/04-databases/' %}
+      {% assign inferred_kind = 'deep-dive' %}
+    {% endif %}
+    {% assign rendered_content = content %}
+    {% assign solution = nil %}
+    {% if inferred_kind == 'solution' and page.solution_id %}
+      {% assign solution = site.data.solutions[page.solution_id] %}
+    {% endif %}
+    {% assign concept = nil %}
+    {% if inferred_kind == 'concept' and page.concept_id %}
+      {% assign concept = site.data.concepts[page.concept_id] %}
+    {% endif %}
+    <div class="app-shell page-{{ inferred_kind }} {% if inferred_kind == 'home' or solution or concept %}has-right-rail{% endif %}">
+      <aside class="sidebar" aria-label="Primary navigation">
+        <a class="brand" href="{{ '/' | relative_url }}" aria-label="{{ site.title }} home">
+          <span class="brand-mark" aria-hidden="true">
+            <span></span><span></span><span></span><span></span><span></span>
+          </span>
+          <span class="brand-name">System Design<br />Interview Guide</span>
+        </a>
+
+        <nav class="guide-nav">
+          <p class="nav-kicker">Get Started</p>
+          <a class="nav-link {% if current_url == '/' %}is-active{% endif %}" href="{{ '/' | relative_url }}"><span class="nav-icon">H</span>Welcome</a>
+          <a class="nav-link" href="{{ '/README.md' | relative_url }}"><span class="nav-icon">?</span>How to Use This Guide</a>
+          <a class="nav-link {% if current_url contains '/01-fundamentals/' %}is-active{% endif %}" href="{{ '/01-fundamentals/' | relative_url }}"><span class="nav-icon">S</span>System Design Primer</a>
+
+          <p class="nav-kicker">Fundamentals</p>
+          <a class="nav-link {% if current_url contains '/01-fundamentals/scalability/' %}is-active{% endif %}" href="{{ '/01-fundamentals/scalability/' | relative_url }}"><span class="nav-icon">M</span>Scalability</a>
+          <a class="nav-link" href="{{ '/01-fundamentals/high-availability/' | relative_url }}"><span class="nav-icon">A</span>High Availability</a>
+          <a class="nav-link" href="{{ '/05-patterns/' | relative_url }}"><span class="nav-icon">P</span>Design Patterns</a>
+          <a class="nav-link {% if current_url contains '/01-fundamentals/cap-theorem/' %}is-active{% endif %}" href="{{ '/01-fundamentals/cap-theorem/' | relative_url }}"><span class="nav-icon">C</span>CAP Theorem</a>
+          <a class="nav-link" href="{{ '/04-databases/replication/' | relative_url }}"><span class="nav-icon">R</span>Consistency Models</a>
+
+          <p class="nav-kicker">Deep Dives</p>
+          <a class="nav-link" href="{{ '/02-components/caching/' | relative_url }}"><span class="nav-icon">C</span>Caching</a>
+          <a class="nav-link" href="{{ '/02-components/load-balancers/' | relative_url }}"><span class="nav-icon">L</span>Load Balancing</a>
+          <a class="nav-link" href="{{ '/04-databases/' | relative_url }}"><span class="nav-icon">D</span>Databases</a>
+          <a class="nav-link" href="{{ '/04-databases/sharding/' | relative_url }}"><span class="nav-icon">S</span>Sharding</a>
+          <a class="nav-link" href="{{ '/02-components/cdn/' | relative_url }}"><span class="nav-icon">E</span>CDN</a>
+          <a class="nav-link" href="{{ '/02-components/message-queues/' | relative_url }}"><span class="nav-icon">Q</span>Messaging Queues</a>
+          <a class="nav-link" href="{{ '/03-api-and-communication/' | relative_url }}"><span class="nav-icon">N</span>API and Communication</a>
+          <a class="nav-link" href="{{ '/05-patterns/' | relative_url }}"><span class="nav-icon">X</span>Distributed Patterns</a>
+
+          <p class="nav-kicker">Practice</p>
+          <a class="nav-link {% if current_url contains '/06-case-studies/' %}is-active{% endif %}" href="{{ '/06-case-studies/' | relative_url }}"><span class="nav-icon">I</span>System Design Interviews</a>
+          <a class="nav-link" href="{{ '/06-case-studies/url-shortener/' | relative_url }}"><span class="nav-icon">U</span>Practice Problems</a>
+          <a class="nav-link" href="{{ '/07-interview-prep/' | relative_url }}"><span class="nav-icon">T</span>Interview Prep</a>
+
+          <p class="nav-kicker">Resources</p>
+          <a class="nav-link {% if current_url contains '/07-interview-prep/estimation-cheatsheet/' %}is-active{% endif %}" href="{{ '/07-interview-prep/estimation-cheatsheet/' | relative_url }}"><span class="nav-icon">K</span>Cheat Sheets</a>
+          <a class="nav-link {% if current_url contains '/glossary/' %}is-active{% endif %}" href="{{ '/glossary/' | relative_url }}"><span class="nav-icon">G</span>Glossary</a>
+          <a class="nav-link" href="{{ '/README.md' | relative_url }}"><span class="nav-icon">B</span>Further Reading</a>
+        </nav>
+
+        <div class="social-row" aria-label="Project links">
+          <a href="https://github.com/" aria-label="GitHub">GH</a>
+          <a href="https://x.com/" aria-label="X">X</a>
+          <a href="https://www.linkedin.com/" aria-label="LinkedIn">in</a>
+          <a href="mailto:{{ site.email | default: '' }}" aria-label="Email">@</a>
+        </div>
+      </aside>
+
+      <div class="main-area">
+        <header class="topbar">
+          <label class="search-box">
+            <span aria-hidden="true">⌕</span>
+            <input type="search" placeholder="Search the guide..." aria-label="Search the guide" />
+            <kbd>⌘ K</kbd>
+          </label>
+          <div class="top-actions">
+            <a class="github-link" href="https://github.com/" target="_blank" rel="noreferrer">GitHub</a>
+            {% if inferred_kind == 'home' or solution or concept %}
+              <button class="icon-button rail-toggle" type="button" aria-label="Toggle right panel" aria-expanded="true" data-rail-toggle>☰</button>
+            {% endif %}
+            <button class="icon-button" type="button" aria-label="Toggle appearance">☼</button>
+          </div>
+        </header>
+
+        <main class="content-panel">
+          {% unless inferred_kind == 'home' %}
+            <div class="breadcrumbs" aria-label="Breadcrumb">
+              <a href="{{ '/' | relative_url }}">Home</a>
+              {% if current_url contains '/01-fundamentals/' %}
+                <span>Fundamentals</span>
+              {% elsif current_url contains '/02-components/' %}
+                <span>Deep Dives</span>
+              {% elsif current_url contains '/03-api-and-communication/' %}
+                <span>API and Communication</span>
+              {% elsif current_url contains '/04-databases/' %}
+                <span>Deep Dive</span>
+                <span>Databases</span>
+              {% elsif current_url contains '/05-patterns/' %}
+                <span>Patterns</span>
+              {% elsif current_url contains '/06-case-studies/' %}
+                <span>Practice</span>
+                {% if inferred_kind == 'solution' %}
+                  <span>Solutions</span>
+                {% endif %}
+              {% elsif current_url contains '/07-interview-prep/' %}
+                <span>Resources</span>
+              {% else %}
+                <span>Resources</span>
+              {% endif %}
+            </div>
+            {% unless concept %}
+            <header class="doc-header">
+              <div>
+                <h1>{{ solution.title | default: page.title }}</h1>
+                {% if inferred_kind == 'practice' or inferred_kind == 'practice_problem' %}
+                  <span class="difficulty-badge medium">Medium</span>
+                {% elsif inferred_kind == 'solution' %}
+                  <span class="difficulty-badge medium">{{ solution.difficulty | default: 'Solution' }}</span>
+                {% elsif inferred_kind == 'resource' %}
+                  <span class="difficulty-badge easy">Reference</span>
+                {% endif %}
+              </div>
+              {% if solution.subtitle %}
+                <p>{{ solution.subtitle }}</p>
+              {% endif %}
+            </header>
+            {% endunless %}
+          {% endunless %}
+          {% if solution %}
+            {% include solution.html solution=solution %}
+          {% elsif concept %}
+            {% include concept.html concept=concept %}
+          {% elsif page.render_sections or inferred_kind == 'solution' %}
+            {% assign heading_parts = rendered_content | split: '<h2 id="' %}
+            {% if heading_parts.size > 1 %}
+              <nav class="section-tabs auto-tabs" aria-label="Page sections">
+                {% for heading_part in heading_parts offset:1 %}
+                  {% assign heading_id = heading_part | split: '"' | first %}
+                  {% assign heading_open = heading_part | split: '</h2>' | first %}
+                  {% assign heading_title = heading_open | split: '>' | last | strip_html | strip %}
+                  {% assign cleaned_title = heading_title | replace_first: '16. ', '' | replace_first: '15. ', '' | replace_first: '14. ', '' | replace_first: '13. ', '' | replace_first: '12. ', '' | replace_first: '11. ', '' | replace_first: '10. ', '' | replace_first: '9. ', '' | replace_first: '8. ', '' | replace_first: '7. ', '' | replace_first: '6. ', '' | replace_first: '5. ', '' | replace_first: '4. ', '' | replace_first: '3. ', '' | replace_first: '2. ', '' | replace_first: '1. ', '' %}
+                  <a class="{% if forloop.first %}is-active{% endif %}" href="#{{ heading_id }}">{{ cleaned_title }}</a>
+                {% endfor %}
+              </nav>
+            {% endif %}
+          {% endif %}
+          {% unless solution or concept %}
+            <article class="page-content {{ inferred_kind }}-content">
+              {{ rendered_content }}
+            </article>
+          {% endunless %}
+          {% unless inferred_kind == 'home' %}
+            {% assign guide_pages = site.data.guide_navigation.pages %}
+            {% assign current_index = nil %}
+            {% for nav_page in guide_pages %}
+              {% if nav_page.url == current_url %}
+                {% assign current_index = forloop.index0 %}
+              {% endif %}
+            {% endfor %}
+            {% assign previous_index = current_index | minus: 1 %}
+            {% assign next_index = current_index | plus: 1 %}
+            {% assign previous_page = guide_pages[previous_index] %}
+            {% assign next_page = guide_pages[next_index] %}
+            <nav class="doc-pager" aria-label="Page navigation">
+              {% if previous_page %}
+                <a class="pager-link previous" href="{{ previous_page.url | relative_url }}">
+                  <span>Previous</span>
+                  <strong>{{ previous_page.title }}</strong>
+                </a>
+              {% else %}
+                <span class="pager-link is-disabled">
+                  <span>Previous</span>
+                  <strong>Start of guide</strong>
+                </span>
+              {% endif %}
+              {% if next_page %}
+                <a class="pager-link next" href="{{ next_page.url | relative_url }}">
+                  <span>Next</span>
+                  <strong>{{ next_page.title }}</strong>
+                </a>
+              {% else %}
+                <span class="pager-link is-disabled">
+                  <span>Next</span>
+                  <strong>End of guide</strong>
+                </span>
+              {% endif %}
+            </nav>
+          {% endunless %}
+        </main>
+      </div>
+
+      {% if inferred_kind == 'home' %}
+      <aside class="right-rail" aria-label="Page summary">
+        <div class="right-rail-inner">
+          <p class="rail-kicker">On This Page</p>
+          <nav class="page-toc">
+            <a href="#overview">Overview</a>
+            <a href="#guide-overview">Guide Overview</a>
+            <a href="#popular-topics">Popular Topics</a>
+            <a href="#how-to-use">How to Use This Guide</a>
+            <a href="#contributing">Contributing</a>
+          </nav>
+
+          <section class="rail-card">
+            <div class="rail-card-title"><span class="rail-card-icon">☆</span>Star this repo</div>
+            <p>If you find this guide helpful, please consider giving it a star on GitHub.</p>
+            <a class="rail-button" href="https://github.com/" target="_blank" rel="noreferrer">Star on GitHub</a>
+          </section>
+
+          <section class="rail-card">
+            <div class="rail-card-title"><span class="rail-card-icon">+</span>Contribute</div>
+            <p>Found an issue or have suggestions? Contributions are welcome.</p>
+            <a class="rail-button" href="https://github.com/" target="_blank" rel="noreferrer">Contribute</a>
+          </section>
+
+          <section class="rail-card compact">
+            <div class="rail-card-title"><span class="rail-card-icon">□</span>Last Updated</div>
+            <p>June 6, 2026</p>
+          </section>
+        </div>
+      </aside>
+      {% elsif solution %}
+      <aside class="right-rail solution-rail" aria-label="Solution navigation">
+        <div class="right-rail-inner">
+          <p class="rail-kicker">On This Page</p>
+          <nav class="page-toc">
+            <a href="#{{ solution.active_tab }}">Detailed Design</a>
+            {% for item in solution.right_rail.on_this_page %}
+              <a class="{% if forloop.first %}is-active{% endif %}" href="{{ item.href }}">{{ forloop.index }}. {{ item.label }}</a>
+            {% endfor %}
+          </nav>
+
+          <p class="rail-kicker rail-spacer">Jump to</p>
+          <nav class="page-toc jump-toc">
+            {% for item in solution.right_rail.jump_to %}
+              <a href="{{ item.href }}">{{ item.label }}</a>
+            {% endfor %}
+          </nav>
+
+          <section class="rail-card action-card">
+            <div class="rail-card-title"><span class="rail-card-icon">△</span>Try it yourself</div>
+            <p>Want to practice this design in a mock interview?</p>
+            <a class="rail-button" href="{{ '/06-case-studies/url-shortener/problem/' | relative_url }}">Start Practice →</a>
+          </section>
+
+          <section class="rail-card action-card">
+            <div class="rail-card-title"><span class="rail-card-icon">□</span>Download</div>
+            <p>Get this solution as a PDF cheat sheet.</p>
+            <a class="rail-button" href="#">Download PDF</a>
+          </section>
+        </div>
+      </aside>
+      {% elsif concept %}
+      <aside class="right-rail concept-rail" aria-label="Concept navigation">
+        <div class="right-rail-inner">
+          <p class="rail-kicker">On This Page</p>
+          <nav class="page-toc">
+            {% for item in concept.right_rail.on_this_page %}
+              <a class="{% if forloop.first %}is-active{% endif %}" href="{{ item.href }}">{{ forloop.index }}. {{ item.label }}</a>
+            {% endfor %}
+          </nav>
+
+          <section class="rail-card action-card">
+            <div class="rail-card-title"><span class="rail-card-icon">△</span>Try it yourself</div>
+            <p>Practice this concept with interactive examples.</p>
+            <a class="rail-button" href="{{ '/06-case-studies/' | relative_url }}">Start Practice →</a>
+          </section>
+
+          <section class="rail-card action-card">
+            <div class="rail-card-title"><span class="rail-card-icon">□</span>Download Cheat Sheet</div>
+            <p>Get a one-page summary of {{ concept.title | downcase }}.</p>
+            <a class="rail-button" href="#">Download PDF</a>
+          </section>
+        </div>
+      </aside>
+      {% endif %}
+    </div>
+    <script type="module">
+      import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";
+
+      mermaid.initialize({
+        startOnLoad: false,
+        theme: "base",
+        securityLevel: "strict",
+        themeVariables: {
+          primaryColor: "#eff6ff",
+          primaryBorderColor: "#93b5ff",
+          primaryTextColor: "#111827",
+          lineColor: "#7b96c4",
+          secondaryColor: "#f8fafc",
+          tertiaryColor: "#ffffff",
+          fontFamily: "Inter, ui-sans-serif, system-ui, sans-serif"
+        }
+      });
+
+      const mermaidBlocks = document.querySelectorAll("pre > code.language-mermaid");
+      mermaidBlocks.forEach((block) => {
+        const container = document.createElement("div");
+        container.className = "mermaid diagram-card";
+        container.textContent = block.textContent;
+        block.closest("pre").replaceWith(container);
+      });
+
+      if (mermaidBlocks.length) {
+        await mermaid.run({ querySelector: ".mermaid" });
+      }
+    </script>
+    <script>
+      const shell = document.querySelector(".app-shell.has-right-rail");
+      const railToggle = document.querySelector("[data-rail-toggle]");
+      const railPreferenceKey = "guide:right-rail-collapsed";
+      const railStorage = {
+        get() {
+          try {
+            return window.localStorage.getItem(railPreferenceKey);
+          } catch {
+            return null;
+          }
+        },
+        set(value) {
+          try {
+            window.localStorage.setItem(railPreferenceKey, value);
+          } catch {
+          }
+        }
+      };
+
+      if (shell && railToggle) {
+        const applyRailState = (collapsed) => {
+          shell.classList.toggle("is-rail-collapsed", collapsed);
+          railToggle.setAttribute("aria-expanded", String(!collapsed));
+          railToggle.textContent = collapsed ? "☷" : "☰";
+        };
+
+        applyRailState(railStorage.get() === "true");
+
+        railToggle.addEventListener("click", () => {
+          const collapsed = !shell.classList.contains("is-rail-collapsed");
+          railStorage.set(String(collapsed));
+          applyRailState(collapsed);
+        });
+      }
+
+      const solutionTabs = document.querySelectorAll(".solution-tabs a");
+      solutionTabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          solutionTabs.forEach((item) => item.classList.remove("is-active"));
+          tab.classList.add("is-active");
+        });
+      });
+    </script>
+  </body>
+</html>

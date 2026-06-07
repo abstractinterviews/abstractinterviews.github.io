@@ -1,3 +1,8 @@
+---
+layout: default
+title: "Sharding Strategies"
+---
+
 # Sharding Strategies
 
 Sharding partitions data across nodes to scale storage and throughput.
@@ -11,3 +16,4 @@ Sharding partitions data across nodes to scale storage and throughput.
 - Shard key quality determines long-term performance.
 - Rebalancing and resharding must be planned early.
 - Cross-shard operations increase complexity.
+

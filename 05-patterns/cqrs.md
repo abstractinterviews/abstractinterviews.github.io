@@ -1,3 +1,8 @@
+---
+layout: default
+title: "CQRS"
+---
+
 # CQRS
 
 CQRS separates read and write models to optimize each side independently.
@@ -7,3 +12,4 @@ CQRS separates read and write models to optimize each side independently.
 *Figure 1: Command side writing to source store and event bus, query side serving denormalized read views.*
 
 Best for read-heavy systems with distinct query and mutation behavior.
+

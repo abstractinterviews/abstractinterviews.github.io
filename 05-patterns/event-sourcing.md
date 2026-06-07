@@ -1,3 +1,8 @@
+---
+layout: default
+title: "Event Sourcing"
+---
+
 # Event Sourcing
 
 Event sourcing stores state transitions as immutable events and reconstructs state from the log.
@@ -7,3 +12,4 @@ Event sourcing stores state transitions as immutable events and reconstructs sta
 *Figure 1: Aggregate commands producing ordered events, snapshots, and read projections.*
 
 Pros: auditability, temporal replay, debugability. Cons: operational complexity and schema evolution challenges.
+

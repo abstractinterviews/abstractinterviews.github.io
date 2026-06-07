@@ -1,3 +1,8 @@
+---
+layout: default
+title: "GraphQL"
+---
+
 # GraphQL
 
 GraphQL enables client-driven querying and schema-typed APIs.
@@ -21,3 +26,4 @@ GraphQL enables client-driven querying and schema-typed APIs.
 ![Figure 2 - GraphQL Cost Guardrails](./assets/graphql-cost-guardrails.png)
 
 *Figure 2: Query complexity analysis with depth limits and persisted query enforcement.*
+

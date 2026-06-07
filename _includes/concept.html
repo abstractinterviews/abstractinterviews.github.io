@@ -1,0 +1,98 @@
+{% assign concept = include.concept %}
+
+<section class="concept-shell">
+  <header class="concept-hero">
+    <div class="concept-heading">
+      <h1>{{ concept.title }}</h1>
+      <p>{{ concept.subtitle }}</p>
+      <div class="concept-badges">
+        <span>Difficulty: {{ concept.difficulty }}</span>
+        <span>{{ concept.read_time }}</span>
+        <span>{{ concept.label }}</span>
+      </div>
+    </div>
+    {% if concept.hero %}
+      <figure class="concept-visual-card">
+        <figcaption>{{ concept.hero.title }}</figcaption>
+        <pre><code class="language-{{ concept.hero.language }}">{{ concept.hero.diagram | escape }}</code></pre>
+      </figure>
+    {% endif %}
+  </header>
+
+  {% if concept.summary %}
+    <section class="concept-summary-card" aria-label="Quick summary">
+      <div>
+        <h2>Quick Summary</h2>
+        <p>{{ concept.summary.description }}</p>
+      </div>
+      <div>
+        <h3>Benefits</h3>
+        <ul class="positive-list">
+          {% for item in concept.summary.benefits %}
+            <li>{{ item }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div>
+        <h3>Trade-offs</h3>
+        <ul class="negative-list">
+          {% for item in concept.summary.tradeoffs %}
+            <li>{{ item }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    </section>
+  {% endif %}
+
+  {% for section in concept.sections %}
+    <section class="concept-section" id="{{ section.id }}">
+      <h2>{{ forloop.index }}. {{ section.title }}</h2>
+      {% if section.description %}
+        <p>{{ section.description }}</p>
+      {% endif %}
+
+      {% if section.subsections.size > 0 %}
+        <div class="concept-subsection-grid {% if section.subsections.size == 1 %}single{% endif %}">
+          {% for subsection in section.subsections %}
+            <article class="concept-subsection-card">
+              <h3>{{ subsection.title }}</h3>
+              {% if subsection.text %}
+                <p>{{ subsection.text }}</p>
+              {% endif %}
+              {% if subsection.items.size > 0 %}
+                <ul>
+                  {% for item in subsection.items %}
+                    <li>{{ item }}</li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+              {% if subsection.table %}
+                <table>
+                  <thead>
+                    <tr>
+                      {% for header in subsection.table.first %}
+                        <th>{{ header[0] }}</th>
+                      {% endfor %}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for row in subsection.table %}
+                      <tr>
+                        {% for cell in row %}
+                          <td>{{ cell[1] }}</td>
+                        {% endfor %}
+                      </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              {% endif %}
+              {% if subsection.diagram %}
+                <pre><code class="language-{{ subsection.language }}">{{ subsection.diagram | escape }}</code></pre>
+              {% endif %}
+            </article>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </section>
+  {% endfor %}
+</section>

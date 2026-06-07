@@ -1,0 +1,199 @@
+---
+__generated_from: 06-case-studies/url-shortener/index.md
+__generated_note: Edit the source Markdown, not this file.
+title: URL Shortener Design - Solution
+subtitle: Design a URL shortening service like bit.ly.
+difficulty: Medium
+active_tab: detailed-design
+tabs:
+- id: overview
+  label: Overview
+  icon: square
+- id: high-level-design
+  label: High Level Design
+  icon: nodes
+- id: detailed-design
+  label: Detailed Design
+  icon: link
+- id: trade-offs
+  label: Trade-offs
+  icon: balance
+- id: code
+  label: Code (Optional)
+  icon: code
+detail_tabs:
+- id: write-path-shorten-url
+  label: 1. Write Path
+- id: read-path-redirect-url
+  label: 2. Read Path
+- id: key-components
+  label: 3. Key Components
+- id: data-model
+  label: 4. Data Model
+overview:
+  title: Overview
+  description: Split the service into a low-volume write path for creating short URLs and a high-volume read path for redirects. Keep redirect latency low by caching hot mappings and sending analytics events asynchronously.
+  cards:
+  - title: Primary Goal
+    text: Resolve short codes to long URLs with very low latency and high availability.
+  - title: Scale Focus
+    text: Redirect traffic dominates writes, so optimize the read path first.
+  - title: Source of Truth
+    text: The database owns URL mappings; cache and edge layers accelerate access.
+  - title: Async Work
+    text: Analytics, abuse checks, and reporting should not block redirects.
+high_level_design:
+  title: High Level Design
+  description: The system has two main paths. The create path validates and stores mappings. The redirect path checks cache first, falls back to the database, and emits analytics asynchronously.
+  components:
+  - Client
+  - CDN / Edge
+  - Load Balancer
+  - API Servers
+  - Redis Cache
+  - Mapping DB
+  - Event Stream
+  - Analytics Store
+  notes:
+  - Use CDN or edge caching for highly popular short links.
+  - Keep API servers stateless behind the load balancer.
+  - Use cache-aside for redirect lookups.
+  - Emit click events to a stream after returning the redirect.
+trade_offs:
+  title: Trade-offs
+  items:
+  - choice: Short custom aliases
+    benefit: Human-friendly and memorable links.
+    cost: Requires reservation checks, abuse prevention, and collision handling.
+  - choice: Random code generation
+    benefit: Harder to enumerate.
+    cost: Needs collision retries and careful entropy sizing.
+  - choice: Base62 from unique IDs
+    benefit: Compact, deterministic, and collision-free.
+    cost: Sequential IDs can be predictable unless obscured.
+  - choice: 301 redirects
+    benefit: Better browser and CDN caching.
+    cost: Harder to change destination later.
+  - choice: Async analytics
+    benefit: Keeps redirect latency low.
+    cost: Counters become eventually consistent.
+code:
+  title: Code (Optional)
+  description: A minimal create endpoint validates input, generates a code, stores the mapping, and returns the public short URL.
+  language: python
+  snippet: |-
+    def create_short_url(long_url, custom_alias=None):
+        validate_url(long_url)
+        code = custom_alias or base62(generate_unique_id())
+
+        if mapping_store.exists(code):
+            raise AliasAlreadyTaken(code)
+
+        mapping_store.put({
+            "code": code,
+            "long_url": long_url,
+            "status": "active"
+        })
+        cache.delete(code)
+        return f"https://sho.rt/{code}"
+sections:
+- id: write-path-shorten-url
+  title: Write Path (Shorten URL)
+  short_title: Write Path
+  description: This is the flow when a user creates a short URL.
+  participants:
+  - User
+  - Load Balancer
+  - API Servers
+  - Database (Write)
+  - Cache
+  flow_steps:
+  - number: 1
+    from: 1
+    to: 2
+    end: 3
+    label: POST /api/shorten { long_url }
+  - number: 2
+    from: 2
+    to: 3
+    end: 4
+    label: Forward request
+  - number: 3
+    from: 3
+    to: 4
+    end: 5
+    label: Generate short code and check uniqueness
+  - number: 4
+    from: 3
+    to: 4
+    end: 5
+    label: Write mapping (short_code, long_url)
+  - number: 5
+    from: 4
+    to: 3
+    end: 5
+    label: Success
+  - number: 6
+    from: 4
+    to: 5
+    end: 6
+    label: Invalidate cache for short_code
+  - number: 7
+    from: 2
+    to: 1
+    end: 3
+    label: Return short URL
+  step_table:
+  - step: 1
+    description: User sends a request to shorten a long URL.
+  - step: 2
+    description: Load balancer forwards the request to an API server.
+  - step: 3
+    description: API generates a short code and checks uniqueness in cache or DB.
+  - step: 4
+    description: Mapping is stored in the database.
+  - step: 5
+    description: DB write succeeds.
+  - step: 6
+    description: Cache entry for the short code is invalidated to avoid stale reads.
+  - step: 7
+    description: API returns the short URL to the user.
+  key_points:
+  - Short code should be unique.
+  - Use Base62 encoding for compact short codes.
+  - Cache is updated lazily on read.
+  - DB is the source of truth.
+  tech_choices:
+  - 'Language: Go / Java / Python'
+  - 'DB: DynamoDB / Cassandra / PostgreSQL'
+  - 'Cache: Redis'
+  - 'ID Generation: Snowflake / Redis INCR / UUID + Base62'
+- id: read-path-redirect-url
+  title: Read Path (Redirect URL)
+  short_title: Read Path
+  description: This is the low-latency path used when a short URL is visited.
+- id: key-components
+  title: Key Components
+  short_title: Key Components
+  description: API servers, code generator, mapping database, Redis cache, rate limiter, and async analytics pipeline.
+- id: data-model
+  title: Data Model
+  short_title: Data Model
+  description: Store short code mappings by primary key and index ownership, expiration, and analytics metadata separately.
+right_rail:
+  on_this_page:
+  - label: Write Path (Shorten URL)
+    href: "#write-path-shorten-url"
+  - label: Read Path (Redirect URL)
+    href: "#read-path-redirect-url"
+  - label: Key Components
+    href: "#key-components"
+  - label: Data Model
+    href: "#data-model"
+  jump_to:
+  - label: High Level Design
+    href: "#high-level-design"
+  - label: Trade-offs
+    href: "#trade-offs"
+  - label: Code (Optional)
+    href: "#code"

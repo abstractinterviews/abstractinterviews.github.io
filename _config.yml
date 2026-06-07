@@ -1,0 +1,28 @@
+title: System Design Interview
+email: ""
+description: Structured, example-driven reference for mastering system design interviews.
+baseurl: ""
+url: ""
+markdown: kramdown
+highlighter: rouge
+permalink: pretty
+relative_links:
+  enabled: true
+  collections: true
+plugins:
+  - jekyll-relative-links
+kramdown:
+  input: GFM
+theme: null
+defaults:
+  - scope:
+      path: ""
+      type: pages
+    values:
+      layout: default
+exclude:
+  - scripts/
+  - .git/
+  - .gitignore
+  - Gemfile
+  - Gemfile.lock

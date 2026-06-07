@@ -1,3 +1,8 @@
+---
+layout: default
+title: "Chat / Messaging System"
+---
+
 # Chat / Messaging System
 
 Focus: low-latency delivery, presence, ordering, offline sync.
@@ -14,3 +19,4 @@ Create end-to-end architecture for chat with online/offline message flow and del
 - Message broker for fan-out
 - Per-conversation ordering strategy
 - Offline queue + push notifications
+

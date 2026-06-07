@@ -1,3 +1,8 @@
+---
+layout: default
+title: "REST API Design"
+---
+
 # REST API Design
 
 REST is resource-oriented HTTP communication with predictable semantics and cache friendliness.
@@ -22,3 +27,4 @@ REST is resource-oriented HTTP communication with predictable semantics and cach
 ![Figure 2 - REST Reliability Flow](./assets/rest-reliability-flow.png)
 
 *Figure 2: Request retry flow with idempotency keys and safe duplicate handling.*
+

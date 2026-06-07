@@ -1,3 +1,8 @@
+---
+layout: default
+title: "Rate Limiting"
+---
+
 # Rate Limiting
 
 Rate limiting protects services from abuse, overload, and noisy neighbors by controlling request volume.
@@ -91,3 +96,4 @@ Choose fail-open vs fail-closed based on endpoint criticality.
 3. Define key scope and limit tiers.
 4. Explain distributed counter consistency.
 5. Explain behavior on limiter dependency failure.
+

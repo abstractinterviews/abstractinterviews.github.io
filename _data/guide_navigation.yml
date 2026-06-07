@@ -1,0 +1,99 @@
+pages:
+  - title: Welcome
+    url: /
+  - title: Fundamentals
+    url: /01-fundamentals/
+  - title: Scalability and Performance
+    url: /01-fundamentals/scalability/
+  - title: CAP Theorem and Consistency Models
+    url: /01-fundamentals/cap-theorem/
+  - title: High Availability and Fault Tolerance
+    url: /01-fundamentals/high-availability/
+  - title: Back-of-the-Envelope Estimation
+    url: /01-fundamentals/estimation/
+  - title: Core Components
+    url: /02-components/
+  - title: Load Balancers
+    url: /02-components/load-balancers/
+  - title: Caching Strategies
+    url: /02-components/caching/
+  - title: CDN and Edge Computing
+    url: /02-components/cdn/
+  - title: Message Queues and Event Streaming
+    url: /02-components/message-queues/
+  - title: Rate Limiting
+    url: /02-components/rate-limiting/
+  - title: Service Discovery and Health Checks
+    url: /02-components/service-discovery/
+  - title: API and Communication
+    url: /03-api-and-communication/
+  - title: REST APIs
+    url: /03-api-and-communication/rest/
+  - title: GraphQL
+    url: /03-api-and-communication/graphql/
+  - title: gRPC
+    url: /03-api-and-communication/grpc/
+  - title: WebSockets
+    url: /03-api-and-communication/websockets/
+  - title: API Gateway
+    url: /03-api-and-communication/api-gateway/
+  - title: Databases
+    url: /04-databases/
+  - title: SQL vs NoSQL
+    url: /04-databases/sql-vs-nosql/
+  - title: Sharding Strategies
+    url: /04-databases/sharding/
+  - title: Replication and Failover
+    url: /04-databases/replication/
+  - title: Schema Design and Evolution
+    url: /04-databases/schema-design/
+  - title: Distributed Transactions
+    url: /04-databases/distributed-transactions/
+  - title: Time-Series and Specialized Stores
+    url: /04-databases/specialized-stores/
+  - title: Distributed Patterns
+    url: /05-patterns/
+  - title: Circuit Breaker
+    url: /05-patterns/circuit-breaker/
+  - title: CQRS
+    url: /05-patterns/cqrs/
+  - title: Event Sourcing
+    url: /05-patterns/event-sourcing/
+  - title: Transactional Outbox
+    url: /05-patterns/outbox/
+  - title: Saga Pattern
+    url: /05-patterns/saga/
+  - title: 2PC vs Eventual Consistency
+    url: /05-patterns/2pc-vs-eventual/
+  - title: Case Studies
+    url: /06-case-studies/
+  - title: Design URL Shortener
+    url: /06-case-studies/url-shortener/problem/
+  - title: URL Shortener Solution
+    url: /06-case-studies/url-shortener/
+  - title: Chat / Messaging System
+    url: /06-case-studies/chat-messaging/
+  - title: Notification Service
+    url: /06-case-studies/notification-service/
+  - title: Rate Limiter
+    url: /06-case-studies/rate-limiter/
+  - title: News Feed
+    url: /06-case-studies/news-feed/
+  - title: Distributed Cache
+    url: /06-case-studies/distributed-cache/
+  - title: API Gateway Case Study
+    url: /06-case-studies/api-gateway/
+  - title: E-Commerce Inventory Management
+    url: /06-case-studies/ecommerce-inventory-management-system/
+  - title: Interview Prep
+    url: /07-interview-prep/
+  - title: Interview Framework
+    url: /07-interview-prep/interview-framework/
+  - title: Estimation Cheat Sheet
+    url: /07-interview-prep/estimation-cheatsheet/
+  - title: Common Mistakes
+    url: /07-interview-prep/common-mistakes/
+  - title: System Design Interview Questions
+    url: /07-interview-prep/common-questions/
+  - title: Glossary
+    url: /glossary/

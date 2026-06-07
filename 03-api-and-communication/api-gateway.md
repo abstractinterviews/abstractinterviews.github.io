@@ -1,3 +1,8 @@
+---
+layout: default
+title: "API Gateway"
+---
+
 # API Gateway
 
 API gateway is the policy edge for auth, routing, throttling, and observability.
@@ -19,3 +24,4 @@ API gateway is the policy edge for auth, routing, throttling, and observability.
 - Fail-open vs fail-closed policy per endpoint
 - Timeout budgets and circuit breaking
 - Global error shape and tracing IDs
+

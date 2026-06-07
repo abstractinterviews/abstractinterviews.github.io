@@ -1,3 +1,8 @@
+---
+layout: default
+title: "Load Balancers"
+---
+
 # Load Balancers
 
 Load balancers distribute traffic across backend instances to improve availability, utilization, and scalability.
@@ -83,3 +88,4 @@ All require safe health checks, metrics-based rollback, and gradual traffic shif
 3. Explain health-check design.
 4. Explain deployment and rollback safety.
 5. Mention observability: error rate, backend saturation, tail latency.
+

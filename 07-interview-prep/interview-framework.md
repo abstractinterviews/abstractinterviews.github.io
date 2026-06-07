@@ -1,3 +1,8 @@
+---
+layout: default
+title: "Interview Framework (Step-by-Step)"
+---
+
 # Interview Framework (Step-by-Step)
 
 1. Clarify scope and assumptions.
@@ -11,3 +16,4 @@ Figure Name: Figure 1 - Step-by-Step Interview Framework
 Alt Text: Structured interview flow with outputs per stage and time allocation.
 Create a checklist flowchart with stages and decision points for candidate answers.
 ```
+

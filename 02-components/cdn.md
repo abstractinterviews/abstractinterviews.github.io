@@ -1,3 +1,8 @@
+---
+layout: default
+title: "CDN and Edge Computing"
+---
+
 # CDN and Edge Computing
 
 CDNs move content closer to users by caching at edge locations, reducing latency and origin load.
@@ -73,3 +78,4 @@ Mitigations:
 3. Explain purge strategy.
 4. Explain fallback when edge miss or edge outage occurs.
 5. Mention metrics: edge hit ratio, origin offload, latency by region.
+

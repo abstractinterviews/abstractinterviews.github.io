@@ -1,3 +1,8 @@
+---
+layout: default
+title: "gRPC and Protobuf"
+---
+
 # gRPC and Protobuf
 
 gRPC is strongly typed RPC over HTTP/2 using Protobuf contracts.
@@ -17,3 +22,4 @@ gRPC is strongly typed RPC over HTTP/2 using Protobuf contracts.
 - Browser support needs gateway/proxy
 - Harder to debug manually than JSON REST
 - Contract versioning discipline required
+

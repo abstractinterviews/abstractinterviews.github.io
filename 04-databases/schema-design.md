@@ -1,3 +1,8 @@
+---
+layout: default
+title: "Schema Design and Evolution"
+---
+
 # Schema Design and Evolution
 
 Schema should optimize hot queries while preserving future change safety.
@@ -11,3 +16,4 @@ Schema should optimize hot queries while preserving future change safety.
 - Version data contracts.
 - Use additive migrations first.
 - Avoid destructive schema changes during peak traffic.
+

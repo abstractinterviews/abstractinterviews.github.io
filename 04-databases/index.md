@@ -1,6 +1,23 @@
+---
+layout: default
+title: "Databases"
+---
+
 # Databases
 
 This section covers data store decisions and distributed storage trade-offs.
+
+<div class="section-tabs" aria-label="Database families">
+  <span class="is-active">Relational (SQL)</span>
+  <span>NoSQL</span>
+  <span>NewSQL</span>
+  <span>Graph</span>
+</div>
+
+<div class="doc-callout">
+  <strong>Relational databases</strong>
+  <p>Relational databases store data in tables with predefined schemas. They are a strong default when transactions, joins, and consistency matter.</p>
+</div>
 
 ![Figure 1 - Database Design Decision Tree](./assets/database-design-decision-tree.png)
 
@@ -14,3 +31,4 @@ This section covers data store decisions and distributed storage trade-offs.
 - [Schema Design and Evolution](./schema-design.md)
 - [Distributed Transactions](./distributed-transactions.md)
 - [Time-Series and Specialized Stores](./specialized-stores.md)
+

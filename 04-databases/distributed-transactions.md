@@ -1,3 +1,8 @@
+---
+layout: default
+title: "Distributed Transactions"
+---
+
 # Distributed Transactions
 
 Distributed writes across services need consistency patterns beyond a single DB transaction.
@@ -11,3 +16,4 @@ Distributed writes across services need consistency patterns beyond a single DB 
 - 2PC for strict cross-resource atomicity (high coupling).
 - Saga for eventual consistency with compensations.
 - Outbox pattern for reliable event publishing.
+
