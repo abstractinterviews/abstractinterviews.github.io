@@ -55,6 +55,8 @@ pages:
     url: /components/databases/specialized-stores/
   - title: Distributed Patterns
     url: /fundamentals/patterns/
+  - title: 50 System Design Patterns
+    url: /50-system-design-patterns/
   - title: Circuit Breaker
     url: /fundamentals/patterns/circuit-breaker/
   - title: CQRS

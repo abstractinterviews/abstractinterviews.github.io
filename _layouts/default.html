@@ -40,6 +40,33 @@
       {% assign is_deep_post = true %}
     {% endif %}
     <div class="app-shell page-{{ inferred_kind }} {% if inferred_kind == 'home' or solution or concept or is_deep_index or is_deep_post %}has-right-rail{% endif %}">
+      <header class="mobile-appbar">
+        {% unless inferred_kind == 'home' %}
+          <button class="mobile-icon-button" type="button" aria-label="Go back" onclick="history.back()">‹</button>
+        {% else %}
+          <button class="mobile-icon-button" type="button" aria-label="Open navigation">☰</button>
+        {% endunless %}
+        <a class="mobile-brand" href="{{ '/' | relative_url }}" aria-label="{{ site.title }} home">
+          <span class="brand-mark" aria-hidden="true">
+            <span></span><span></span><span></span><span></span><span></span>
+          </span>
+          <span>
+            {% if inferred_kind == 'home' %}
+              System Design<br />Interview Guide
+            {% elsif is_deep_index %}
+              Deep Dive
+            {% else %}
+              {{ page.title | default: site.title }}
+            {% endif %}
+          </span>
+        </a>
+        {% if inferred_kind == 'home' %}
+          <button class="mobile-icon-button" type="button" aria-label="Search">⌕</button>
+        {% else %}
+          <a class="mobile-icon-button" href="{{ '/' | relative_url }}" aria-label="Home">⌂</a>
+        {% endif %}
+      </header>
+
       <aside class="sidebar" aria-label="Primary navigation">
         <a class="brand" href="{{ '/' | relative_url }}" aria-label="{{ site.title }} home">
           <span class="brand-mark" aria-hidden="true">
@@ -374,6 +401,39 @@
         </div>
       </aside>
       {% endif %}
+
+      <nav class="mobile-bottom-nav" aria-label="Mobile navigation">
+        <a class="{% if current_url == '/' %}is-active{% endif %}" href="{{ '/' | relative_url }}">
+          <span class="mobile-nav-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="m3 10 9-7 9 7"/><path d="M5 9.5V21h5v-7h4v7h5V9.5"/></svg>
+          </span>
+          Home
+        </a>
+        <a class="{% if current_url contains '/fundamentals/' %}is-active{% endif %}" href="{{ '/fundamentals/' | relative_url }}">
+          <span class="mobile-nav-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H21"/><path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H21v20H6.5A2.5 2.5 0 0 1 4 19.5z"/></svg>
+          </span>
+          Concepts
+        </a>
+        <a class="{% if current_url contains '/components/' %}is-active{% endif %}" href="{{ '/components/' | relative_url }}">
+          <span class="mobile-nav-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5 9-5z"/><path d="m3 12 9 5 9-5"/><path d="m3 17 9 5 9-5"/></svg>
+          </span>
+          Deep Dives
+        </a>
+        <a class="{% if current_url contains '/case-studies/' %}is-active{% endif %}" href="{{ '/case-studies/' | relative_url }}">
+          <span class="mobile-nav-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="m8 9-4 3 4 3"/><path d="m16 9 4 3-4 3"/><path d="m14 4-4 16"/></svg>
+          </span>
+          Practice
+        </a>
+        <a class="{% if current_url contains '/interview-prep/' or current_url contains '/glossary/' %}is-active{% endif %}" href="{{ '/interview-prep/' | relative_url }}">
+          <span class="mobile-nav-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M5 12h.01"/><path d="M12 12h.01"/><path d="M19 12h.01"/></svg>
+          </span>
+          More
+        </a>
+      </nav>
     </div>
     <script type="module">
       import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";

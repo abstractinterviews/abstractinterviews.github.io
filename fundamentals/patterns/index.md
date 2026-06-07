@@ -11,7 +11,7 @@ badges:
   - Coordination
   - "~28 min read"
 stats:
-  - value: "6"
+  - value: "7"
     label: "Sub Topics"
   - value: "7+"
     label: "Diagrams"
@@ -32,6 +32,12 @@ subtopics:
     url: "/fundamentals/patterns/cqrs/"
     icon: "C"
     color: "blue"
+  - title: "50 System Design Patterns"
+    description: "A concise reference of 50 essential system design patterns grouped by category."
+    read_time: "90 min read"
+    url: "/50-system-design-patterns/"
+    icon: "5"
+    color: "teal"
   - title: "Event Sourcing"
     description: "Persist immutable events and rebuild state deterministically."
     read_time: "6 min read"
@@ -103,6 +109,7 @@ This section covers the distributed-system patterns that show up repeatedly in r
 - [Circuit Breaker and Bulkhead](./circuit-breaker/)
 - [Outbox Pattern](./outbox/)
 - [2PC vs Eventual Consistency](./2pc-vs-eventual/)
+ - [50 System Design Patterns](../../50-system-design-patterns/)
 
 ## Topic: Study Path
 
