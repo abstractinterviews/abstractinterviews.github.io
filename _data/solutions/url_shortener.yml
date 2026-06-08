@@ -21,6 +21,48 @@ tabs:
 - id: code
   label: Code (Optional)
   icon: code
+- id: quick-summary
+  label: Quick Summary
+  icon: square
+- id: key-takeaways
+  label: Key Takeaways
+  icon: square
+- id: visual-diagrams
+  label: Visual Diagrams
+  icon: square
+- id: mental-models
+  label: Mental Models
+  icon: square
+- id: real-world-examples
+  label: Real World Examples
+  icon: square
+- id: interview-perspective
+  label: Interview Perspective
+  icon: square
+- id: common-mistakes
+  label: Common Mistakes
+  icon: square
+- id: follow-up-questions
+  label: Follow-up Questions
+  icon: square
+- id: production-insights
+  label: Production Insights
+  icon: square
+- id: cheat-sheet
+  label: Cheat Sheet
+  icon: square
+- id: flashcards
+  label: Flashcards
+  icon: square
+- id: related-topics
+  label: Related Topics
+  icon: square
+- id: practice-questions
+  label: Practice Questions
+  icon: square
+- id: revision-notes
+  label: Revision Notes
+  icon: square
 detail_tabs:
 - id: write-path-shorten-url
   label: 1. Write Path
