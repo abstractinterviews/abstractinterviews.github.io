@@ -197,8 +197,7 @@ def solve(input_data):
 
 | Dimension | What To Explain |
 | --- | --- |
-| Time | Tie complexity to input variables such as 
-, m, V, E, or alphabet size. |
+| Time | Tie complexity to input variables such as n, m, V, E, or alphabet size. |
 | Space | Separate auxiliary memory from output memory. |
 | Bottleneck | Identify sorting, nested loops, recursion depth, heap operations, or graph traversal. |
 | Optimization | Explain what repeated work was removed and what memory or complexity was added. |
@@ -214,7 +213,7 @@ def solve(input_data):
 
 ## Interview Questions
 
-1. What input signal tells you to use 
+1. What input signal tells you to use this topic?
 2. What is the brute-force solution and why is it inefficient?
 3. What invariant must remain true while solving the problem?
 4. What edge cases can break the implementation?
