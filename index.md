@@ -26,9 +26,9 @@ layout: default
   <h2><span>Explore Tracks</span><a class="section-heading-link" href="{{ '/fundamentals/' | relative_url }}">View all</a></h2>
   <div class="track-grid">
     <a class="track-card violet" href="{{ '/fundamentals/' | relative_url }}"><span>▱</span><strong>System Design</strong><small>120+ topics</small></a>
-    <a class="track-card green" href="{{ '/components/' | relative_url }}"><span>◇</span><strong>Low Level Design</strong><small>80+ topics</small></a>
-    <a class="track-card amber" href="{{ '/interview-prep/common-questions/' | relative_url }}"><span>&lt;/&gt;</span><strong>Data Structures</strong><small>200+ topics</small></a>
-    <a class="track-card blue" href="{{ '/fundamentals/patterns/' | relative_url }}"><span>▦</span><strong>Software Architecture</strong><small>60+ topics</small></a>
+    <a class="track-card green" href="{{ '/coding-round/' | relative_url }}"><span>◇</span><strong>Low Level Design</strong><small>80+ topics</small></a>
+    <a class="track-card amber" href="{{ '/data-structures/' | relative_url }}"><span>&lt;/&gt;</span><strong>Data Structures</strong><small>200+ topics</small></a>
+    <a class="track-card blue" href="{{ '/architecture/' | relative_url }}"><span>▦</span><strong>Software Architecture</strong><small>60+ topics</small></a>
   </div>
 </section>
 
@@ -36,9 +36,10 @@ layout: default
   <h2><span>Featured Learning Paths</span><a class="section-heading-link" href="{{ '/fundamentals/' | relative_url }}">View all</a></h2>
   <div class="path-strip">
     <a class="path-card violet" href="{{ '/fundamentals/' | relative_url }}"><span>↗</span><strong>System Design Roadmap</strong><small>28 topics</small><i></i><em>Beginner to Advanced</em></a>
-    <a class="path-card green" href="{{ '/components/' | relative_url }}"><span>▣</span><strong>LLD Mastery Path</strong><small>20 topics</small><i></i><em>Beginner to Advanced</em></a>
-    <a class="path-card amber" href="{{ '/interview-prep/common-questions/' | relative_url }}"><span>⌘</span><strong>DSA Roadmap for Interviews</strong><small>25 topics</small><i></i><em>Beginner to Advanced</em></a>
-    <a class="path-card blue" href="{{ '/fundamentals/patterns/' | relative_url }}"><span>▥</span><strong>Architecture Roadmap</strong><small>18 topics</small><i></i><em>Beginner to Advanced</em></a>
+    <a class="path-card blue" href="{{ '/interview/' | relative_url }}"><span>✓</span><strong>Interview Readiness Path</strong><small>16 topics</small><i></i><em>Practice to Offer</em></a>
+    <a class="path-card green" href="{{ '/coding-round/' | relative_url }}"><span>▣</span><strong>LLD Mastery Path</strong><small>20 topics</small><i></i><em>Beginner to Advanced</em></a>
+    <a class="path-card amber" href="{{ '/data-structures/' | relative_url }}"><span>⌘</span><strong>DSA Roadmap for Interviews</strong><small>25 topics</small><i></i><em>Beginner to Advanced</em></a>
+    <a class="path-card blue" href="{{ '/architecture/' | relative_url }}"><span>▥</span><strong>Architecture Roadmap</strong><small>18 topics</small><i></i><em>Beginner to Advanced</em></a>
   </div>
 </section>
 

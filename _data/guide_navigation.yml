@@ -1,6 +1,46 @@
 pages:
   - title: Welcome
     url: /
+  - title: Interview Readiness
+    url: /interview/
+  - title: Interview Framework
+    url: /interview/interview-framework/
+  - title: Communication Playbook
+    url: /interview/communication-playbook/
+  - title: Round Strategy
+    url: /interview/round-strategy/
+  - title: Mock Interview Checklist
+    url: /interview/mock-interview-checklist/
+  - title: Software Architecture
+    url: /architecture/
+  - title: Architecture Fundamentals
+    url: /architecture/fundamentals/
+  - title: Architecture Patterns
+    url: /architecture/patterns/
+  - title: Reliability and Operations
+    url: /architecture/reliability-operations/
+  - title: Architecture Decision Records
+    url: /architecture/decision-records/
+  - title: Coding Round
+    url: /coding-round/
+  - title: Problem Solving Framework
+    url: /coding-round/problem-solving-framework/
+  - title: Coding Patterns
+    url: /coding-round/coding-patterns/
+  - title: Edge Cases and Testing
+    url: /coding-round/edge-cases-testing/
+  - title: Practical Coding Rounds
+    url: /coding-round/practical-coding/
+  - title: Data Structures
+    url: /data-structures/
+  - title: Arrays and Hashing
+    url: /data-structures/arrays-hashing/
+  - title: Stacks, Queues, and Heaps
+    url: /data-structures/stacks-queues-heaps/
+  - title: Trees and Graphs
+    url: /data-structures/trees-graphs/
+  - title: Selection and Complexity
+    url: /data-structures/selection-complexity/
   - title: Fundamentals
     url: /fundamentals/
   - title: Scalability and Performance

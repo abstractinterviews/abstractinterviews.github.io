@@ -78,6 +78,10 @@
         <nav class="guide-nav">
           <p class="nav-kicker">Get Started</p>
           <a class="nav-link {% if current_url == '/' %}is-active{% endif %}" href="{{ '/' | relative_url }}"><span class="nav-icon">H</span>Welcome</a>
+          <a class="nav-link {% if current_url contains '/interview/' %}is-active{% endif %}" href="{{ '/interview/' | relative_url }}"><span class="nav-icon">I</span>Interview Readiness</a>
+          <a class="nav-link {% if current_url contains '/architecture/' %}is-active{% endif %}" href="{{ '/architecture/' | relative_url }}"><span class="nav-icon">A</span>Architecture</a>
+          <a class="nav-link {% if current_url contains '/coding-round/' %}is-active{% endif %}" href="{{ '/coding-round/' | relative_url }}"><span class="nav-icon">C</span>Coding Round</a>
+          <a class="nav-link {% if current_url contains '/data-structures/' %}is-active{% endif %}" href="{{ '/data-structures/' | relative_url }}"><span class="nav-icon">D</span>Data Structures</a>
           <a class="nav-link {% if current_url contains '/fundamentals/' %}is-active{% endif %}" href="{{ '/fundamentals/' | relative_url }}"><span class="nav-icon">S</span>System Design Primer</a>
 
           <p class="nav-kicker">Fundamentals</p>
