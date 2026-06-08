@@ -4,52 +4,70 @@ title: "Software Architecture"
 page_type: deep-dive-index
 deep_dive_id: software-architecture
 deep_title: "Software Architecture"
-subtitle: "Architecture concepts, patterns, and decision frameworks for senior engineering interviews."
-hero_icon: "▦"
+subtitle: "Architecture concepts, styles, distributed patterns, integration models, data platforms, cloud topology, and evolution strategies for senior engineering interviews."
+hero_icon: "A"
 badges:
   - Core Track
   - Architecture
-  - "~35 min read"
+  - "Interview Ready"
 stats:
-  - value: "4"
-    label: "Sub Topics"
-  - value: "20+"
-    label: "Patterns"
-  - value: "8"
-    label: "Trade-offs"
-  - value: "5"
-    label: "Decision Models"
-overview: "Software architecture is about boundaries, quality attributes, integration style, operational reliability, and long-term system evolution."
+  - value: "7"
+    label: "Topic Groups"
+  - value: "35+"
+    label: "Architecture Topics"
+  - value: "2+"
+    label: "Diagrams Each"
+  - value: "Senior"
+    label: "Level"
+overview: "Software architecture is about boundaries, quality attributes, integration style, data ownership, operational reliability, cloud topology, and long-term system evolution."
 key_takeaways:
-  - Design around boundaries
-  - Tie decisions to quality attributes
-  - Treat operations as part of architecture
-  - Make evolution explicit
+  - Design around boundaries and quality attributes
+  - Compare styles, distributed patterns, and integration choices
+  - Treat operations and migration as part of architecture
+  - Make evolution explicit in every interview answer
 subtopics:
-  - title: "Architecture Fundamentals"
-    description: "Core vocabulary for boundaries, modules, services, and quality attributes."
+  - title: "Fundamentals"
+    description: "Core vocabulary for boundaries, modules, services, quality attributes, and architecture decisions."
     read_time: "8 min read"
     url: "/architecture/fundamentals/"
     icon: "F"
     color: "blue"
-  - title: "Architecture Patterns"
-    description: "Layered, hexagonal, event-driven, microservices, and modular monoliths."
-    read_time: "10 min read"
-    url: "/architecture/patterns/"
-    icon: "P"
+  - title: "Architecture Styles"
+    description: "Monolith, layered, modular monolith, microservices, SOA, event-driven, serverless, hexagonal, clean, and onion architecture."
+    read_time: "12 min read"
+    url: "/architecture/styles/"
+    icon: "S"
     color: "violet"
-  - title: "Reliability and Operations"
-    description: "Resilience, observability, rollout safety, and production readiness."
-    read_time: "9 min read"
-    url: "/architecture/reliability-operations/"
-    icon: "R"
-    color: "green"
-  - title: "Architecture Decision Records"
-    description: "How to capture and defend decisions in interview and real project settings."
-    read_time: "6 min read"
-    url: "/architecture/decision-records/"
+  - title: "Distributed Architectures"
+    description: "CQRS, Saga, Event Sourcing, Outbox, CDC, and Pub/Sub for distributed state and workflows."
+    read_time: "10 min read"
+    url: "/architecture/distributed-architectures/"
     icon: "D"
+    color: "green"
+  - title: "Integration Architectures"
+    description: "Messaging, event bus, queue-based, request-response, and stream processing integration models."
+    read_time: "9 min read"
+    url: "/architecture/integration-architectures/"
+    icon: "I"
     color: "amber"
+  - title: "Data Architectures"
+    description: "Lakehouse, Data Mesh, Lambda, Kappa, and Medallion architectures for data platforms."
+    read_time: "9 min read"
+    url: "/architecture/data-architectures/"
+    icon: "A"
+    color: "blue"
+  - title: "Cloud Architectures"
+    description: "Service mesh, multi-region, multi-tenant, cell-based, and serverless cloud architecture."
+    read_time: "9 min read"
+    url: "/architecture/cloud-architectures/"
+    icon: "C"
+    color: "green"
+  - title: "Architecture Evolution"
+    description: "Monolith to microservices, scaling architectures, migration patterns, and modernization strategies."
+    read_time: "9 min read"
+    url: "/architecture/evolution/"
+    icon: "E"
+    color: "violet"
 related_concepts:
   - title: "System Design"
     url: "/fundamentals/"
@@ -61,73 +79,39 @@ related_concepts:
 
 # Software Architecture
 
-## Topic: Overview
+## Topic: Architecture Interview Map
 
-### Sub-topic: Key Idea
+Software architecture interviews test whether you can connect structure to constraints. The strongest answers explain why a system should be organized a certain way, how it changes over time, and what it costs to operate.
 
-Architecture decisions shape how a system changes, fails, scales, and is operated.
+~~~mermaid
+flowchart LR
+    Fundamentals["Fundamentals"] --> Styles["Architecture Styles"]
+    Styles --> Distributed["Distributed Architectures"]
+    Distributed --> Integration["Integration Architectures"]
+    Integration --> Data["Data Architectures"]
+    Data --> Cloud["Cloud Architectures"]
+    Cloud --> Evolution["Architecture Evolution"]
+~~~
 
-## Topic: Quality Attributes
+## Topic: Taxonomy
 
-### Sub-topic: Common Dimensions
-
-| Attribute | Question |
+| Area | What It Helps You Answer |
 | --- | --- |
-| Availability | What happens when dependencies fail? |
-| Scalability | Which part scales independently? |
-| Maintainability | Which team owns each boundary? |
-| Observability | How do we know it is broken? |
-| Security | Where are trust boundaries? |
+| Fundamentals | What counts as architecture and which quality attributes matter? |
+| Architecture Styles | Should this be monolithic, modular, service-oriented, or domain-centered? |
+| Distributed Architectures | How should distributed state, consistency, and workflows be handled? |
+| Integration Architectures | How should systems communicate across boundaries? |
+| Data Architectures | How should analytical, streaming, and governed data platforms be organized? |
+| Cloud Architectures | How should cloud topology, tenancy, regions, and platform concerns be designed? |
+| Architecture Evolution | How should an architecture migrate, scale, and modernize safely? |
 
-## Topic: Interview Lens
+## Topic: Interview Flow
 
-### Sub-topic: What Interviewers Evaluate
-
-- Boundary judgment.
-- Reliability thinking.
-- Trade-off clarity.
-- Migration and evolution strategy.
-
-## Topic: Architecture Thinking Model
-
-### Sub-topic: Start With Quality Attributes
-
-Architecture is not just drawing boxes. The important question is what qualities the system must preserve as it grows: availability, latency, consistency, security, maintainability, cost, and deployability. A good interview answer names the top two or three qualities and makes decisions around them.
-
-### Sub-topic: Boundary First
-
-Before choosing microservices, queues, or databases, define boundaries. Ask which capabilities change together, which teams own them, and which data belongs to each boundary. Bad boundaries create duplicated logic, cross-service transactions, and unclear ownership.
-
-## Topic: Architecture Decision Flow
-
-### Sub-topic: Practical Sequence
-
-1. Define business capabilities and ownership boundaries.
-2. Identify quality attributes that matter most.
-3. Choose an architecture style that fits team and scale.
-4. Define integration style: synchronous API, async event, queue, or stream.
-5. Plan failure handling and observability.
-6. Explain migration and evolution path.
-
-### Sub-topic: Example
-
-For an order management platform, payment, inventory, fulfillment, and notification are separate business capabilities. They may communicate asynchronously because temporary delay is acceptable, but payment authorization may remain synchronous because user checkout needs immediate confirmation.
-
-## Topic: Common Architecture Trade-offs
-
-### Sub-topic: Trade-off Table
-
-| Choice | Helps With | Costs |
-| --- | --- | --- |
-| Modular monolith | Simpler operations, strong local consistency | Harder independent scaling |
-| Microservices | Independent ownership and deployment | Network, observability, and data complexity |
-| Event-driven flow | Decoupling and spike absorption | Event ordering and debugging complexity |
-| Shared database | Simple reporting and joins | Tight coupling and ownership confusion |
-| API gateway | Central routing and policy | Another critical dependency |
-
-### Sub-topic: Interview Rule
-
-Do not present architecture choices as universally good. Every choice is good under a constraint and bad under another. State the constraint explicitly.
+1. Clarify business goals, scale, latency, availability, consistency, compliance, and team constraints.
+2. Choose the simplest architecture that satisfies the current constraints.
+3. Explain when the design should evolve into a different style or topology.
+4. Cover data ownership, integration contracts, failure modes, and operational readiness.
+5. Summarize the recommendation and the main trade-off.
 
 <!-- interview-module:start -->
 

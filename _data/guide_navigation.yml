@@ -11,15 +11,95 @@ pages:
     url: /interview/round-strategy/
   - title: Mock Interview Checklist
     url: /interview/mock-interview-checklist/
-  - title: Software Architecture
+  - title: "Software Architecture"
     url: /architecture/
-  - title: Architecture Fundamentals
+  - title: "Architecture Fundamentals"
     url: /architecture/fundamentals/
-  - title: Architecture Patterns
-    url: /architecture/patterns/
-  - title: Reliability and Operations
+  - title: "Architecture Styles"
+    url: /architecture/styles/
+  - title: "Styles: Monolith"
+    url: /architecture/styles/monolith/
+  - title: "Styles: Layered"
+    url: /architecture/styles/layered/
+  - title: "Styles: Modular Monolith"
+    url: /architecture/styles/modular-monolith/
+  - title: "Styles: Microservices"
+    url: /architecture/styles/microservices/
+  - title: "Styles: SOA"
+    url: /architecture/styles/soa/
+  - title: "Styles: Event Driven"
+    url: /architecture/styles/event-driven/
+  - title: "Styles: Serverless"
+    url: /architecture/styles/serverless/
+  - title: "Styles: Hexagonal"
+    url: /architecture/styles/hexagonal/
+  - title: "Styles: Clean Architecture"
+    url: /architecture/styles/clean-architecture/
+  - title: "Styles: Onion Architecture"
+    url: /architecture/styles/onion-architecture/
+  - title: "Distributed Architectures"
+    url: /architecture/distributed-architectures/
+  - title: "Distributed: CQRS"
+    url: /architecture/distributed-architectures/cqrs/
+  - title: "Distributed: Saga"
+    url: /architecture/distributed-architectures/saga/
+  - title: "Distributed: Event Sourcing"
+    url: /architecture/distributed-architectures/event-sourcing/
+  - title: "Distributed: Outbox"
+    url: /architecture/distributed-architectures/outbox/
+  - title: "Distributed: CDC"
+    url: /architecture/distributed-architectures/cdc/
+  - title: "Distributed: Pub/Sub"
+    url: /architecture/distributed-architectures/pub-sub/
+  - title: "Integration Architectures"
+    url: /architecture/integration-architectures/
+  - title: "Integration: Messaging"
+    url: /architecture/integration-architectures/messaging/
+  - title: "Integration: Event Bus"
+    url: /architecture/integration-architectures/event-bus/
+  - title: "Integration: Queue Based"
+    url: /architecture/integration-architectures/queue-based/
+  - title: "Integration: Request Response"
+    url: /architecture/integration-architectures/request-response/
+  - title: "Integration: Stream Processing"
+    url: /architecture/integration-architectures/stream-processing/
+  - title: "Data Architectures"
+    url: /architecture/data-architectures/
+  - title: "Data: Lakehouse"
+    url: /architecture/data-architectures/lakehouse/
+  - title: "Data: Data Mesh"
+    url: /architecture/data-architectures/data-mesh/
+  - title: "Data: Lambda"
+    url: /architecture/data-architectures/lambda/
+  - title: "Data: Kappa"
+    url: /architecture/data-architectures/kappa/
+  - title: "Data: Medallion"
+    url: /architecture/data-architectures/medallion/
+  - title: "Cloud Architectures"
+    url: /architecture/cloud-architectures/
+  - title: "Cloud: Service Mesh"
+    url: /architecture/cloud-architectures/service-mesh/
+  - title: "Cloud: Multi Region"
+    url: /architecture/cloud-architectures/multi-region/
+  - title: "Cloud: Multi Tenant"
+    url: /architecture/cloud-architectures/multi-tenant/
+  - title: "Cloud: Cell Based"
+    url: /architecture/cloud-architectures/cell-based/
+  - title: "Cloud: Serverless"
+    url: /architecture/cloud-architectures/serverless/
+  - title: "Architecture Evolution"
+    url: /architecture/evolution/
+  - title: "Evolution: Monolith to Microservices"
+    url: /architecture/evolution/monolith-to-microservices/
+  - title: "Evolution: Scaling Architectures"
+    url: /architecture/evolution/scaling-architectures/
+  - title: "Evolution: Migration Patterns"
+    url: /architecture/evolution/migration-patterns/
+  - title: "Evolution: Modernization Strategies"
+    url: /architecture/evolution/modernization-strategies/
+  - title: "Reliability and Operations"
     url: /architecture/reliability-operations/
-  - title: Architecture Decision Records
+  - title: "Architecture Decision Records"
     url: /architecture/decision-records/
   - title: Coding Round
     url: /coding-round/
@@ -141,4 +221,3 @@ pages:
     url: /interview-prep/common-questions/
   - title: Glossary
     url: /glossary/
-
