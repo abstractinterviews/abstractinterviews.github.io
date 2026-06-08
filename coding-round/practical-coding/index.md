@@ -37,14 +37,57 @@ next_topic:
 - Design an in-memory scheduler.
 - Implement a small service API.
 
+### Sub-topic: What Makes Practical Coding Different
+
+Practical rounds test implementation judgment more than algorithm tricks. The interviewer is looking for clean data models, readable operations, input validation, error handling, and reasonable extensibility.
+
+### Sub-topic: Example Task Breakdown
+
+For an in-memory rate limiter:
+
+- Define the key: user ID, IP, API key, or endpoint.
+- Define the policy: fixed window, sliding window, token bucket.
+- Define storage: map from key to counters or timestamps.
+- Define cleanup: remove old timestamps or expired windows.
+- Define behavior: allow, reject, or retry-after.
+
 ## Topic: Design
 
 ### Sub-topic: Key Habit
 
 Separate data model, operations, validation, and error handling.
 
+### Sub-topic: Implementation Structure
+
+```text
+Class or module
+  - state/data structures
+  - public operations
+  - validation helpers
+  - internal mutation helpers
+  - tests or examples
+```
+
+### Sub-topic: LRU Cache Example
+
+An LRU cache needs O(1) lookup and O(1) recency update. Use a hash map for key lookup and a doubly linked list for recency ordering. State the invariant: the head is most recent and the tail is least recent.
+
 ## Topic: Quality
 
 ### Sub-topic: What Matters
 
 Readable code, explicit invariants, small helpers, and clear test cases.
+
+### Sub-topic: Evaluation Checklist
+
+| Area | Good Signal |
+| --- | --- |
+| API | Clear method names and return values |
+| State | Minimal, coherent, and encapsulated |
+| Errors | Invalid input handled deliberately |
+| Complexity | Operations meet expected cost |
+| Tests | Normal and boundary cases covered |
+
+### Sub-topic: Interview Tip
+
+If requirements are likely to evolve, say where extension points belong. Example: "I will start with fixed window rate limiting, but I would hide the policy behind an interface so token bucket can be added without changing callers."

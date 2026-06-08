@@ -83,3 +83,36 @@ Choose a data structure by the operations you need: lookup, ordering, insertion,
 ### Sub-topic: Explanation
 
 When you choose a structure, state why it fits and what time-space cost it creates.
+
+## Topic: How to Think About Data Structures
+
+### Sub-topic: Operation Mix
+
+The right data structure depends on the operations you need most often. A hash map is useful when lookup dominates. A heap is useful when you repeatedly need the next highest-priority item. A queue is useful when processing order matters. A graph is useful when relationships matter more than linear order.
+
+### Sub-topic: Selection Questions
+
+- Do I need fast lookup by key?
+- Do I need sorted order?
+- Do I need to process items by insertion order?
+- Do I need to repeatedly access min or max?
+- Do I need to model dependencies or reachability?
+- Do I need to preserve a moving window?
+
+## Topic: Complexity Baseline
+
+### Sub-topic: Common Costs
+
+| Structure | Lookup | Insert | Delete | Notes |
+| --- | --- | --- | --- | --- |
+| Array | O(1) by index | O(n) middle | O(n) middle | Great for scanning and indexed access |
+| Hash map | O(1) average | O(1) average | O(1) average | Great for lookup and counting |
+| Stack | O(n) search | O(1) push | O(1) pop | LIFO order |
+| Queue | O(n) search | O(1) enqueue | O(1) dequeue | FIFO order |
+| Heap | O(n) search | O(log n) | O(log n) pop | Fast min/max priority |
+| Tree | O(log n) if balanced | O(log n) | O(log n) | Maintains order |
+| Graph | Depends | Depends | Depends | Model nodes and edges |
+
+### Sub-topic: Interview Habit
+
+Say complexity after the solution, not only at the end. When introducing a hash map, say that it trades O(n) memory for O(1) average lookup.

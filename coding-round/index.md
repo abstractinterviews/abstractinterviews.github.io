@@ -84,3 +84,42 @@ Coding interviews reward explicit thinking: constraints, invariants, correctness
 - Code organization.
 - Edge-case coverage.
 - Ability to explain trade-offs.
+
+## Topic: Coding Round Strategy
+
+### Sub-topic: What Makes a Strong Answer
+
+A strong coding answer is not only a correct final program. It is a clear path from problem statement to tested solution. Interviewers are looking for whether you can reason about constraints, select an appropriate data structure, write maintainable code, and validate correctness under time pressure.
+
+### Sub-topic: Default Talk Track
+
+1. "Let me restate the problem and confirm edge cases."
+2. "The brute-force solution is..."
+3. "The repeated work is..."
+4. "I can reduce that using..."
+5. "The invariant while iterating is..."
+6. "Let me test empty, duplicate, and boundary cases."
+
+## Topic: Complexity Expectations
+
+### Sub-topic: How to Explain Complexity
+
+Always explain complexity in terms of input variables. If there are `n` items and `k` unique values, say whether the memory cost is O(n), O(k), or bounded. If sorting is involved, call out O(n log n). If graph traversal is involved, use O(V + E).
+
+### Sub-topic: Common Trade-offs
+
+| Optimization | Time Benefit | Space Cost |
+| --- | --- | --- |
+| Hash map lookup | Avoids repeated scans | Extra O(n) memory |
+| Sorting first | Enables two pointers or grouping | O(n log n) time |
+| Heap | Efficient top-k operations | O(k) or O(n) heap memory |
+| Memoization | Avoids repeated subproblems | Cache memory and key design |
+
+## Topic: Practice Plan
+
+### Sub-topic: Weekly Routine
+
+- 3 pattern-focused problems: one easy, one medium, one hard.
+- 1 timed mock without pausing.
+- 1 review session rewriting a previous solution cleanly.
+- 1 explanation drill where you solve an already-known problem out loud.

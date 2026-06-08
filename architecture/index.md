@@ -87,3 +87,44 @@ Architecture decisions shape how a system changes, fails, scales, and is operate
 - Reliability thinking.
 - Trade-off clarity.
 - Migration and evolution strategy.
+
+## Topic: Architecture Thinking Model
+
+### Sub-topic: Start With Quality Attributes
+
+Architecture is not just drawing boxes. The important question is what qualities the system must preserve as it grows: availability, latency, consistency, security, maintainability, cost, and deployability. A good interview answer names the top two or three qualities and makes decisions around them.
+
+### Sub-topic: Boundary First
+
+Before choosing microservices, queues, or databases, define boundaries. Ask which capabilities change together, which teams own them, and which data belongs to each boundary. Bad boundaries create duplicated logic, cross-service transactions, and unclear ownership.
+
+## Topic: Architecture Decision Flow
+
+### Sub-topic: Practical Sequence
+
+1. Define business capabilities and ownership boundaries.
+2. Identify quality attributes that matter most.
+3. Choose an architecture style that fits team and scale.
+4. Define integration style: synchronous API, async event, queue, or stream.
+5. Plan failure handling and observability.
+6. Explain migration and evolution path.
+
+### Sub-topic: Example
+
+For an order management platform, payment, inventory, fulfillment, and notification are separate business capabilities. They may communicate asynchronously because temporary delay is acceptable, but payment authorization may remain synchronous because user checkout needs immediate confirmation.
+
+## Topic: Common Architecture Trade-offs
+
+### Sub-topic: Trade-off Table
+
+| Choice | Helps With | Costs |
+| --- | --- | --- |
+| Modular monolith | Simpler operations, strong local consistency | Harder independent scaling |
+| Microservices | Independent ownership and deployment | Network, observability, and data complexity |
+| Event-driven flow | Decoupling and spike absorption | Event ordering and debugging complexity |
+| Shared database | Simple reporting and joins | Tight coupling and ownership confusion |
+| API gateway | Central routing and policy | Another critical dependency |
+
+### Sub-topic: Interview Rule
+
+Do not present architecture choices as universally good. Every choice is good under a constraint and bad under another. State the constraint explicitly.
