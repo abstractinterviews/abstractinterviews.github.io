@@ -1,100 +1,74 @@
 ---
-title: "System Design Interview Guide"
+title: "Home"
 layout: default
 ---
 
-<section class="home-hero" id="overview">
+<section class="home-hero abstract-hero" id="overview">
   <div class="hero-copy">
-    <h1><span class="desktop-home-title">System Design Interview Guide</span><span class="mobile-home-title">Welcome</span></h1>
-    <p>A comprehensive guide to cracking system design interviews. Learn the concepts, patterns, and practice solving real-world problems.</p>
+    <h1>Master core concepts.<span>Ace every interview.</span></h1>
+    <p>High quality content on System Design, LLD, Data Structures and Software Architecture.</p>
+    <div class="hero-proof"><span aria-hidden="true">✦</span>1000+ resources <b aria-hidden="true">•</b> Curated for interviews</div>
     <label class="mobile-home-search search-box">
       <span aria-hidden="true">⌕</span>
-      <input type="search" placeholder="Search the guide..." aria-label="Search the guide" />
+      <input type="search" placeholder="Search resources..." aria-label="Search resources" />
     </label>
-    <div class="hero-actions">
-      <a class="primary-button" href="{{ '/fundamentals/' | relative_url }}">Start Learning <span aria-hidden="true">→</span></a>
-    </div>
   </div>
-  <div class="hero-visual" aria-hidden="true">
-    <div class="node globe"></div>
-    <div class="node person top"></div>
-    <div class="node person left"></div>
-    <div class="node code"></div>
-    <div class="node database"></div>
-    <div class="layer-stack">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
+  <div class="abstract-hero-visual" aria-hidden="true">
+    <span class="tile tile-one">⌁</span>
+    <span class="tile tile-two">▱</span>
+    <span class="tile tile-three">&lt;/&gt;</span>
+    <span class="tile tile-four">◇</span>
+    <span class="tile tile-five">∞</span>
   </div>
 </section>
 
-<section class="home-section" id="guide-overview">
-  <h2><span>Quick Access</span><a class="section-heading-link" href="{{ '/fundamentals/' | relative_url }}">View all</a></h2>
-  <div class="overview-grid">
-    <a class="overview-card" href="{{ '/fundamentals/' | relative_url }}">
-      <span class="card-orb green">□</span>
-      <strong>Learn Fundamentals</strong>
-      <span>Build a strong foundation with core concepts and principles.</span>
-    </a>
-    <a class="overview-card" href="{{ '/components/' | relative_url }}">
-      <span class="card-orb violet">▱</span>
-      <strong>Deep Dives</strong>
-      <span>Go deep into important components and topics.</span>
-    </a>
-    <a class="overview-card" href="{{ '/case-studies/' | relative_url }}">
-      <span class="card-orb amber">&lt;/&gt;</span>
-      <strong>Practice Problems</strong>
-      <span>Practice with interview questions and complete walkthroughs.</span>
-    </a>
-    <a class="overview-card" href="{{ '/interview-prep/' | relative_url }}">
-      <span class="card-orb blue">∞</span>
-      <strong>System Design Interviews</strong>
-      <span>Apply your knowledge and sharpen your interview flow.</span>
-    </a>
-    <a class="overview-card" href="{{ '/interview-prep/estimation-cheatsheet/' | relative_url }}">
-      <span class="card-orb red">▤</span>
-      <strong>Cheat Sheets</strong>
-      <span>Review fast references before interview rounds.</span>
-    </a>
-    <a class="overview-card" href="{{ '/glossary/' | relative_url }}">
-      <span class="card-orb amber">▱</span>
-      <strong>Glossary</strong>
-      <span>Look up system design terminology quickly.</span>
-    </a>
+<section class="home-section tracks-section" id="tracks">
+  <h2><span>Explore Tracks</span><a class="section-heading-link" href="{{ '/fundamentals/' | relative_url }}">View all</a></h2>
+  <div class="track-grid">
+    <a class="track-card violet" href="{{ '/fundamentals/' | relative_url }}"><span>▱</span><strong>System Design</strong><small>120+ topics</small></a>
+    <a class="track-card green" href="{{ '/components/' | relative_url }}"><span>◇</span><strong>Low Level Design</strong><small>80+ topics</small></a>
+    <a class="track-card amber" href="{{ '/interview-prep/common-questions/' | relative_url }}"><span>&lt;/&gt;</span><strong>Data Structures</strong><small>200+ topics</small></a>
+    <a class="track-card blue" href="{{ '/fundamentals/patterns/' | relative_url }}"><span>▦</span><strong>Software Architecture</strong><small>60+ topics</small></a>
   </div>
 </section>
 
-<section class="home-section" id="popular-topics">
-  <h2><span><span aria-hidden="true">🔥</span> Popular Topics</span><a class="section-heading-link" href="{{ '/case-studies/' | relative_url }}">View all</a></h2>
-  <div class="topic-grid">
-    <a class="topic-card" href="{{ '/case-studies/url-shortener/' | relative_url }}"><span class="topic-icon violet">U</span><strong>URL Shortener Design</strong><span class="topic-description">Design a URL shortener like bit.ly</span><small class="topic-read-time">12 min read</small></a>
-    <a class="topic-card" href="{{ '/components/caching/' | relative_url }}"><span class="topic-icon green">D</span><strong>Cache System Design</strong><span class="topic-description">Design a distributed caching system</span><small class="topic-read-time">10 min read</small></a>
-    <a class="topic-card" href="{{ '/components/api-and-communication/websockets/' | relative_url }}"><span class="topic-icon amber">V</span><strong>Video Streaming Design</strong><span class="topic-description">Design a scalable video streaming platform</span><small class="topic-read-time">15 min read</small></a>
-    <a class="topic-card" href="{{ '/case-studies/chat-messaging/' | relative_url }}"><span class="topic-icon blue">C</span><strong>Chat System Design</strong><span class="topic-description">Design a real-time chat application</span><small class="topic-read-time">11 min read</small></a>
-    <a class="topic-card" href="{{ '/case-studies/ecommerce-inventory-management-system/' | relative_url }}"><span class="topic-icon violet">E</span><strong>E-commerce System Design</strong><span class="topic-description">Design a scalable e-commerce platform</span><small class="topic-read-time">14 min read</small></a>
-  </div>
-  <div class="split-actions">
-    <a href="{{ '/case-studies/' | relative_url }}">Explore all topics <span aria-hidden="true">→</span></a>
-    <a href="{{ '/interview-prep/common-questions/' | relative_url }}">View all solutions <span aria-hidden="true">→</span></a>
+<section class="home-section" id="learning-paths">
+  <h2><span>Featured Learning Paths</span><a class="section-heading-link" href="{{ '/fundamentals/' | relative_url }}">View all</a></h2>
+  <div class="path-strip">
+    <a class="path-card violet" href="{{ '/fundamentals/' | relative_url }}"><span>↗</span><strong>System Design Roadmap</strong><small>28 topics</small><i></i><em>Beginner to Advanced</em></a>
+    <a class="path-card green" href="{{ '/components/' | relative_url }}"><span>▣</span><strong>LLD Mastery Path</strong><small>20 topics</small><i></i><em>Beginner to Advanced</em></a>
+    <a class="path-card amber" href="{{ '/interview-prep/common-questions/' | relative_url }}"><span>⌘</span><strong>DSA Roadmap for Interviews</strong><small>25 topics</small><i></i><em>Beginner to Advanced</em></a>
+    <a class="path-card blue" href="{{ '/fundamentals/patterns/' | relative_url }}"><span>▥</span><strong>Architecture Roadmap</strong><small>18 topics</small><i></i><em>Beginner to Advanced</em></a>
   </div>
 </section>
 
-<section class="home-section prose-section" id="how-to-use">
-  <h2>How to Use This Guide</h2>
-  <ol>
-    <li>Start with fundamentals and reusable infrastructure components.</li>
-    <li>Study the database, communication, and distributed pattern trade-offs.</li>
-    <li>Practice full case-study walkthroughs until your answer structure feels natural.</li>
-  </ol>
+<section class="home-section" id="deep-dives">
+  <h2><span>Popular Deep Dives</span><a class="section-heading-link" href="{{ '/components/' | relative_url }}">View all</a></h2>
+  <div class="ai-list">
+    <a href="{{ '/components/caching/' | relative_url }}"><span class="topic-icon violet">D</span><strong>Caching</strong><em>System Design</em><small>25 min read</small><b aria-hidden="true">›</b></a>
+    <a href="{{ '/fundamentals/cap-theorem/' | relative_url }}"><span class="topic-icon green">S</span><strong>CAP Theorem</strong><em>System Design</em><small>20 min read</small><b aria-hidden="true">›</b></a>
+    <a href="{{ '/components/message-queues/' | relative_url }}"><span class="topic-icon amber">K</span><strong>Apache Kafka</strong><em>System Design</em><small>30 min read</small><b aria-hidden="true">›</b></a>
+    <a href="{{ '/components/load-balancers/' | relative_url }}"><span class="topic-icon blue">L</span><strong>Load Balancing</strong><em>System Design</em><small>22 min read</small><b aria-hidden="true">›</b></a>
+    <a href="{{ '/fundamentals/patterns/' | relative_url }}"><span class="topic-icon red">M</span><strong>Microservices</strong><em>System Design</em><small>28 min read</small><b aria-hidden="true">›</b></a>
+  </div>
 </section>
 
-<section class="home-section prose-section" id="contributing">
-  <h2>Contributing</h2>
-  <p>This guide is designed as a living reference. Issues, examples, diagrams, and new walkthroughs are welcome.</p>
+<section class="home-section" id="interview-problems">
+  <h2><span>Popular Interview Problems</span><a class="section-heading-link" href="{{ '/case-studies/' | relative_url }}">View all</a></h2>
+  <div class="problem-strip">
+    <a class="problem-card" href="{{ '/case-studies/url-shortener/' | relative_url }}"><span class="topic-icon violet">🔗</span><strong>Design URL Shortener</strong><small class="medium">Medium</small><small>45 min</small><em>DB</em><em>Cache</em><em>Scalability</em></a>
+    <a class="problem-card" href="{{ '/case-studies/chat-messaging/' | relative_url }}"><span class="topic-icon green">▶</span><strong>Design Netflix</strong><small class="hard">Hard</small><small>60 min</small><em>CDN</em><em>Microservices</em><em>DB</em></a>
+    <a class="problem-card" href="{{ '/case-studies/api-gateway/' | relative_url }}"><span class="topic-icon amber">▰</span><strong>Design Uber</strong><small class="medium">Medium</small><small>45 min</small><em>Scale</em><em>Geo</em><em>Matching</em></a>
+  </div>
 </section>
 
-<footer class="home-footer">
-  <p>© 2026 System Design Interview Guide.</p>
-</footer>
-
+<section class="home-section" id="patterns">
+  <h2><span>Popular Architecture Patterns</span><a class="section-heading-link" href="{{ '/fundamentals/patterns/' | relative_url }}">View all</a></h2>
+  <div class="pattern-strip">
+    <a href="{{ '/fundamentals/patterns/saga/' | relative_url }}"><span class="topic-icon violet">S</span><strong>Saga Pattern</strong></a>
+    <a href="{{ '/fundamentals/patterns/cqrs/' | relative_url }}"><span class="topic-icon green">C</span><strong>CQRS Pattern</strong></a>
+    <a href="{{ '/fundamentals/patterns/outbox/' | relative_url }}"><span class="topic-icon amber">O</span><strong>Outbox Pattern</strong></a>
+    <a href="{{ '/fundamentals/patterns/event-sourcing/' | relative_url }}"><span class="topic-icon blue">E</span><strong>Event Sourcing Pattern</strong></a>
+    <a href="{{ '/fundamentals/patterns/circuit-breaker/' | relative_url }}"><span class="topic-icon red">B</span><strong>Circuit Breaker</strong></a>
+  </div>
+</section>
