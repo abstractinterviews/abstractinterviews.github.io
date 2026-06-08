@@ -4,52 +4,70 @@ title: "Coding Round"
 page_type: deep-dive-index
 deep_dive_id: coding-round
 deep_title: "Coding Round"
-subtitle: "Problem-solving patterns, implementation habits, and round strategy for coding interviews."
+subtitle: "Foundations, coding patterns, data structures, algorithms, interview strategy, company tracks, and mock interviews."
 hero_icon: "</>"
 badges:
   - Core Track
   - Coding
-  - "~40 min read"
+  - "Interview Ready"
 stats:
-  - value: "4"
-    label: "Sub Topics"
-  - value: "20+"
+  - value: "7"
+    label: "Tracks"
+  - value: "60+"
+    label: "Topics"
+  - value: "17"
     label: "Patterns"
-  - value: "30+"
-    label: "Practice Prompts"
-  - value: "5"
-    label: "Round Types"
-overview: "Coding rounds test problem decomposition, data structure choice, correctness, edge cases, and communication under time pressure."
+  - value: "10"
+    label: "DP Subtopics"
+overview: "Coding rounds test pattern recognition, correctness, complexity, communication, and edge-case discipline under time pressure."
 key_takeaways:
-  - Clarify input and constraints
-  - Start with a baseline
-  - Name invariants while coding
-  - Test edge cases explicitly
+  - Study by patterns, not random problem lists
+  - Explain brute force before optimization
+  - Build templates around invariants
+  - Practice communication and mock interviews
 subtopics:
-  - title: "Problem Solving Framework"
-    description: "A repeatable flow from clarification to optimized solution."
+  - title: "Foundations"
+    description: "Big O, recursion, iteration, memory, complexity analysis, and bit manipulation."
     read_time: "8 min read"
-    url: "/coding-round/problem-solving-framework/"
+    url: "/coding-round/foundations/"
     icon: "F"
     color: "blue"
   - title: "Coding Patterns"
-    description: "Core algorithmic patterns used across common interview problems."
-    read_time: "12 min read"
-    url: "/coding-round/coding-patterns/"
+    description: "Two pointers, sliding window, binary search, graph traversal, DP, greedy, trie, intervals, sweep line, and more."
+    read_time: "20 min read"
+    url: "/coding-round/patterns/"
     icon: "P"
     color: "violet"
-  - title: "Edge Cases and Testing"
-    description: "How to validate correctness before the interviewer points out gaps."
-    read_time: "7 min read"
-    url: "/coding-round/edge-cases-testing/"
-    icon: "T"
+  - title: "Data Structures"
+    description: "Arrays, linked lists, stacks, queues, hash tables, trees, heaps, graphs, tries, segment trees, Fenwick trees, and disjoint set."
+    read_time: "16 min read"
+    url: "/coding-round/data-structures/"
+    icon: "D"
     color: "green"
-  - title: "Practical Coding Rounds"
-    description: "API, parser, cache, scheduler, and service-logic interview formats."
-    read_time: "9 min read"
-    url: "/coding-round/practical-coding/"
-    icon: "C"
+  - title: "Algorithms"
+    description: "Sorting, searching, graph algorithms, shortest path, MST, network flow, string matching, DP, greedy, and divide and conquer."
+    read_time: "16 min read"
+    url: "/coding-round/algorithms/"
+    icon: "A"
     color: "amber"
+  - title: "Interview Strategy"
+    description: "Approach, clarifying questions, thinking aloud, brute force first, optimization process, trade-offs, and whiteboarding."
+    read_time: "12 min read"
+    url: "/coding-round/strategy/"
+    icon: "S"
+    color: "blue"
+  - title: "Company Tracks"
+    description: "Practice by company style, role emphasis, and round format."
+    read_time: "10 min read"
+    url: "/coding-round/company-tracks/"
+    icon: "C"
+    color: "violet"
+  - title: "Mock Interviews"
+    description: "Timed mocks, pair mocks, post-mock review, and improvement planning."
+    read_time: "10 min read"
+    url: "/coding-round/mock-interviews/"
+    icon: "M"
+    color: "green"
 related_concepts:
   - title: "Data Structures"
     url: "/data-structures/"
@@ -59,70 +77,55 @@ related_concepts:
 
 # Coding Round
 
-## Topic: Overview
+## Topic: What Coding Round Should Look Like
 
-### Sub-topic: Key Idea
+Coding interview preparation should be organized around how interviewers evaluate candidates: foundations, reusable patterns, data structures, algorithms, communication, company-specific expectations, and realistic mocks.
 
-Coding interviews reward explicit thinking: constraints, invariants, correctness, and clean implementation.
+~~~mermaid
+flowchart LR
+    Foundations["Foundations"] --> Patterns["Coding Patterns"]
+    Patterns --> DS["Data Structures"]
+    DS --> Algorithms["Algorithms"]
+    Algorithms --> Strategy["Interview Strategy"]
+    Strategy --> Company["Company Tracks"]
+    Company --> Mocks["Mock Interviews"]
+~~~
 
-## Topic: Default Flow
+## Topic: Track Map
 
-### Sub-topic: Steps
+| Track | Why It Matters |
+| --- | --- |
+| Foundations | Gives you the language for complexity, recursion, memory, and correctness. |
+| Coding Patterns | The highest-leverage area because interviewers reuse problem structures. |
+| Data Structures | Lets you choose the right operations and explain time-space trade-offs. |
+| Algorithms | Builds the formal tools for graph, string, optimization, and divide-and-conquer problems. |
+| Interview Strategy | Converts knowledge into clear interview performance. |
+| Company Tracks | Adapts practice to different evaluation styles. |
+| Mock Interviews | Creates feedback loops under realistic pressure. |
 
-1. Clarify examples and constraints.
-2. State brute force.
-3. Identify the pattern.
-4. Code incrementally.
-5. Test edge cases.
+## Topic: Default Problem Flow
 
-## Topic: Evaluation Signals
+1. Clarify input, output, constraints, duplicates, ordering, and edge cases.
+2. State brute force and complexity.
+3. Identify the repeated work or structural signal.
+4. Choose the pattern or data structure.
+5. Define the invariant before coding.
+6. Implement incrementally and narrate decisions.
+7. Test normal, boundary, and adversarial cases.
+8. Summarize complexity and trade-offs.
 
-### Sub-topic: What Interviewers Notice
+## Topic: Pattern Page Format
 
-- Correctness.
-- Complexity.
-- Code organization.
-- Edge-case coverage.
-- Ability to explain trade-offs.
+Every coding topic is organized around quick summary, pattern recognition, mental model, template, complexity, common mistakes, interview questions, practice problems, cheat sheet, flashcards, and revision notes.
 
-## Topic: Coding Round Strategy
-
-### Sub-topic: What Makes a Strong Answer
-
-A strong coding answer is not only a correct final program. It is a clear path from problem statement to tested solution. Interviewers are looking for whether you can reason about constraints, select an appropriate data structure, write maintainable code, and validate correctness under time pressure.
-
-### Sub-topic: Default Talk Track
-
-1. "Let me restate the problem and confirm edge cases."
-2. "The brute-force solution is..."
-3. "The repeated work is..."
-4. "I can reduce that using..."
-5. "The invariant while iterating is..."
-6. "Let me test empty, duplicate, and boundary cases."
-
-## Topic: Complexity Expectations
-
-### Sub-topic: How to Explain Complexity
-
-Always explain complexity in terms of input variables. If there are `n` items and `k` unique values, say whether the memory cost is O(n), O(k), or bounded. If sorting is involved, call out O(n log n). If graph traversal is involved, use O(V + E).
-
-### Sub-topic: Common Trade-offs
-
-| Optimization | Time Benefit | Space Cost |
-| --- | --- | --- |
-| Hash map lookup | Avoids repeated scans | Extra O(n) memory |
-| Sorting first | Enables two pointers or grouping | O(n log n) time |
-| Heap | Efficient top-k operations | O(k) or O(n) heap memory |
-| Memoization | Avoids repeated subproblems | Cache memory and key design |
-
-## Topic: Practice Plan
-
-### Sub-topic: Weekly Routine
-
-- 3 pattern-focused problems: one easy, one medium, one hard.
-- 1 timed mock without pausing.
-- 1 review session rewriting a previous solution cleanly.
-- 1 explanation drill where you solve an already-known problem out loud.
+~~~mermaid
+flowchart TD
+    Signal["Recognition clues"] --> Pattern["Pattern"]
+    Pattern --> Template["Template"]
+    Template --> Mistakes["Common mistakes"]
+    Mistakes --> Practice["Practice problems"]
+    Practice --> Mock["Timed mock"]
+~~~
 
 <!-- interview-module:start -->
 

@@ -101,16 +101,168 @@ pages:
     url: /architecture/reliability-operations/
   - title: "Architecture Decision Records"
     url: /architecture/decision-records/
-  - title: Coding Round
+  - title: "Coding Round"
     url: /coding-round/
-  - title: Problem Solving Framework
-    url: /coding-round/problem-solving-framework/
-  - title: Coding Patterns
-    url: /coding-round/coding-patterns/
-  - title: Edge Cases and Testing
-    url: /coding-round/edge-cases-testing/
-  - title: Practical Coding Rounds
-    url: /coding-round/practical-coding/
+  - title: "Coding Foundations"
+    url: /coding-round/foundations/
+  - title: "Coding Patterns"
+    url: /coding-round/patterns/
+  - title: "Coding Data Structures"
+    url: /coding-round/data-structures/
+  - title: "Coding Algorithms"
+    url: /coding-round/algorithms/
+  - title: "Interview Strategy"
+    url: /coding-round/strategy/
+  - title: "Company Tracks"
+    url: /coding-round/company-tracks/
+  - title: "Mock Interviews"
+    url: /coding-round/mock-interviews/
+  - title: "Coding: Divide and Conquer"
+    url: /coding-round/algorithms/divide-and-conquer/
+  - title: "Coding: DP"
+    url: /coding-round/algorithms/dp/
+  - title: "Coding: Graph Algorithms"
+    url: /coding-round/algorithms/graph-algorithms/
+  - title: "Coding: Greedy"
+    url: /coding-round/algorithms/greedy/
+  - title: "Coding: MST"
+    url: /coding-round/algorithms/mst/
+  - title: "Coding: Network Flow"
+    url: /coding-round/algorithms/network-flow/
+  - title: "Coding: Searching"
+    url: /coding-round/algorithms/searching/
+  - title: "Coding: Shortest Path"
+    url: /coding-round/algorithms/shortest-path/
+  - title: "Coding: Sorting"
+    url: /coding-round/algorithms/sorting/
+  - title: "Coding: String Matching"
+    url: /coding-round/algorithms/string-matching/
+  - title: "Coding: Backend Engineering"
+    url: /coding-round/company-tracks/backend-engineering/
+  - title: "Coding: Data and ML Engineering"
+    url: /coding-round/company-tracks/data-and-ml-engineering/
+  - title: "Coding: FAANG Style"
+    url: /coding-round/company-tracks/faang-style/
+  - title: "Coding: Frontend Engineering"
+    url: /coding-round/company-tracks/frontend-engineering/
+  - title: "Coding: Startup Style"
+    url: /coding-round/company-tracks/startup-style/
+  - title: "Coding: Arrays"
+    url: /coding-round/data-structures/arrays/
+  - title: "Coding: BST"
+    url: /coding-round/data-structures/bst/
+  - title: "Coding: Disjoint Set"
+    url: /coding-round/data-structures/disjoint-set/
+  - title: "Coding: Fenwick Trees"
+    url: /coding-round/data-structures/fenwick-trees/
+  - title: "Coding: Graphs"
+    url: /coding-round/data-structures/graphs/
+  - title: "Coding: Hash Tables"
+    url: /coding-round/data-structures/hash-tables/
+  - title: "Coding: Heaps"
+    url: /coding-round/data-structures/heaps/
+  - title: "Coding: Linked Lists"
+    url: /coding-round/data-structures/linked-lists/
+  - title: "Coding: Queues"
+    url: /coding-round/data-structures/queues/
+  - title: "Coding: Segment Trees"
+    url: /coding-round/data-structures/segment-trees/
+  - title: "Coding: Stacks"
+    url: /coding-round/data-structures/stacks/
+  - title: "Coding: Trees"
+    url: /coding-round/data-structures/trees/
+  - title: "Coding: Trie"
+    url: /coding-round/data-structures/trie/
+  - title: "Coding: Big O"
+    url: /coding-round/foundations/big-o/
+  - title: "Coding: Bit Manipulation"
+    url: /coding-round/foundations/bit-manipulation/
+  - title: "Coding: Complexity Analysis"
+    url: /coding-round/foundations/complexity-analysis/
+  - title: "Coding: Iteration"
+    url: /coding-round/foundations/iteration/
+  - title: "Coding: Memory"
+    url: /coding-round/foundations/memory/
+  - title: "Coding: Recursion"
+    url: /coding-round/foundations/recursion/
+  - title: "Coding: Improvement Plan"
+    url: /coding-round/mock-interviews/improvement-plan/
+  - title: "Coding: Pair Mock"
+    url: /coding-round/mock-interviews/pair-mock/
+  - title: "Coding: Post Mock Review"
+    url: /coding-round/mock-interviews/post-mock-review/
+  - title: "Coding: Timed Mock"
+    url: /coding-round/mock-interviews/timed-mock/
+  - title: "Coding: Backtracking"
+    url: /coding-round/patterns/backtracking/
+  - title: "Coding: BFS"
+    url: /coding-round/patterns/bfs/
+  - title: "Coding: Binary Search"
+    url: /coding-round/patterns/binary-search/
+  - title: "Coding: DFS"
+    url: /coding-round/patterns/dfs/
+  - title: "Coding: 1D DP"
+    url: /coding-round/patterns/dynamic-programming-track/1d-dp/
+  - title: "Coding: 2D DP"
+    url: /coding-round/patterns/dynamic-programming-track/2d-dp/
+  - title: "Coding: DP Fundamentals"
+    url: /coding-round/patterns/dynamic-programming-track/dp-fundamentals/
+  - title: "Coding: Dynamic Programming Track"
+    url: /coding-round/patterns/dynamic-programming-track/
+  - title: "Coding: Interval DP"
+    url: /coding-round/patterns/dynamic-programming-track/interval-dp/
+  - title: "Coding: Knapsack"
+    url: /coding-round/patterns/dynamic-programming-track/knapsack/
+  - title: "Coding: LCS"
+    url: /coding-round/patterns/dynamic-programming-track/lcs/
+  - title: "Coding: LIS"
+    url: /coding-round/patterns/dynamic-programming-track/lis/
+  - title: "Coding: Partition DP"
+    url: /coding-round/patterns/dynamic-programming-track/partition-dp/
+  - title: "Coding: State Compression"
+    url: /coding-round/patterns/dynamic-programming-track/state-compression/
+  - title: "Coding: Tree DP"
+    url: /coding-round/patterns/dynamic-programming-track/tree-dp/
+  - title: "Coding: Dynamic Programming"
+    url: /coding-round/patterns/dynamic-programming/
+  - title: "Coding: Fast Slow Pointers"
+    url: /coding-round/patterns/fast-slow-pointers/
+  - title: "Coding: Greedy"
+    url: /coding-round/patterns/greedy/
+  - title: "Coding: Heap"
+    url: /coding-round/patterns/heap/
+  - title: "Coding: Intervals"
+    url: /coding-round/patterns/intervals/
+  - title: "Coding: Monotonic Stack"
+    url: /coding-round/patterns/monotonic-stack/
+  - title: "Coding: Prefix Sum"
+    url: /coding-round/patterns/prefix-sum/
+  - title: "Coding: Sliding Window"
+    url: /coding-round/patterns/sliding-window/
+  - title: "Coding: Sweep Line"
+    url: /coding-round/patterns/sweep-line/
+  - title: "Coding: Topological Sort"
+    url: /coding-round/patterns/topological-sort/
+  - title: "Coding: Trie"
+    url: /coding-round/patterns/trie/
+  - title: "Coding: Two Pointers"
+    url: /coding-round/patterns/two-pointers/
+  - title: "Coding: Union Find"
+    url: /coding-round/patterns/union-find/
+  - title: "Coding: Brute Force First"
+    url: /coding-round/strategy/brute-force-first/
+  - title: "Coding: Clarifying Questions"
+    url: /coding-round/strategy/clarifying-questions/
+  - title: "Coding: Communicating Tradeoffs"
+    url: /coding-round/strategy/communicating-tradeoffs/
+  - title: "Coding: How To Approach Problems"
+    url: /coding-round/strategy/how-to-approach-problems/
+  - title: "Coding: Optimization Process"
+    url: /coding-round/strategy/optimization-process/
+  - title: "Coding: Thinking Out Loud"
+    url: /coding-round/strategy/thinking-out-loud/
+  - title: "Coding: Whiteboarding"
+    url: /coding-round/strategy/whiteboarding/
   - title: Data Structures
     url: /data-structures/
   - title: Arrays and Hashing
