@@ -7,6 +7,9 @@
     <meta name="description" content="{{ page.excerpt | default: site.description | strip_html | normalize_whitespace }}" />
     <link rel="icon" type="image/png" href="{{ '/assets/logo.png' | relative_url }}" />
     <link rel="apple-touch-icon" href="{{ '/assets/logo.png' | relative_url }}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;750;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}" />
   </head>
   <body>
@@ -76,60 +79,68 @@
         </a>
 
         <nav class="guide-nav">
-          <p class="nav-kicker">Get Started</p>
-          <a class="nav-link {% if current_url == '/' %}is-active{% endif %}" href="{{ '/' | relative_url }}"><span class="nav-icon">H</span>Welcome</a>
-          <a class="nav-link {% if current_url contains '/interview/' %}is-active{% endif %}" href="{{ '/interview/' | relative_url }}"><span class="nav-icon">I</span>Interview Readiness</a>
-          <a class="nav-link {% if current_url contains '/architecture/' %}is-active{% endif %}" href="{{ '/architecture/' | relative_url }}"><span class="nav-icon">A</span>Architecture</a>
-          <a class="nav-link {% if current_url contains '/coding-round/' %}is-active{% endif %}" href="{{ '/coding-round/' | relative_url }}"><span class="nav-icon">C</span>Coding Round</a>
-          <a class="nav-link {% if current_url contains '/data-structures/' %}is-active{% endif %}" href="{{ '/data-structures/' | relative_url }}"><span class="nav-icon">D</span>Data Structures</a>
-          <a class="nav-link {% if current_url contains '/fundamentals/' %}is-active{% endif %}" href="{{ '/fundamentals/' | relative_url }}"><span class="nav-icon">S</span>System Design Primer</a>
+          <a class="nav-link {% if current_url == '/' %}is-active{% endif %}" href="{{ '/' | relative_url }}"><span class="nav-icon">⌂</span>Home</a>
+          <a class="nav-link {% if current_url contains '/fundamentals/' or current_url contains '/architecture/' or current_url contains '/data-structures/' %}is-active{% endif %}" href="{{ '/fundamentals/' | relative_url }}"><span class="nav-icon">▤</span>Fundamentals</a>
+          <a class="nav-link {% if current_url contains '/components/' %}is-active{% endif %}" href="{{ '/components/' | relative_url }}"><span class="nav-icon">◈</span>Deep Dive</a>
+          <a class="nav-link {% if current_url contains '/coding-round/' or current_url contains '/case-studies/' %}is-active{% endif %}" href="{{ '/coding-round/' | relative_url }}"><span class="nav-icon">&lt;/&gt;</span>Practice</a>
+          <a class="nav-link {% if current_url contains '/interview-prep/estimation-cheatsheet/' %}is-active{% endif %}" href="{{ '/interview-prep/estimation-cheatsheet/' | relative_url }}"><span class="nav-icon">□</span>Cheatsheets</a>
+          <a class="nav-link {% if current_url contains '/interview/' %}is-active{% endif %}" href="{{ '/interview/' | relative_url }}"><span class="nav-icon">♙</span>Roadmaps</a>
+          <a class="nav-link {% if current_url contains '/interview-prep/' %}is-active{% endif %}" href="{{ '/interview-prep/' | relative_url }}"><span class="nav-icon">▣</span>Interview Prep</a>
+          <a class="nav-link {% if current_url contains '/glossary/' %}is-active{% endif %}" href="{{ '/glossary/' | relative_url }}"><span class="nav-icon">⌕</span>Search</a>
 
-          <p class="nav-kicker">Fundamentals</p>
-          <a class="nav-link {% if current_url contains '/fundamentals/scalability/' %}is-active{% endif %}" href="{{ '/fundamentals/scalability/' | relative_url }}"><span class="nav-icon">M</span>Scalability</a>
-          <a class="nav-link" href="{{ '/fundamentals/high-availability/' | relative_url }}"><span class="nav-icon">A</span>High Availability</a>
-          <a class="nav-link {% if current_url contains '/fundamentals/patterns/' %}is-active{% endif %}" href="{{ '/fundamentals/patterns/' | relative_url }}"><span class="nav-icon">P</span>Distributed Patterns</a>
-          <a class="nav-link {% if current_url contains '/fundamentals/cap-theorem/' %}is-active{% endif %}" href="{{ '/fundamentals/cap-theorem/' | relative_url }}"><span class="nav-icon">C</span>CAP &amp; Consistency</a>
-
-          <p class="nav-kicker">Deep Dives</p>
-          <a class="nav-link {% if current_url contains '/components/caching/' %}is-active{% endif %}" href="{{ '/components/caching/' | relative_url }}"><span class="nav-icon">C</span>Caching</a>
-          <a class="nav-link" href="{{ '/components/load-balancers/' | relative_url }}"><span class="nav-icon">L</span>Load Balancing</a>
-          <a class="nav-link {% if current_url contains '/components/databases/' %}is-active{% endif %}" href="{{ '/components/databases/' | relative_url }}"><span class="nav-icon">D</span>Databases</a>
-          <a class="nav-link" href="{{ '/components/databases/sharding/' | relative_url }}"><span class="nav-icon">S</span>Sharding</a>
-          <a class="nav-link" href="{{ '/components/cdn/' | relative_url }}"><span class="nav-icon">E</span>CDN</a>
-          <a class="nav-link" href="{{ '/components/message-queues/' | relative_url }}"><span class="nav-icon">Q</span>Messaging Queues</a>
-          <a class="nav-link {% if current_url contains '/components/api-and-communication/' %}is-active{% endif %}" href="{{ '/components/api-and-communication/' | relative_url }}"><span class="nav-icon">N</span>API and Communication</a>
-          <a class="nav-link {% if current_url contains '/fundamentals/patterns/' %}is-active{% endif %}" href="{{ '/fundamentals/patterns/' | relative_url }}"><span class="nav-icon">X</span>Distributed Patterns</a>
-
-          <p class="nav-kicker">Practice</p>
-          <a class="nav-link {% if current_url contains '/case-studies/' %}is-active{% endif %}" href="{{ '/case-studies/' | relative_url }}"><span class="nav-icon">I</span>System Design Interviews</a>
-          <a class="nav-link" href="{{ '/case-studies/url-shortener/' | relative_url }}"><span class="nav-icon">U</span>Practice Problems</a>
-          <a class="nav-link" href="{{ '/interview-prep/' | relative_url }}"><span class="nav-icon">T</span>Interview Prep</a>
-
-          <p class="nav-kicker">Resources</p>
-          <a class="nav-link {% if current_url contains '/interview-prep/estimation-cheatsheet/' %}is-active{% endif %}" href="{{ '/interview-prep/estimation-cheatsheet/' | relative_url }}"><span class="nav-icon">K</span>Cheat Sheets</a>
-          <a class="nav-link {% if current_url contains '/glossary/' %}is-active{% endif %}" href="{{ '/glossary/' | relative_url }}"><span class="nav-icon">G</span>Glossary</a>
-          <a class="nav-link {% if current_url contains '/interview-prep/' %}is-active{% endif %}" href="{{ '/interview-prep/' | relative_url }}"><span class="nav-icon">B</span>Further Reading</a>
+          {% if current_url contains '/architecture/' %}
+            <p class="nav-kicker">Fundamentals</p>
+            <a class="nav-link track-link {% if current_url == '/architecture/fundamentals/' %}is-active{% endif %}" href="{{ '/architecture/fundamentals/' | relative_url }}"><span class="nav-dot blue"></span>What is Architecture?</a>
+            <a class="nav-link track-link {% if current_url contains '/architecture/styles/' %}is-active{% endif %}" href="{{ '/architecture/styles/' | relative_url }}"><span class="nav-dot violet"></span>Architecture vs Design</a>
+            <a class="nav-link track-link {% if current_url contains '/architecture/reliability-operations/' %}is-active{% endif %}" href="{{ '/architecture/reliability-operations/' | relative_url }}"><span class="nav-dot green"></span>Why is Architecture Important?</a>
+            <a class="nav-link track-link {% if current_url contains '/architecture/patterns/' %}is-active{% endif %}" href="{{ '/architecture/patterns/' | relative_url }}"><span class="nav-dot amber"></span>Levels of Thinking</a>
+            <a class="nav-link track-link {% if current_url contains '/architecture/decision-records/' %}is-active{% endif %}" href="{{ '/architecture/decision-records/' | relative_url }}"><span class="nav-dot red"></span>Responsibilities</a>
+            <a class="nav-link track-link" href="{{ '/architecture/evolution/' | relative_url }}"><span class="nav-dot cyan"></span>Architecture Evolution</a>
+          {% else %}
+            <p class="nav-kicker">Fundamentals</p>
+            <a class="nav-link track-link {% if current_url contains '/data-structures/' %}is-active{% endif %}" href="{{ '/data-structures/' | relative_url }}"><span class="nav-dot blue"></span>Data Structures</a>
+            <a class="nav-link track-link {% if current_url contains '/architecture/' %}is-active{% endif %}" href="{{ '/architecture/' | relative_url }}"><span class="nav-dot violet"></span>Architecture Patterns</a>
+            <a class="nav-link track-link {% if current_url contains '/fundamentals/patterns/' %}is-active{% endif %}" href="{{ '/fundamentals/patterns/' | relative_url }}"><span class="nav-dot amber"></span>Design Patterns</a>
+            <a class="nav-link track-link {% if current_url contains '/fundamentals/' %}is-active{% endif %}" href="{{ '/fundamentals/' | relative_url }}"><span class="nav-dot green"></span>System Design Fundamentals</a>
+          {% endif %}
         </nav>
 
-        <div class="social-row" aria-label="Project links">
-          <a href="https://x.com/" aria-label="X">X</a>
-          <a href="https://www.linkedin.com/" aria-label="LinkedIn">in</a>
-          <a href="mailto:{{ site.email | default: '' }}" aria-label="Email">@</a>
+        <div class="sidebar-cta">
+          <strong>{% if inferred_kind == 'home' %}New here?{% else %}Track your progress{% endif %}</strong>
+          <span>{% if inferred_kind == 'home' %}Start with our recommended learning path.{% else %}Create a free account to save progress and get personalized recommendations.{% endif %}</span>
+          <a href="{{ '/interview/' | relative_url }}">{% if inferred_kind == 'home' %}Start Roadmap{% else %}Sign Up / Log In{% endif %}</a>
         </div>
       </aside>
 
       <div class="main-area">
         <header class="topbar">
+          {% unless inferred_kind == 'home' %}
+            <nav class="topbar-crumbs" aria-label="Breadcrumb">
+              {% if current_url contains '/architecture/' %}
+                <a href="{{ '/fundamentals/' | relative_url }}">Fundamentals</a>
+              {% elsif current_url contains '/data-structures/' %}
+                <a href="{{ '/fundamentals/' | relative_url }}">Fundamentals</a>
+              {% elsif current_url contains '/components/' %}
+                <a href="{{ '/components/' | relative_url }}">Deep Dive</a>
+              {% elsif current_url contains '/coding-round/' or current_url contains '/case-studies/' %}
+                <a href="{{ '/coding-round/' | relative_url }}">Practice</a>
+              {% else %}
+                <a href="{{ '/' | relative_url }}">Home</a>
+              {% endif %}
+              <span>{{ page.title | default: site.title }}</span>
+            </nav>
+          {% endunless %}
           <label class="search-box">
             <span aria-hidden="true">⌕</span>
-            <input type="search" placeholder="Search the guide..." aria-label="Search the guide" />
-            <kbd>⌘ K</kbd>
+            <input type="search" placeholder="Search topics, patterns, problems..." aria-label="Search the guide" />
           </label>
           <div class="top-actions">
             {% if inferred_kind == 'home' or solution or concept or is_deep_index or is_deep_post %}
               <button class="icon-button rail-toggle" type="button" aria-label="Toggle right panel" aria-expanded="true" data-rail-toggle>☰</button>
             {% endif %}
             <button class="icon-button" type="button" aria-label="Toggle appearance">☼</button>
+            <button class="icon-button" type="button" aria-label="Saved articles">▱</button>
+            <a class="avatar-button" href="{{ '/interview-prep/' | relative_url }}" aria-label="Interview prep">AI</a>
           </div>
         </header>
 
@@ -273,17 +284,19 @@
       {% if inferred_kind == 'home' %}
       <aside class="right-rail" aria-label="Page summary">
         <div class="right-rail-inner">
-          <p class="rail-kicker">On This Page</p>
-          <nav class="page-toc">
-            <a href="#overview">Overview</a>
-            <a href="#guide-overview">Guide Overview</a>
-            <a href="#popular-topics">Popular Topics</a>
-            <a href="#how-to-use">How to Use This Guide</a>
-          </nav>
+          <section class="rail-card popular-card">
+            <h2>Popular This Week</h2>
+            <a href="{{ '/fundamentals/' | relative_url }}"><span class="rail-topic-icon blue">♨</span>System Design Fundamentals</a>
+            <a href="{{ '/components/caching/' | relative_url }}"><span class="rail-topic-icon green">2</span>Caching Deep Dive</a>
+            <a href="{{ '/coding-round/patterns/heap/' | relative_url }}"><span class="rail-topic-icon amber">♨</span>Top K Elements</a>
+            <a href="{{ '/architecture/styles/microservices/' | relative_url }}"><span class="rail-topic-icon violet">♙</span>Microservices Architecture</a>
+            <a href="{{ '/coding-round/patterns/sliding-window/' | relative_url }}"><span class="rail-topic-icon red">□</span>Sliding Window Pattern</a>
+          </section>
 
-          <section class="rail-card compact">
-            <div class="rail-card-title"><span class="rail-card-icon">□</span>Last Updated</div>
-            <p>June 6, 2026</p>
+          <section class="rail-card prep-card">
+            <strong>Prepare for your next interview</strong>
+            <p>Curated questions, company tracks and mock interviews.</p>
+            <a href="{{ '/interview-prep/' | relative_url }}">Explore Now →</a>
           </section>
         </div>
       </aside>

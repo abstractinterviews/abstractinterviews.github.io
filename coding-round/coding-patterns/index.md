@@ -25,8 +25,11 @@ previous_topic:
 next_topic:
   title: "Edge Cases and Testing"
   url: "/coding-round/edge-cases-testing/"
+date: 2026-06-08
+slug: index
+categories: [interview-prep]
+reading_time: 5
 ---
-
 ## Topic: Arrays
 
 ### Sub-topic: Common Patterns

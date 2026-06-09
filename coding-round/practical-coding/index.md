@@ -25,8 +25,11 @@ previous_topic:
 next_topic:
   title: "Coding Round"
   url: "/coding-round/"
+date: 2026-06-08
+slug: index
+categories: [interview-prep]
+reading_time: 5
 ---
-
 ## Topic: Formats
 
 ### Sub-topic: Common Tasks

@@ -107,8 +107,12 @@ related_concepts:
     url: "/coding-round/"
   - title: "Data Structures"
     url: "/data-structures/"
+date: 2026-06-08
+slug: index
+categories: [interview-prep]
+difficulty: Intermediate
+reading_time: 5
 ---
-
 # Data Structures
 
 ## Track Overview
@@ -259,3 +263,19 @@ def solve(input_data):
 - Final interview move: summarize the approach, correctness reason, and complexity.
 
 <!-- interview-module:end -->
+
+
+### Example implementation (placeholder)
+
+```python
+# TODO: add working example
+def solution(input):
+    return input
+```
+
+
+
+### Quiz
+
+1. Question: What is the main trade-off?
+<!-- Answers: 1) Explain trade-off -->

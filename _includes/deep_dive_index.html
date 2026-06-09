@@ -1,66 +1,112 @@
 <section class="deep-index-shell">
   <header class="deep-index-hero">
-    <div class="deep-index-icon" aria-hidden="true">{{ page.hero_icon | default: "C" }}</div>
     <div class="deep-index-heading">
       <h1>{{ page.deep_title | default: page.title }}</h1>
       <p>{{ page.subtitle }}</p>
-      <div class="deep-badges">
-        {% for badge in page.badges %}
-          <span>{{ badge }}</span>
-        {% endfor %}
-      </div>
+      {% if page.stats %}
+        <section class="deep-stats" aria-label="Deep dive stats">
+          {% for stat in page.stats %}
+            <article>
+              <span class="topic-icon {% cycle 'violet', 'green', 'amber', 'blue' %}">{{ stat.icon | default: forloop.index }}</span>
+              <strong>{{ stat.value }}</strong>
+              <em>{{ stat.label }}</em>
+            </article>
+          {% endfor %}
+        </section>
+      {% endif %}
     </div>
-    <div class="deep-index-visual" aria-hidden="true">
-      <span></span><span></span><span></span>
+    <div class="deep-index-visual topic-hero-visual" aria-hidden="true">
+      <span class="visual-window"></span>
+      <span class="visual-node visual-node-one">{{ page.hero_icon | default: "AI" }}</span>
+      <span class="visual-node visual-node-two">⌘</span>
+      <span class="visual-node visual-node-three">▦</span>
     </div>
   </header>
 
-  {% if page.stats %}
-    <section class="deep-stats" aria-label="Deep dive stats">
-      {% for stat in page.stats %}
-        <article>
-          <strong>{{ stat.value }}</strong>
-          <span>{{ stat.label }}</span>
-        </article>
-      {% endfor %}
-    </section>
-  {% endif %}
+  <nav class="deep-post-tabs page-mode-tabs" aria-label="Page sections">
+    <a class="is-active" href="#overview">Overview</a>
+    <a href="#sub-topics">All Topics</a>
+    <a href="#key-concepts">Key Concepts</a>
+    <a href="#resources">Cheatsheet</a>
+  </nav>
 
-  <section class="deep-summary-card" id="overview">
-    <div>
-      <h2>Overview</h2>
-      <p>{{ page.overview }}</p>
-    </div>
-    {% if page.key_takeaways %}
-      <div id="key-takeaways">
-        <h3>Key Takeaways</h3>
+  <section class="deep-summary-grid" id="overview">
+    <article class="deep-summary-card learn-card">
+      <div>
+        <h2>What you'll learn</h2>
         <ul class="positive-list">
-          {% for item in page.key_takeaways %}
-            <li>{{ item }}</li>
-          {% endfor %}
+          {% if page.key_takeaways %}
+            {% for item in page.key_takeaways limit:4 %}
+              <li>{{ item }}</li>
+            {% endfor %}
+          {% else %}
+            <li>Core concepts and practical use cases</li>
+            <li>Trade-offs, complexity, and selection rules</li>
+            <li>Interview questions and real-world examples</li>
+          {% endif %}
         </ul>
       </div>
-    {% endif %}
+      <div class="cube-cluster" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
+    </article>
+
+    <article class="use-case-card">
+      <h2>Common Use Cases</h2>
+      <ul>
+        {% for item in page.key_takeaways limit:4 %}
+          <li><span class="topic-icon {% cycle 'blue', 'green', 'amber', 'violet' %}">{{ forloop.index }}</span><strong>{{ item }}</strong><small>Apply this idea in interviews and production design.</small></li>
+        {% endfor %}
+      </ul>
+    </article>
   </section>
 
   {% if page.subtopics %}
-    <section class="deep-subtopics" id="sub-topics">
-      <h2>Sub Topics</h2>
+    <section class="deep-subtopics card-grid-section" id="sub-topics">
+      <h2>{{ page.deep_title | default: page.title }}</h2>
       <div class="deep-topic-list">
         {% for topic in page.subtopics %}
           <a class="deep-topic-card" href="{{ topic.url | relative_url }}">
             <span class="deep-topic-icon {{ topic.color | default: 'blue' }}">{{ topic.icon | default: forloop.index }}</span>
             <span>
-              <strong>{{ forloop.index }}. {{ topic.title }}</strong>
+              <strong>{{ topic.title }}</strong>
               <em>{{ topic.description }}</em>
             </span>
-            <small>{{ topic.read_time }}</small>
+            <small>{{ forloop.index | times: 2 | plus: 8 }} topics</small>
             <b aria-hidden="true">›</b>
           </a>
         {% endfor %}
       </div>
+      <a class="center-action" href="{{ page.all_topics_url | default: page.url | relative_url }}">View all {{ page.deep_title | default: page.title | downcase }} →</a>
     </section>
   {% endif %}
+
+  <section class="deep-lower-grid" id="resources">
+    <article class="path-panel">
+      <h2>Recommended Learning Path</h2>
+      <p>Follow this path to master {{ page.title | downcase }}.</p>
+      <ol>
+        {% for topic in page.subtopics limit:5 %}
+          <li><span>{{ forloop.index }}</span><strong>{{ topic.title }}</strong><small>{{ topic.description | truncate: 62 }}</small><em>{% if forloop.index < 3 %}Beginner{% elsif forloop.index < 5 %}Intermediate{% else %}Advanced{% endif %}</em></li>
+        {% endfor %}
+      </ol>
+      <a class="center-action" href="{{ '/interview/' | relative_url }}">View full roadmap →</a>
+    </article>
+    <article class="resource-panel" id="key-concepts">
+      <h2>Key Resources</h2>
+      <p>Curated resources to strengthen your foundation.</p>
+      <a href="{{ '/interview-prep/estimation-cheatsheet/' | relative_url }}"><span class="topic-icon blue">▥</span><strong>Time &amp; Space Complexity</strong><small>Learn analysis and trade-offs</small><b>›</b></a>
+      <a href="{{ '/fundamentals/patterns/' | relative_url }}"><span class="topic-icon amber">⚖</span><strong>Pattern Comparison</strong><small>Compare use cases and constraints</small><b>›</b></a>
+      <a href="{{ '/interview-prep/estimation-cheatsheet/' | relative_url }}"><span class="topic-icon green">□</span><strong>Cheatsheet</strong><small>Quick reference for interviews</small><b>›</b></a>
+      <a href="{{ '/case-studies/' | relative_url }}"><span class="topic-icon violet">&lt;/&gt;</span><strong>Practice Problems</strong><small>Handpicked problems by topic</small><b>›</b></a>
+    </article>
+  </section>
+
+  <aside class="interview-tip">
+    <span class="topic-icon violet">?</span>
+    <div>
+      <strong>Interview Tip</strong>
+      <p>{{ page.overview | default: "Always discuss trade-offs, constraints, and alternatives before committing to a design choice." }}</p>
+    </div>
+  </aside>
 
   {% if include.content %}
     {% assign body_parts = include.content | split: '</h1>' %}

@@ -25,8 +25,11 @@ previous_topic:
 next_topic:
   title: "Practical Coding Rounds"
   url: "/coding-round/practical-coding/"
+date: 2026-06-08
+slug: index
+categories: [interview-prep]
+reading_time: 5
 ---
-
 ## Topic: Cases
 
 ### Sub-topic: Checklist
@@ -254,3 +257,12 @@ Solve one easy, one medium, and one variant while explaining complexity and edge
 - Final interview move: summarize the recommendation in one sentence and state the key trade-off.
 
 <!-- interview-module:end -->
+
+
+### Example implementation (placeholder)
+
+```python
+# TODO: add working example
+def solution(input):
+    return input
+```

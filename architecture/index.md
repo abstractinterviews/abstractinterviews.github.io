@@ -75,8 +75,12 @@ related_concepts:
     url: "/50-system-design-patterns/"
   - title: "Interview Readiness"
     url: "/interview/"
+date: 2026-06-08
+slug: index
+categories: [interview-prep]
+difficulty: Intermediate
+reading_time: 5
 ---
-
 # Software Architecture
 
 ## Topic: Architecture Interview Map

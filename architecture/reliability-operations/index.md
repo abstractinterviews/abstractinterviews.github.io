@@ -25,8 +25,11 @@ previous_topic:
 next_topic:
   title: "Architecture Decision Records"
   url: "/architecture/decision-records/"
+date: 2026-06-08
+slug: index
+categories: [interview-prep]
+reading_time: 5
 ---
-
 ## Topic: Reliability
 
 ### Sub-topic: Failure Questions

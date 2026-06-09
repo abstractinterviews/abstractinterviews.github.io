@@ -73,8 +73,12 @@ related_concepts:
     url: "/data-structures/"
   - title: "Interview Readiness"
     url: "/interview/"
+date: 2026-06-08
+slug: index
+categories: [interview-prep]
+difficulty: Intermediate
+reading_time: 5
 ---
-
 # Coding Round
 
 ## Topic: What Coding Round Should Look Like
@@ -285,3 +289,12 @@ Solve one easy, one medium, and one variant while explaining complexity and edge
 - Final interview move: summarize the recommendation in one sentence and state the key trade-off.
 
 <!-- interview-module:end -->
+
+
+### Example implementation (placeholder)
+
+```python
+# TODO: add working example
+def solution(input):
+    return input
+```

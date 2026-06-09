@@ -25,8 +25,11 @@ previous_topic:
 next_topic:
   title: "Coding Patterns"
   url: "/coding-round/coding-patterns/"
+date: 2026-06-08
+slug: index
+categories: [interview-prep]
+reading_time: 5
 ---
-
 ## Topic: Flow
 
 ### Sub-topic: Six Steps

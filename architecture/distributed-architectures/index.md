@@ -65,8 +65,12 @@ related_concepts:
     url: "/architecture/"
   - title: "Architecture Fundamentals"
     url: "/architecture/fundamentals/"
+date: 2026-06-08
+slug: index
+categories: [interview-prep]
+difficulty: Intermediate
+reading_time: 5
 ---
-
 # Distributed Architectures
 
 ## Topic: How To Use This Section

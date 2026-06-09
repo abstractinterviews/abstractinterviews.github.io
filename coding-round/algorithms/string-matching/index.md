@@ -27,8 +27,11 @@ previous_topic:
 next_topic:
   title: "Coding Round"
   url: "/coding-round/"
+date: 2026-06-08
+slug: index
+categories: [interview-prep]
+reading_time: 5
 ---
-
 # String Matching
 
 ## What Is It? {#what-is-it}
@@ -210,3 +213,19 @@ def solve(input_data):
 - Final interview move: summarize the approach, correctness reason, and complexity.
 
 <!-- interview-module:end -->
+
+
+### Example implementation (placeholder)
+
+```python
+# TODO: add working example
+def solution(input):
+    return input
+```
+
+
+
+### Quiz
+
+1. Question: What is the main trade-off?
+<!-- Answers: 1) Explain trade-off -->

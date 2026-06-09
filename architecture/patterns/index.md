@@ -25,8 +25,11 @@ previous_topic:
 next_topic:
   title: "Reliability and Operations"
   url: "/architecture/reliability-operations/"
+date: 2026-06-08
+slug: index
+categories: [interview-prep]
+reading_time: 5
 ---
-
 ## Topic: Styles
 
 ### Sub-topic: Common Options
