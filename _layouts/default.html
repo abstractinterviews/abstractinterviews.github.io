@@ -88,7 +88,19 @@
           <a class="nav-link {% if current_url contains '/interview-prep/' %}is-active{% endif %}" href="{{ '/interview-prep/' | relative_url }}"><span class="nav-icon">▣</span>Interview Prep</a>
           <a class="nav-link {% if current_url contains '/glossary/' %}is-active{% endif %}" href="{{ '/glossary/' | relative_url }}"><span class="nav-icon">⌕</span>Search</a>
 
-          {% if current_url contains '/architecture/' %}
+          {% if current_url contains '/data-structures/' %}
+            <p class="nav-kicker">Data Structures</p>
+            <a class="nav-link track-link {% if current_url == '/data-structures/' %}is-active{% endif %}" href="{{ '/data-structures/' | relative_url }}"><span class="nav-dot blue"></span>Introduction</a>
+            <a class="nav-link track-link {% if current_url contains '/data-structures/arrays-hashing/' %}is-active{% endif %}" href="{{ '/data-structures/arrays-hashing/' | relative_url }}"><span class="nav-dot violet"></span>Arrays &amp; Hashing</a>
+            <a class="nav-link track-link" href="{{ '/coding-round/patterns/two-pointers/' | relative_url }}"><span class="nav-dot green"></span>Two Pointers</a>
+            <a class="nav-link track-link" href="{{ '/coding-round/patterns/sliding-window/' | relative_url }}"><span class="nav-dot amber"></span>Sliding Window</a>
+            <a class="nav-link track-link {% if current_url contains '/data-structures/stacks-queues-heaps/' %}is-active{% endif %}" href="{{ '/data-structures/stacks-queues-heaps/' | relative_url }}"><span class="nav-dot red"></span>Stack</a>
+            <a class="nav-link track-link" href="{{ '/coding-round/patterns/binary-search/' | relative_url }}"><span class="nav-dot cyan"></span>Binary Search</a>
+            <a class="nav-link track-link" href="{{ '/coding-round/data-structures/linked-lists/' | relative_url }}"><span class="nav-dot blue"></span>Linked List</a>
+            <a class="nav-link track-link {% if current_url contains '/data-structures/trees-graphs/' %}is-active{% endif %}" href="{{ '/data-structures/trees-graphs/' | relative_url }}"><span class="nav-dot green"></span>Trees</a>
+            <a class="nav-link track-link" href="{{ '/coding-round/data-structures/heaps/' | relative_url }}"><span class="nav-dot amber"></span>Heaps / Priority Queue</a>
+            <a class="nav-link track-link" href="{{ '/coding-round/data-structures/graphs/' | relative_url }}"><span class="nav-dot violet"></span>Graphs</a>
+          {% elsif current_url contains '/architecture/' %}
             <p class="nav-kicker">Fundamentals</p>
             <a class="nav-link track-link {% if current_url == '/architecture/fundamentals/' %}is-active{% endif %}" href="{{ '/architecture/fundamentals/' | relative_url }}"><span class="nav-dot blue"></span>What is Architecture?</a>
             <a class="nav-link track-link {% if current_url contains '/architecture/styles/' %}is-active{% endif %}" href="{{ '/architecture/styles/' | relative_url }}"><span class="nav-dot violet"></span>Architecture vs Design</a>
@@ -119,7 +131,7 @@
               {% if current_url contains '/architecture/' %}
                 <a href="{{ '/fundamentals/' | relative_url }}">Fundamentals</a>
               {% elsif current_url contains '/data-structures/' %}
-                <a href="{{ '/fundamentals/' | relative_url }}">Fundamentals</a>
+                <a href="{{ '/data-structures/' | relative_url }}">Data Structures</a>
               {% elsif current_url contains '/components/' %}
                 <a href="{{ '/components/' | relative_url }}">Deep Dive</a>
               {% elsif current_url contains '/coding-round/' or current_url contains '/case-studies/' %}
@@ -404,16 +416,49 @@
             {% endif %}
           </nav>
 
-          <section class="rail-card action-card">
-            <div class="rail-card-title"><span class="rail-card-icon">△</span>Try it out</div>
-            <p>Practice this pattern with interactive diagrams.</p>
-            <a class="rail-button" href="{{ '/case-studies/' | relative_url }}">Open Playground →</a>
-          </section>
+          {% if page.quick_summary %}
+            <section class="rail-card quick-summary-card">
+              <div class="rail-card-title"><span class="rail-card-icon">♙</span>Quick Summary</div>
+              <ul>
+                {% for item in page.quick_summary %}
+                  <li>{{ item }}</li>
+                {% endfor %}
+              </ul>
+            </section>
+          {% endif %}
+
+          {% if page.problem_groups %}
+            <section class="rail-card problem-rail-card">
+              <div class="rail-card-title">Problems to Try</div>
+              {% for group in page.problem_groups %}
+                <div class="problem-tier {{ group.level | downcase }}">
+                  <strong>{{ group.level }}</strong>
+                  <ol>
+                    {% for problem in group.items %}
+                      <li>{{ problem }}</li>
+                    {% endfor %}
+                  </ol>
+                  <a href="{{ group.url | default: '/coding-round/' | relative_url }}">View all {{ group.level }} →</a>
+                </div>
+              {% endfor %}
+            </section>
+          {% endif %}
+
+          {% if page.related_topics %}
+            <section class="rail-card related-rail-card">
+              <div class="rail-card-title">Related Topics</div>
+              <nav>
+                {% for item in page.related_topics %}
+                  <a href="{{ item.url | relative_url }}">{{ item.title }} <span>›</span></a>
+                {% endfor %}
+              </nav>
+            </section>
+          {% endif %}
 
           <section class="rail-card action-card">
-            <div class="rail-card-title"><span class="rail-card-icon">□</span>Download</div>
-            <p>Get this pattern as a PDF cheat sheet.</p>
-            <a class="rail-button" href="#">Download PDF</a>
+            <div class="rail-card-title">{% if page.go_deeper_title %}{{ page.go_deeper_title }}{% else %}Go Deeper{% endif %}</div>
+            <p>{{ page.go_deeper_text | default: 'Explore in-depth articles, diagrams, and real-world examples.' }}</p>
+            <a class="rail-button" href="{{ page.go_deeper_url | default: '/components/' | relative_url }}">Explore Now →</a>
           </section>
         </div>
       </aside>

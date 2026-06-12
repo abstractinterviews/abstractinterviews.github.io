@@ -1,14 +1,19 @@
 <article class="deep-post-shell">
   <header class="deep-post-header">
     <div>
+      <h1>{{ page.title }}</h1>
+      <p>{{ page.subtitle }}</p>
       <div class="deep-badges">
         <span>{{ page.difficulty | default: "Fundamentals" }}</span>
         {% if page.read_time %}
           <span>{{ page.read_time }}</span>
         {% endif %}
+        {% if page.extra_badges %}
+          {% for badge in page.extra_badges %}
+            <span>{{ badge }}</span>
+          {% endfor %}
+        {% endif %}
       </div>
-      <h1>{{ page.title }}</h1>
-      <p>{{ page.subtitle }}</p>
     </div>
     <nav class="deep-post-pager" aria-label="Subtopic navigation">
       {% if page.previous_topic %}
@@ -42,6 +47,81 @@
         <a class="{% if forloop.first %}is-active{% endif %}" href="#{{ heading_id }}">{{ cleaned_title }}</a>
       {% endfor %}
     </nav>
+  {% endif %}
+
+  {% if page.learning_cards %}
+    <section class="ai-learn-grid" id="{{ page.learning_section_id | default: 'what-youll-learn' }}">
+      {% for card in page.learning_cards %}
+        <article>
+          <span class="topic-icon {{ card.color | default: 'blue' }}">{{ card.icon | default: forloop.index }}</span>
+          <strong>{{ card.title }}</strong>
+          <p>{{ card.description }}</p>
+        </article>
+      {% endfor %}
+    </section>
+  {% endif %}
+
+  {% if page.quick_overviews %}
+    {% for overview in page.quick_overviews %}
+      <h2 id="{{ overview.id }}">{{ overview.title }}</h2>
+      <section class="ai-two-column">
+        <div class="ai-check-list">
+          {% for item in overview.points %}
+            <p><span>✓</span>{{ item }}</p>
+          {% endfor %}
+        </div>
+        {% if overview.code %}
+          <figure class="ai-code-card">
+            <figcaption><span>{{ overview.code.label | default: 'Example' }}</span><button type="button">Copy</button></figcaption>
+            <pre><code>{{ overview.code.content | escape }}</code></pre>
+          </figure>
+        {% endif %}
+      </section>
+      {% if overview.callout %}
+        <aside class="ai-callout {{ overview.callout.kind | default: 'production' }}">
+          <strong>{{ overview.callout.title }}</strong>
+          <p>{{ overview.callout.body }}</p>
+        </aside>
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+
+  {% if page.decision_table %}
+    <h2 id="{{ page.decision_table.id | default: 'when-to-use-what' }}">{{ page.decision_table.title | default: 'When to Use What?' }}</h2>
+    <section class="ai-decision-table">
+      <div></div>
+      <strong>{{ page.decision_table.left_heading }}</strong>
+      <strong>{{ page.decision_table.right_heading }}</strong>
+      {% for row in page.decision_table.rows %}
+        <span>{{ row.icon | default: '•' }}</span>
+        <p>{{ row.left }}</p>
+        <p>{{ row.right }}</p>
+      {% endfor %}
+    </section>
+  {% endif %}
+
+  {% if page.pattern_cards %}
+    <h2 id="{{ page.pattern_section_id | default: 'common-patterns' }}">{{ page.pattern_section_title | default: 'Common Patterns' }}</h2>
+    <section class="ai-pattern-grid">
+      {% for card in page.pattern_cards %}
+        <article>
+          <span class="topic-icon {{ card.color | default: 'blue' }}">{{ card.icon | default: forloop.index }}</span>
+          <strong>{{ card.title }}</strong>
+          <p>{{ card.description }}</p>
+          {% if card.example %}<small><b>Example:</b> {{ card.example }}</small>{% endif %}
+        </article>
+      {% endfor %}
+    </section>
+  {% endif %}
+
+  {% if page.key_insight %}
+    <aside class="ai-callout insight" id="{{ page.key_insight.id | default: 'key-takeaways' }}">
+      <span class="topic-icon {{ page.key_insight.color | default: 'violet' }}">{{ page.key_insight.icon | default: '?' }}</span>
+      <div>
+        <strong>{{ page.key_insight.title }}</strong>
+        <p>{{ page.key_insight.body }}</p>
+      </div>
+    </aside>
   {% endif %}
 
   {% assign post_body_parts = cleaned_content | split: '</h1>' %}
