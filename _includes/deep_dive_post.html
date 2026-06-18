@@ -4,15 +4,27 @@
       <h1>{{ page.title }}</h1>
       <p>{{ page.subtitle }}</p>
       <div class="deep-badges">
-        <span>{{ page.difficulty | default: "Fundamentals" }}</span>
         {% if page.read_time %}
           <span>{{ page.read_time }}</span>
+        {% endif %}
+        <span>{{ page.difficulty | default: "Fundamentals" }}</span>
+        {% if page.problem_groups %}
+          {% assign practice_count = 0 %}
+          {% for group in page.problem_groups %}
+            {% assign practice_count = practice_count | plus: group.items.size %}
+          {% endfor %}
+          <span>{{ practice_count }} Practice Problems</span>
         {% endif %}
         {% if page.extra_badges %}
           {% for badge in page.extra_badges %}
             <span>{{ badge }}</span>
           {% endfor %}
         {% endif %}
+      </div>
+      <div class="hero-actions">
+        <a class="hero-button primary" href="{{ page.start_learning_url | default: '#what-youll-learn' | relative_url }}">Start Learning</a>
+        <a class="hero-button secondary" href="{{ page.practice_url | default: '#practice-problems' | relative_url }}">Practice Problems</a>
+        <a class="hero-button secondary" href="{{ page.cheat_sheet_url | default: '#quick-revision' | relative_url }}">View Cheat Sheet</a>
       </div>
     </div>
     <nav class="deep-post-pager" aria-label="Subtopic navigation">
@@ -63,54 +75,85 @@
 
   {% if page.quick_overviews %}
     {% for overview in page.quick_overviews %}
-      <h2 id="{{ overview.id }}">{{ overview.title }}</h2>
-      <section class="ai-two-column">
-        <div class="ai-check-list">
-          {% for item in overview.points %}
-            <p><span>✓</span>{{ item }}</p>
-          {% endfor %}
-        </div>
-        {% if overview.code %}
-          <figure class="ai-code-card">
-            <figcaption><span>{{ overview.code.label | default: 'Example' }}</span><button type="button">Copy</button></figcaption>
-            <pre><code>{{ overview.code.content | escape }}</code></pre>
-          </figure>
+      <section class="content-card learning-section-card" id="{{ overview.id }}">
+        <h2>{{ overview.title }}</h2>
+        <section class="ai-two-column">
+          <div class="ai-check-list">
+            {% for item in overview.points %}
+              <p><span>✓</span>{{ item }}</p>
+            {% endfor %}
+          </div>
+          {% if overview.code %}
+            <figure class="ai-code-card">
+              <figcaption><span>{{ overview.code.label | default: 'Example' }}</span><button type="button">Copy</button></figcaption>
+              <pre><code>{{ overview.code.content | escape }}</code></pre>
+            </figure>
+          {% endif %}
+        </section>
+        {% if overview.callout %}
+          <aside class="ai-callout {{ overview.callout.kind | default: 'production' }}">
+            <strong>{{ overview.callout.title }}</strong>
+            <p>{{ overview.callout.body }}</p>
+          </aside>
         {% endif %}
       </section>
-      {% if overview.callout %}
-        <aside class="ai-callout {{ overview.callout.kind | default: 'production' }}">
-          <strong>{{ overview.callout.title }}</strong>
-          <p>{{ overview.callout.body }}</p>
-        </aside>
-      {% endif %}
     {% endfor %}
   {% endif %}
 
   {% if page.decision_table %}
-    <h2 id="{{ page.decision_table.id | default: 'when-to-use-what' }}">{{ page.decision_table.title | default: 'When to Use What?' }}</h2>
-    <section class="ai-decision-table">
-      <div></div>
-      <strong>{{ page.decision_table.left_heading }}</strong>
-      <strong>{{ page.decision_table.right_heading }}</strong>
-      {% for row in page.decision_table.rows %}
-        <span>{{ row.icon | default: '•' }}</span>
-        <p>{{ row.left }}</p>
-        <p>{{ row.right }}</p>
-      {% endfor %}
+    <section class="content-card learning-section-card" id="{{ page.decision_table.id | default: 'when-to-use-what' }}">
+      <h2>{{ page.decision_table.title | default: 'When to Use What?' }}</h2>
+      <section class="ai-decision-table">
+        <div></div>
+        <strong>{{ page.decision_table.left_heading }}</strong>
+        <strong>{{ page.decision_table.right_heading }}</strong>
+        {% for row in page.decision_table.rows %}
+          <span>{{ row.icon | default: '•' }}</span>
+          <p>{{ row.left }}</p>
+          <p>{{ row.right }}</p>
+        {% endfor %}
+      </section>
     </section>
   {% endif %}
 
   {% if page.pattern_cards %}
-    <h2 id="{{ page.pattern_section_id | default: 'common-patterns' }}">{{ page.pattern_section_title | default: 'Common Patterns' }}</h2>
-    <section class="ai-pattern-grid">
-      {% for card in page.pattern_cards %}
-        <article>
-          <span class="topic-icon {{ card.color | default: 'blue' }}">{{ card.icon | default: forloop.index }}</span>
-          <strong>{{ card.title }}</strong>
-          <p>{{ card.description }}</p>
-          {% if card.example %}<small><b>Example:</b> {{ card.example }}</small>{% endif %}
-        </article>
-      {% endfor %}
+    <section class="content-card learning-section-card" id="{{ page.pattern_section_id | default: 'common-patterns' }}">
+      <h2>{{ page.pattern_section_title | default: 'Common Patterns' }}</h2>
+      <section class="ai-pattern-grid">
+        {% for card in page.pattern_cards %}
+          <article>
+            <span class="topic-icon {{ card.color | default: 'blue' }}">{{ card.icon | default: forloop.index }}</span>
+            <strong>{{ card.title }}</strong>
+            <p>{{ card.description }}</p>
+            {% if card.example %}<small><b>Example:</b> {{ card.example }}</small>{% endif %}
+          </article>
+        {% endfor %}
+      </section>
+    </section>
+  {% endif %}
+
+  {% if page.problem_groups %}
+    <section class="content-card learning-section-card" id="practice-problems">
+      <div class="section-heading-row">
+        <div>
+          <h2>Practice Problems</h2>
+          <p>Move from recognition to speed. Start with the easy checks, then use the medium and hard sets to prove you can explain the tradeoffs under pressure.</p>
+        </div>
+        <a class="hero-button secondary" href="{{ page.practice_url | default: '/coding-round/' | relative_url }}">Open Practice</a>
+      </div>
+      <section class="ai-practice-grid">
+        {% for group in page.problem_groups %}
+          <article class="ai-practice-card {{ group.level | downcase }}">
+            <strong>{{ group.level }}</strong>
+            <ol>
+              {% for item in group.items %}
+                <li>{{ item }}</li>
+              {% endfor %}
+            </ol>
+            <a href="{{ page.practice_url | default: group.url | relative_url }}">View {{ group.level }} →</a>
+          </article>
+        {% endfor %}
+      </section>
     </section>
   {% endif %}
 

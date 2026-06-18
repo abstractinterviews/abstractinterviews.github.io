@@ -1,0 +1,35 @@
+<article class="data-topic-shell">
+  <header class="data-topic-hero">
+    <div class="data-topic-hero-copy">
+      <span class="data-topic-kicker">{{ page.track | default: "Data Structures" }}</span>
+      <h1>{{ page.title }}</h1>
+      {% if page.subtitle %}
+        <p>{{ page.subtitle }}</p>
+      {% endif %}
+      <div class="data-topic-badges" aria-label="Topic metadata">
+        {% if page.read_time %}<span>{{ page.read_time }}</span>{% endif %}
+        {% if page.difficulty %}<span class="success">{{ page.difficulty }}</span>{% endif %}
+        {% if page.practice_count %}<span>{{ page.practice_count }} Practice Problems</span>{% endif %}
+      </div>
+    </div>
+    <div class="data-topic-hero-visual" aria-label="Image placeholder">
+      <div class="ds-image-placeholder" data-image-slot="hero">
+        <span>Image placeholder</span>
+      </div>
+    </div>
+  </header>
+
+  <nav class="data-topic-tabs" aria-label="Topic sections" data-ds-tabs></nav>
+
+  <div class="data-topic-content page-content" data-ds-content>
+    {{ include.content }}
+  </div>
+
+  <footer class="article-actions">
+    <div>
+      <span>Was this helpful?</span>
+      <button type="button">♡ Yes</button>
+      <button type="button">♡ No</button>
+    </div>
+  </footer>
+</article>

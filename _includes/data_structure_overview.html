@@ -1,0 +1,13 @@
+<article class="data-overview-shell">
+  <header class="data-overview-hero">
+    <span class="data-topic-kicker">{{ page.track | default: "Documentation" }}</span>
+    <h1>{{ page.title }}</h1>
+    {% if page.subtitle %}
+      <p>{{ page.subtitle }}</p>
+    {% endif %}
+  </header>
+
+  <div class="data-overview-content page-content" data-overview-content>
+    {{ include.content }}
+  </div>
+</article>

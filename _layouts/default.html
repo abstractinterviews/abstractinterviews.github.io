@@ -42,7 +42,19 @@
     {% elsif inferred_kind == 'deep-dive-post' %}
       {% assign is_deep_post = true %}
     {% endif %}
-    <div class="app-shell page-{{ inferred_kind }} {% if inferred_kind == 'home' or solution or concept or is_deep_index or is_deep_post %}has-right-rail{% endif %}">
+    {% assign is_data_topic = false %}
+    {% if inferred_kind == 'data-structure-topic' %}
+      {% assign is_data_topic = true %}
+    {% endif %}
+    {% assign is_data_overview = false %}
+    {% if inferred_kind == 'data-structure-overview' %}
+      {% assign is_data_overview = true %}
+    {% endif %}
+    {% assign is_pattern_topic = false %}
+    {% if inferred_kind == 'coding-pattern-topic' %}
+      {% assign is_pattern_topic = true %}
+    {% endif %}
+    <div class="app-shell page-{{ inferred_kind }} {% if inferred_kind == 'home' or solution or concept or is_deep_index or is_deep_post or is_data_topic or is_pattern_topic %}has-right-rail{% endif %}">
       <header class="mobile-appbar">
         {% unless inferred_kind == 'home' %}
           <button class="mobile-icon-button" type="button" aria-label="Go back" onclick="history.back()">‹</button>
@@ -80,41 +92,65 @@
 
         <nav class="guide-nav">
           <a class="nav-link {% if current_url == '/' %}is-active{% endif %}" href="{{ '/' | relative_url }}"><span class="nav-icon">⌂</span>Home</a>
-          <a class="nav-link {% if current_url contains '/fundamentals/' or current_url contains '/architecture/' or current_url contains '/data-structures/' %}is-active{% endif %}" href="{{ '/fundamentals/' | relative_url }}"><span class="nav-icon">▤</span>Fundamentals</a>
-          <a class="nav-link {% if current_url contains '/components/' %}is-active{% endif %}" href="{{ '/components/' | relative_url }}"><span class="nav-icon">◈</span>Deep Dive</a>
-          <a class="nav-link {% if current_url contains '/coding-round/' or current_url contains '/case-studies/' %}is-active{% endif %}" href="{{ '/coding-round/' | relative_url }}"><span class="nav-icon">&lt;/&gt;</span>Practice</a>
-          <a class="nav-link {% if current_url contains '/interview-prep/estimation-cheatsheet/' %}is-active{% endif %}" href="{{ '/interview-prep/estimation-cheatsheet/' | relative_url }}"><span class="nav-icon">□</span>Cheatsheets</a>
-          <a class="nav-link {% if current_url contains '/interview/' %}is-active{% endif %}" href="{{ '/interview/' | relative_url }}"><span class="nav-icon">♙</span>Roadmaps</a>
-          <a class="nav-link {% if current_url contains '/interview-prep/' %}is-active{% endif %}" href="{{ '/interview-prep/' | relative_url }}"><span class="nav-icon">▣</span>Interview Prep</a>
-          <a class="nav-link {% if current_url contains '/glossary/' %}is-active{% endif %}" href="{{ '/glossary/' | relative_url }}"><span class="nav-icon">⌕</span>Search</a>
 
-          {% if current_url contains '/data-structures/' %}
-            <p class="nav-kicker">Data Structures</p>
-            <a class="nav-link track-link {% if current_url == '/data-structures/' %}is-active{% endif %}" href="{{ '/data-structures/' | relative_url }}"><span class="nav-dot blue"></span>Introduction</a>
-            <a class="nav-link track-link {% if current_url contains '/data-structures/arrays-hashing/' %}is-active{% endif %}" href="{{ '/data-structures/arrays-hashing/' | relative_url }}"><span class="nav-dot violet"></span>Arrays &amp; Hashing</a>
-            <a class="nav-link track-link" href="{{ '/coding-round/patterns/two-pointers/' | relative_url }}"><span class="nav-dot green"></span>Two Pointers</a>
-            <a class="nav-link track-link" href="{{ '/coding-round/patterns/sliding-window/' | relative_url }}"><span class="nav-dot amber"></span>Sliding Window</a>
-            <a class="nav-link track-link {% if current_url contains '/data-structures/stacks-queues-heaps/' %}is-active{% endif %}" href="{{ '/data-structures/stacks-queues-heaps/' | relative_url }}"><span class="nav-dot red"></span>Stack</a>
-            <a class="nav-link track-link" href="{{ '/coding-round/patterns/binary-search/' | relative_url }}"><span class="nav-dot cyan"></span>Binary Search</a>
-            <a class="nav-link track-link" href="{{ '/coding-round/data-structures/linked-lists/' | relative_url }}"><span class="nav-dot blue"></span>Linked List</a>
-            <a class="nav-link track-link {% if current_url contains '/data-structures/trees-graphs/' %}is-active{% endif %}" href="{{ '/data-structures/trees-graphs/' | relative_url }}"><span class="nav-dot green"></span>Trees</a>
-            <a class="nav-link track-link" href="{{ '/coding-round/data-structures/heaps/' | relative_url }}"><span class="nav-dot amber"></span>Heaps / Priority Queue</a>
-            <a class="nav-link track-link" href="{{ '/coding-round/data-structures/graphs/' | relative_url }}"><span class="nav-dot violet"></span>Graphs</a>
-          {% elsif current_url contains '/architecture/' %}
-            <p class="nav-kicker">Fundamentals</p>
-            <a class="nav-link track-link {% if current_url == '/architecture/fundamentals/' %}is-active{% endif %}" href="{{ '/architecture/fundamentals/' | relative_url }}"><span class="nav-dot blue"></span>What is Architecture?</a>
-            <a class="nav-link track-link {% if current_url contains '/architecture/styles/' %}is-active{% endif %}" href="{{ '/architecture/styles/' | relative_url }}"><span class="nav-dot violet"></span>Architecture vs Design</a>
-            <a class="nav-link track-link {% if current_url contains '/architecture/reliability-operations/' %}is-active{% endif %}" href="{{ '/architecture/reliability-operations/' | relative_url }}"><span class="nav-dot green"></span>Why is Architecture Important?</a>
-            <a class="nav-link track-link {% if current_url contains '/architecture/patterns/' %}is-active{% endif %}" href="{{ '/architecture/patterns/' | relative_url }}"><span class="nav-dot amber"></span>Levels of Thinking</a>
-            <a class="nav-link track-link {% if current_url contains '/architecture/decision-records/' %}is-active{% endif %}" href="{{ '/architecture/decision-records/' | relative_url }}"><span class="nav-dot red"></span>Responsibilities</a>
-            <a class="nav-link track-link" href="{{ '/architecture/evolution/' | relative_url }}"><span class="nav-dot cyan"></span>Architecture Evolution</a>
-          {% else %}
-            <p class="nav-kicker">Fundamentals</p>
-            <a class="nav-link track-link {% if current_url contains '/data-structures/' %}is-active{% endif %}" href="{{ '/data-structures/' | relative_url }}"><span class="nav-dot blue"></span>Data Structures</a>
-            <a class="nav-link track-link {% if current_url contains '/architecture/' %}is-active{% endif %}" href="{{ '/architecture/' | relative_url }}"><span class="nav-dot violet"></span>Architecture Patterns</a>
-            <a class="nav-link track-link {% if current_url contains '/fundamentals/patterns/' %}is-active{% endif %}" href="{{ '/fundamentals/patterns/' | relative_url }}"><span class="nav-dot amber"></span>Design Patterns</a>
-            <a class="nav-link track-link {% if current_url contains '/fundamentals/' %}is-active{% endif %}" href="{{ '/fundamentals/' | relative_url }}"><span class="nav-dot green"></span>System Design Fundamentals</a>
+          <p class="nav-kicker">Learning Journeys</p>
+          <a class="nav-link track-link {% if current_url contains '/interview/' %}is-active{% endif %}" href="{{ '/interview/' | relative_url }}"><span class="nav-dot blue"></span>Roadmaps</a>
+          <a class="nav-link track-link {% if current_url contains '/interview-prep/' and current_url != '/interview-prep/estimation-cheatsheet/' %}is-active{% endif %}" href="{{ '/interview-prep/' | relative_url }}"><span class="nav-dot violet"></span>Interview Prep</a>
+
+          <p class="nav-kicker">Content Pillars</p>
+          <details class="nav-accordion" {% if current_url contains '/fundamentals/' or current_url contains '/data-structures/' or current_url contains '/architecture/' %}open{% endif %}>
+            <summary class="nav-link"><span class="nav-icon">▤</span>Fundamentals</summary>
+            <div class="nav-accordion-body">
+              <a class="nav-link track-link {% if current_url contains '/data-structures/' or current_url contains '/coding-round/data-structures/' %}is-active{% endif %}" href="{{ '/data-structures/' | relative_url }}"><span class="nav-dot blue"></span>Data Structures</a>
+              <a class="nav-link track-link {% if current_url == '/fundamentals/' %}is-active{% endif %}" href="{{ '/fundamentals/' | relative_url }}"><span class="nav-dot green"></span>System Design Fundamentals</a>
+              <a class="nav-link track-link {% if current_url contains '/fundamentals/patterns/' %}is-active{% endif %}" href="{{ '/fundamentals/patterns/' | relative_url }}"><span class="nav-dot amber"></span>Design Patterns</a>
+              <a class="nav-link track-link {% if current_url contains '/architecture/styles/' or current_url contains '/architecture/' %}is-active{% endif %}" href="{{ '/architecture/styles/' | relative_url }}"><span class="nav-dot violet"></span>Architecture Patterns</a>
+            </div>
+          </details>
+          {% if current_url contains '/data-structures/' or current_url contains '/coding-round/data-structures/' %}
+            <div class="nav-drilldown">
+              <a class="nav-link track-link {% if current_url == '/data-structures/' or current_url == '/coding-round/data-structures/' %}is-active{% endif %}" href="{{ '/data-structures/' | relative_url }}"><span class="nav-dot blue"></span>Overview</a>
+              <a class="nav-link track-link {% if current_url contains '/data-structures/arrays-hashing/' or current_url contains '/coding-round/data-structures/arrays/' or current_url contains '/coding-round/data-structures/hash-tables/' %}is-active{% endif %}" href="{{ '/data-structures/arrays-hashing/' | relative_url }}"><span class="nav-dot violet"></span>Arrays &amp; Hashing</a>
+              <a class="nav-link track-link {% if current_url contains '/data-structures/stacks-queues-heaps/' or current_url contains '/coding-round/data-structures/stacks/' or current_url contains '/coding-round/data-structures/queues/' or current_url contains '/coding-round/data-structures/heaps/' %}is-active{% endif %}" href="{{ '/data-structures/stacks-queues-heaps/' | relative_url }}"><span class="nav-dot red"></span>Stacks, Queues &amp; Heaps</a>
+              <a class="nav-link track-link {% if current_url contains '/data-structures/trees-graphs/' or current_url contains '/coding-round/data-structures/trees/' or current_url contains '/coding-round/data-structures/bst/' or current_url contains '/coding-round/data-structures/graphs/' or current_url contains '/coding-round/data-structures/trie/' %}is-active{% endif %}" href="{{ '/data-structures/trees-graphs/' | relative_url }}"><span class="nav-dot green"></span>Trees &amp; Graphs</a>
+              <a class="nav-link track-link {% if current_url contains '/data-structures/selection-complexity/' or current_url contains '/coding-round/data-structures/segment-trees/' or current_url contains '/coding-round/data-structures/fenwick-trees/' or current_url contains '/coding-round/data-structures/disjoint-set/' %}is-active{% endif %}" href="{{ '/data-structures/selection-complexity/' | relative_url }}"><span class="nav-dot cyan"></span>Advanced Topics</a>
+            </div>
           {% endif %}
+
+          <details class="nav-accordion" {% if current_url contains '/components/' %}open{% endif %}>
+            <summary class="nav-link"><span class="nav-icon">◈</span>Deep Dive</summary>
+            <div class="nav-accordion-body">
+              <a class="nav-link track-link {% if current_url == '/components/' %}is-active{% endif %}" href="{{ '/components/' | relative_url }}"><span class="nav-dot blue"></span>Overview</a>
+              <a class="nav-link track-link {% if current_url contains '/components/caching/' %}is-active{% endif %}" href="{{ '/components/caching/' | relative_url }}"><span class="nav-dot violet"></span>Database Caching</a>
+              <a class="nav-link track-link {% if current_url contains '/components/message-queues/' %}is-active{% endif %}" href="{{ '/components/message-queues/' | relative_url }}"><span class="nav-dot green"></span>Message Queues</a>
+              <a class="nav-link track-link {% if current_url contains '/components/databases/' %}is-active{% endif %}" href="{{ '/components/databases/' | relative_url }}"><span class="nav-dot amber"></span>Database Indexing</a>
+              <a class="nav-link track-link {% if current_url contains '/components/caching/consistent-hashing/' %}is-active{% endif %}" href="{{ '/components/caching/consistent-hashing/' | relative_url }}"><span class="nav-dot cyan"></span>Consistent Hashing</a>
+              <a class="nav-link track-link {% if current_url contains '/fundamentals/patterns/cqrs/' or current_url contains '/architecture/distributed-architectures/cqrs/' %}is-active{% endif %}" href="{{ '/fundamentals/patterns/cqrs/' | relative_url }}"><span class="nav-dot red"></span>CQRS Pattern</a>
+            </div>
+          </details>
+
+          <p class="nav-kicker">Practice &amp; Tools</p>
+          <a class="nav-link track-link {% if current_url == '/coding-round/' or current_url contains '/case-studies/' %}is-active{% endif %}" href="{{ '/coding-round/' | relative_url }}"><span class="nav-dot blue"></span>Practice Problems</a>
+          <a class="nav-link track-link {% if current_url contains '/coding-round/patterns/' %}is-active{% endif %}" href="{{ '/coding-round/patterns/' | relative_url }}"><span class="nav-dot violet"></span>Coding Patterns</a>
+          {% if current_url contains '/coding-round/patterns/' %}
+            <div class="nav-drilldown">
+              <a class="nav-link track-link {% if current_url == '/coding-round/patterns/' %}is-active{% endif %}" href="{{ '/coding-round/patterns/' | relative_url }}"><span class="nav-dot blue"></span>All Patterns</a>
+              <a class="nav-link track-link {% if current_url contains '/coding-round/patterns/two-pointers/' %}is-active{% endif %}" href="{{ '/coding-round/patterns/two-pointers/' | relative_url }}"><span class="nav-dot violet"></span>Two Pointers</a>
+              <a class="nav-link track-link {% if current_url contains '/coding-round/patterns/sliding-window/' %}is-active{% endif %}" href="{{ '/coding-round/patterns/sliding-window/' | relative_url }}"><span class="nav-dot green"></span>Sliding Window</a>
+              <a class="nav-link track-link {% if current_url contains '/coding-round/patterns/prefix-sum/' %}is-active{% endif %}" href="{{ '/coding-round/patterns/prefix-sum/' | relative_url }}"><span class="nav-dot amber"></span>Prefix Sum</a>
+              <a class="nav-link track-link {% if current_url contains '/coding-round/patterns/binary-search/' %}is-active{% endif %}" href="{{ '/coding-round/patterns/binary-search/' | relative_url }}"><span class="nav-dot cyan"></span>Binary Search</a>
+              <a class="nav-link track-link {% if current_url contains '/coding-round/patterns/fast-slow-pointers/' %}is-active{% endif %}" href="{{ '/coding-round/patterns/fast-slow-pointers/' | relative_url }}"><span class="nav-dot blue"></span>Fast &amp; Slow Pointers</a>
+              <a class="nav-link track-link {% if current_url contains '/coding-round/patterns/monotonic-stack/' %}is-active{% endif %}" href="{{ '/coding-round/patterns/monotonic-stack/' | relative_url }}"><span class="nav-dot red"></span>Monotonic Stack</a>
+              <a class="nav-link track-link {% if current_url contains '/coding-round/patterns/heap/' %}is-active{% endif %}" href="{{ '/coding-round/patterns/heap/' | relative_url }}"><span class="nav-dot amber"></span>Heap</a>
+              <a class="nav-link track-link {% if current_url contains '/coding-round/patterns/bfs/' %}is-active{% endif %}" href="{{ '/coding-round/patterns/bfs/' | relative_url }}"><span class="nav-dot green"></span>BFS</a>
+              <a class="nav-link track-link {% if current_url contains '/coding-round/patterns/dfs/' %}is-active{% endif %}" href="{{ '/coding-round/patterns/dfs/' | relative_url }}"><span class="nav-dot violet"></span>DFS</a>
+              <a class="nav-link track-link {% if current_url contains '/coding-round/patterns/backtracking/' %}is-active{% endif %}" href="{{ '/coding-round/patterns/backtracking/' | relative_url }}"><span class="nav-dot cyan"></span>Backtracking</a>
+              <a class="nav-link track-link {% if current_url contains '/coding-round/patterns/greedy/' %}is-active{% endif %}" href="{{ '/coding-round/patterns/greedy/' | relative_url }}"><span class="nav-dot green"></span>Greedy</a>
+              <a class="nav-link track-link {% if current_url contains '/coding-round/patterns/dynamic-programming/' %}is-active{% endif %}" href="{{ '/coding-round/patterns/dynamic-programming/' | relative_url }}"><span class="nav-dot blue"></span>Dynamic Programming</a>
+            </div>
+          {% endif %}
+          <a class="nav-link track-link {% if current_url contains '/interview-prep/estimation-cheatsheet/' %}is-active{% endif %}" href="{{ '/interview-prep/estimation-cheatsheet/' | relative_url }}"><span class="nav-dot amber"></span>Cheatsheets</a>
+          <a class="nav-link track-link {% if current_url contains '/coding-round/mock-interviews/' %}is-active{% endif %}" href="{{ '/coding-round/mock-interviews/' | relative_url }}"><span class="nav-dot green"></span>Mock Interviews</a>
         </nav>
 
         <div class="sidebar-cta">
@@ -130,6 +166,10 @@
             <nav class="topbar-crumbs" aria-label="Breadcrumb">
               {% if current_url contains '/architecture/' %}
                 <a href="{{ '/fundamentals/' | relative_url }}">Fundamentals</a>
+              {% elsif current_url contains '/coding-round/patterns/' %}
+                <a href="{{ '/coding-round/patterns/' | relative_url }}">Coding Patterns</a>
+              {% elsif current_url contains '/coding-round/data-structures/' %}
+                <a href="{{ '/coding-round/data-structures/' | relative_url }}">Data Structures</a>
               {% elsif current_url contains '/data-structures/' %}
                 <a href="{{ '/data-structures/' | relative_url }}">Data Structures</a>
               {% elsif current_url contains '/components/' %}
@@ -147,7 +187,7 @@
             <input type="search" placeholder="Search topics, patterns, problems..." aria-label="Search the guide" />
           </label>
           <div class="top-actions">
-            {% if inferred_kind == 'home' or solution or concept or is_deep_index or is_deep_post %}
+            {% if inferred_kind == 'home' or solution or concept or is_deep_index or is_deep_post or is_data_topic or is_pattern_topic %}
               <button class="icon-button rail-toggle" type="button" aria-label="Toggle right panel" aria-expanded="true" data-rail-toggle>☰</button>
             {% endif %}
             <button class="icon-button" type="button" aria-label="Toggle appearance">☼</button>
@@ -157,7 +197,7 @@
         </header>
 
         <main class="content-panel">
-          {% unless inferred_kind == 'home' %}
+          {% unless inferred_kind == 'home' or is_data_topic or is_pattern_topic %}
             <div class="breadcrumbs" aria-label="Breadcrumb">
               <a href="{{ '/' | relative_url }}">Home</a>
               {% if current_url contains '/fundamentals/patterns/' %}
@@ -208,7 +248,7 @@
                 <span>Resources</span>
               {% endif %}
             </div>
-            {% unless concept or is_deep_index or is_deep_post %}
+            {% unless concept or is_deep_index or is_deep_post or is_data_topic or is_pattern_topic or is_data_overview %}
             <header class="doc-header">
               <div>
                 <h1>{{ solution.title | default: page.title }}</h1>
@@ -230,6 +270,12 @@
             {% include solution.html solution=solution %}
           {% elsif concept %}
             {% include concept.html concept=concept %}
+          {% elsif is_data_topic %}
+            {% include data_structure_topic.html content=rendered_content %}
+          {% elsif is_pattern_topic %}
+            {% include data_structure_topic.html content=rendered_content %}
+          {% elsif is_data_overview %}
+            {% include data_structure_overview.html content=rendered_content %}
           {% elsif is_deep_index %}
             {% include deep_dive_index.html content=rendered_content %}
           {% elsif is_deep_post %}
@@ -248,7 +294,7 @@
               </nav>
             {% endif %}
           {% endif %}
-          {% unless solution or concept or is_deep_index or is_deep_post %}
+          {% unless solution or concept or is_deep_index or is_deep_post or is_data_topic or is_pattern_topic or is_data_overview %}
             <article class="page-content {{ inferred_kind }}-content">
               {{ rendered_content }}
             </article>
@@ -429,7 +475,7 @@
 
           {% if page.problem_groups %}
             <section class="rail-card problem-rail-card">
-              <div class="rail-card-title">Problems to Try</div>
+              <div class="rail-card-title">Practice Roadmap</div>
               {% for group in page.problem_groups %}
                 <div class="problem-tier {{ group.level | downcase }}">
                   <strong>{{ group.level }}</strong>
@@ -443,6 +489,17 @@
               {% endfor %}
             </section>
           {% endif %}
+
+          <section class="rail-card followup-rail-card">
+            <div class="rail-card-title">Interview Follow Ups</div>
+            <ul>
+              <li>Why this approach over the simpler alternative?</li>
+              <li>What changes when memory is limited?</li>
+              <li>What happens when input is skewed?</li>
+              <li>How would you explain the tradeoff?</li>
+              <li>What breaks at 10x scale?</li>
+            </ul>
+          </section>
 
           {% if page.related_topics %}
             <section class="rail-card related-rail-card">
@@ -460,6 +517,14 @@
             <p>{{ page.go_deeper_text | default: 'Explore in-depth articles, diagrams, and real-world examples.' }}</p>
             <a class="rail-button" href="{{ page.go_deeper_url | default: '/components/' | relative_url }}">Explore Now →</a>
           </section>
+        </div>
+      </aside>
+      {% elsif is_data_topic or is_pattern_topic %}
+      <aside class="right-rail data-topic-rail" aria-label="Topic navigation">
+        <div class="right-rail-inner">
+          <nav class="page-toc" data-ds-toc></nav>
+
+          <div data-ds-rail-slot></div>
         </div>
       </aside>
       {% endif %}
@@ -568,6 +633,331 @@
         tab.addEventListener("click", () => {
           solutionTabs.forEach((item) => item.classList.remove("is-active"));
           tab.classList.add("is-active");
+        });
+      });
+
+      const dataTopicContent = document.querySelector("[data-ds-content]");
+      if (dataTopicContent) {
+        const slugify = (value) => value.toLowerCase().replace(/&/g, "and").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+        const railSectionTitles = new Set(["Quick Summary", "Try it Yourself", "Related Data Structures", "Related Topics", "Go Deeper"]);
+        const tabLabels = {
+          "Theory": "Overview",
+          "Recognition Signals": "Signals",
+          "Template": "Template",
+          "Practice": "Practice",
+          "Complexity": "Complexity",
+          "Practice Problems": "Practice Problems",
+          "Key Takeaways": "false"
+        };
+        const tocLabels = {
+          "Theory": "Introduction",
+          "Arrays": "What are Arrays?",
+          "Hash Tables": "What is Hashing?",
+          "Practice": "Practical Examples",
+          "Complexity": "Complexity Summary"
+        };
+
+        if (!dataTopicContent.querySelector(".ds-section")) {
+          let currentSection = null;
+          Array.from(dataTopicContent.children).forEach((child) => {
+            if (child.tagName === "H2") {
+              currentSection = document.createElement("section");
+              const title = child.textContent.trim();
+              currentSection.className = "ds-section";
+              currentSection.id = child.id || slugify(title);
+              child.removeAttribute("id");
+              currentSection.dataset.title = title;
+              currentSection.dataset.tab = tabLabels[title] || title;
+              currentSection.dataset.toc = tocLabels[title] || title;
+              if (railSectionTitles.has(title)) {
+                currentSection.classList.add("ds-rail-source");
+                currentSection.dataset.tab = "false";
+                currentSection.dataset.toc = "false";
+              }
+              child.before(currentSection);
+            }
+
+            if (currentSection) currentSection.append(child);
+          });
+        }
+
+        const groupByHeadings = (section, options = {}) => {
+          const headings = Array.from(section.querySelectorAll(":scope > h3"));
+          if (!headings.length) return;
+          const grid = document.createElement("div");
+          grid.className = options.gridClass || "ds-grid four";
+          headings[0].before(grid);
+
+          headings.forEach((heading) => {
+            const card = document.createElement(options.tag || "article");
+            card.className = options.cardClass || "ds-card";
+            grid.append(card);
+            card.append(heading);
+
+            let next = grid.nextElementSibling;
+            while (next && next.tagName !== "H3") {
+              const moving = next;
+              next = next.nextElementSibling;
+              card.append(moving);
+            }
+          });
+        };
+
+        const enhancePractice = (section) => {
+          const examples = Array.from(section.querySelectorAll(":scope > h3"));
+          if (!examples.length) return;
+          const tabs = document.createElement("nav");
+          tabs.className = "ds-practical-tabs";
+          tabs.setAttribute("aria-label", "Practical sections");
+          tabs.innerHTML = '<a class="is-active" href="#practice">Examples</a>';
+          section.querySelector("h2")?.after(tabs);
+
+          examples.forEach((heading) => {
+            const article = document.createElement("article");
+            article.className = "ds-example";
+            const copy = document.createElement("div");
+            copy.className = "ds-example-copy";
+            const codeCard = document.createElement("figure");
+            codeCard.className = "ds-code-card";
+            heading.before(article);
+            article.append(copy, codeCard);
+            copy.append(heading);
+
+            let next = article.nextElementSibling;
+            while (next && next.tagName !== "H3") {
+              const moving = next;
+              next = next.nextElementSibling;
+              if (moving.tagName === "PRE") {
+                const caption = document.createElement("figcaption");
+                caption.innerHTML = "<span>Python</span><button type=\"button\">Copy</button>";
+                codeCard.append(caption, moving);
+              } else if (/^(Time|Space):/i.test(moving.textContent.trim())) {
+                let runRow = codeCard.querySelector(".ds-run-row");
+                if (!runRow) {
+                  runRow = document.createElement("div");
+                  runRow.className = "ds-run-row";
+                  runRow.innerHTML = "<button type=\"button\">Run Code</button><span></span>";
+                  codeCard.append(runRow);
+                }
+                runRow.querySelector("span").textContent = `${runRow.querySelector("span").textContent} ${moving.textContent.trim()}`.trim();
+                moving.remove();
+              } else {
+                copy.append(moving);
+              }
+            }
+          });
+        };
+
+        const enhancePracticeProblems = (section) => {
+          groupByHeadings(section, { gridClass: "ds-grid three ai-practice-grid", cardClass: "ai-practice-card" });
+          section.querySelectorAll(".ai-practice-card").forEach((card) => {
+            const level = card.querySelector("h3")?.textContent.trim().toLowerCase();
+            if (level) card.classList.add(level);
+            const practiceUrl = "{{ page.practice_url | default: '' }}";
+            if (practiceUrl) {
+              const link = document.createElement("a");
+              link.href = practiceUrl;
+              link.textContent = `View ${card.querySelector("h3")?.textContent.trim() || "Problems"} ->`;
+              card.append(link);
+            }
+          });
+        };
+
+        const enhanceTakeaways = (section) => {
+          const card = document.createElement("div");
+          card.className = "ds-takeaway-card";
+          const copy = document.createElement("div");
+          const visual = document.createElement("div");
+          visual.className = "ds-image-placeholder";
+          visual.innerHTML = "<span>Image placeholder</span>";
+          section.querySelector("h2")?.after(card);
+          card.append(copy, visual);
+          Array.from(section.children).forEach((child) => {
+            if (child !== section.querySelector("h2") && child !== card) copy.append(child);
+          });
+        };
+
+        const enhanceRail = (section) => {
+          section.classList.remove("ds-section");
+          const card = document.createElement("section");
+          card.className = "rail-card";
+          const title = section.querySelector("h2")?.textContent.trim() || "";
+          const cardTitle = document.createElement("div");
+          cardTitle.className = "rail-card-title";
+          cardTitle.textContent = title;
+          card.append(cardTitle);
+          Array.from(section.children).forEach((child) => {
+            if (child.tagName !== "H2") card.append(child);
+          });
+          section.replaceChildren(card);
+        };
+
+        Array.from(dataTopicContent.querySelectorAll(".ds-section")).forEach((section) => {
+          const title = section.dataset.title || section.querySelector("h2")?.textContent.trim();
+          if (title === "Theory" || title === "Common Patterns" || title === "Recognition Signals" || title === "Common Mistakes") groupByHeadings(section, { gridClass: "ds-grid four" });
+          if (!["Theory", "Common Patterns", "Recognition Signals", "Common Mistakes", "Practice", "Template", "Complexity", "Practice Problems", "Key Takeaways"].includes(title) && !railSectionTitles.has(title)) {
+            groupByHeadings(section, { gridClass: "ds-grid two" });
+          }
+          if (title === "Practice") enhancePractice(section);
+          if (title && title.includes("Complexity")) section.classList.add("ds-complexity");
+          if (title === "Practice Problems") enhancePracticeProblems(section);
+          if (title === "Key Takeaways") enhanceTakeaways(section);
+          if (railSectionTitles.has(title)) enhanceRail(section);
+        });
+
+        const sections = Array.from(dataTopicContent.querySelectorAll(".ds-section[id]"));
+        const tabs = document.querySelector("[data-ds-tabs]");
+        const toc = document.querySelector("[data-ds-toc]");
+        const railSlot = document.querySelector("[data-ds-rail-slot]");
+
+        sections.forEach((section, index) => {
+          const heading = section.querySelector("h2, h3");
+          const label = section.dataset.tab || section.dataset.toc || heading?.textContent?.trim();
+          if (!label) return;
+
+          if (tabs && section.dataset.tab !== "false") {
+            const tab = document.createElement("a");
+            tab.href = `#${section.id}`;
+            tab.textContent = label;
+            if (index === 0) tab.classList.add("is-active");
+            tabs.append(tab);
+          }
+
+          if (toc && section.dataset.toc !== "false") {
+            const link = document.createElement("a");
+            link.href = `#${section.id}`;
+            link.textContent = `${index + 1}. ${section.dataset.toc || label}`;
+            if (index === 0) link.classList.add("is-active");
+            toc.append(link);
+          }
+        });
+
+        const activateSectionLink = () => {
+          let active = sections[0];
+          for (let index = sections.length - 1; index >= 0; index -= 1) {
+            if (sections[index].getBoundingClientRect().top <= 180) {
+              active = sections[index];
+              break;
+            }
+          }
+          if (!active) return;
+          document.querySelectorAll("[data-ds-tabs] a, [data-ds-toc] a").forEach((link) => {
+            link.classList.toggle("is-active", link.getAttribute("href") === `#${active.id}`);
+          });
+        };
+
+        window.addEventListener("scroll", activateSectionLink, { passive: true });
+        activateSectionLink();
+
+        if (railSlot) {
+          dataTopicContent.querySelectorAll(".ds-rail-source").forEach((source) => {
+            Array.from(source.children).forEach((child) => railSlot.append(child));
+            source.remove();
+          });
+        }
+      }
+
+      const overviewContent = document.querySelector("[data-overview-content]");
+      if (overviewContent) {
+        const slugify = (value) => value.toLowerCase().replace(/&/g, "and").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+
+        Array.from(overviewContent.children).forEach((child) => {
+          if (child.tagName === "H2") {
+            const title = child.textContent.trim();
+            const section = document.createElement("section");
+            section.className = "overview-section";
+            section.id = child.id || slugify(title);
+            child.removeAttribute("id");
+            child.before(section);
+            section.append(child);
+
+            let next = section.nextElementSibling;
+            while (next && next.tagName !== "H2") {
+              const moving = next;
+              next = next.nextElementSibling;
+              section.append(moving);
+            }
+          }
+        });
+
+        overviewContent.querySelectorAll(".overview-section").forEach((section) => {
+          const title = section.querySelector("h2")?.textContent.trim();
+          if (title !== "Topics") return;
+
+          const grid = document.createElement("div");
+          grid.className = "overview-topic-grid";
+          section.querySelector("h2")?.after(grid);
+
+          Array.from(section.querySelectorAll(":scope > h3")).forEach((heading) => {
+            const card = document.createElement("a");
+            card.className = "overview-topic-card";
+            card.href = "#";
+            grid.append(card);
+            card.append(heading);
+
+            let next = grid.nextElementSibling;
+            while (next && next.tagName !== "H3") {
+              const moving = next;
+              next = next.nextElementSibling;
+              const text = moving.textContent.trim();
+              const urlMatch = text.match(/^URL:\s*(\S+)/i);
+              if (urlMatch) {
+                card.href = urlMatch[1];
+                moving.remove();
+              } else {
+                card.append(moving);
+              }
+            }
+
+            const arrow = document.createElement("span");
+            arrow.className = "overview-topic-arrow";
+            arrow.textContent = "Explore ->";
+            card.append(arrow);
+          });
+        });
+      }
+
+      const cardify = (rootSelector) => {
+        document.querySelectorAll(rootSelector).forEach((root) => {
+          if (root.matches("[data-ds-content]")) return;
+          const children = Array.from(root.children);
+          let current = null;
+
+          children.forEach((child) => {
+            const isSectionHeading = /^H2$/i.test(child.tagName);
+            const isAlreadyManaged = child.closest(".content-card, .ai-learn-grid, .ai-two-column, .ai-pattern-grid, .ai-callout");
+
+            if (isSectionHeading && !isAlreadyManaged) {
+              current = document.createElement("section");
+              current.className = "content-card learning-section-card";
+              child.before(current);
+              current.appendChild(child);
+              return;
+            }
+
+            if (current && !isAlreadyManaged) {
+              current.appendChild(child);
+            }
+          });
+        });
+      };
+
+      cardify(".deep-post-content");
+      cardify(".page-content");
+
+      document.querySelectorAll("pre").forEach((pre) => {
+        if (pre.closest(".ai-code-card, .ds-code-card, .mermaid") || pre.parentElement?.classList.contains("code-shell")) return;
+        const shell = document.createElement("div");
+        shell.className = "code-shell";
+        const button = document.createElement("button");
+        button.type = "button";
+        button.textContent = "Copy";
+        pre.before(shell);
+        shell.append(button, pre);
+        button.addEventListener("click", async () => {
+          await navigator.clipboard.writeText(pre.textContent);
+          button.textContent = "Copied";
+          window.setTimeout(() => { button.textContent = "Copy"; }, 1200);
         });
       });
     </script>
