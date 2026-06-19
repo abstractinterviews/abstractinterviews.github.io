@@ -1,9 +1,13 @@
 ---
 layout: default
-title: "Queues"
-page_type: data-structure-topic
-track: "Data Structures"
-subtitle: "First-in-first-out state for breadth-first traversal, buffering, and level-by-level processing."
+title: "Queue"
+kind: topic
+renderer: app
+track: data-structures
+description: "A linear data structure that follows first in, first out order for traversal, buffering, and level-by-level processing."
+hero:
+  visual: queue
+tags: [linear-data-structure, fifo, beginner-friendly]
 read_time: "12 min read"
 difficulty: "Core"
 practice_count: 26

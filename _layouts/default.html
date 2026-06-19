@@ -11,11 +11,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;750;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}" />
+    <script src="{{ '/assets/js/ux.js' | relative_url }}" defer></script>
   </head>
   <body>
     {% assign current_url = page.url %}
     {% assign inferred_kind = 'concept' %}
-    {% if current_url == '/' %}
+    {% if page.kind %}
+      {% assign inferred_kind = page.kind %}
+    {% elsif current_url == '/' %}
       {% assign inferred_kind = 'home' %}
     {% elsif page.page_type %}
       {% assign inferred_kind = page.page_type %}
@@ -54,7 +57,11 @@
     {% if inferred_kind == 'coding-pattern-topic' %}
       {% assign is_pattern_topic = true %}
     {% endif %}
-    <div class="app-shell page-{{ inferred_kind }} {% if inferred_kind == 'home' or solution or concept or is_deep_index or is_deep_post or is_data_topic or is_pattern_topic %}has-right-rail{% endif %}">
+    {% assign is_modern_page = false %}
+    {% if page.renderer == 'app' %}
+      {% assign is_modern_page = true %}
+    {% endif %}
+    <div class="app-shell page-{{ inferred_kind }} {% if is_modern_page and inferred_kind != 'home' %}has-right-rail{% elsif is_modern_page == false and inferred_kind == 'home' or solution or concept or is_deep_index or is_deep_post or is_data_topic or is_pattern_topic %}has-right-rail{% endif %}">
       <header class="mobile-appbar">
         {% unless inferred_kind == 'home' %}
           <button class="mobile-icon-button" type="button" aria-label="Go back" onclick="history.back()">‹</button>
@@ -187,7 +194,8 @@
             <input type="search" placeholder="Search topics, patterns, problems..." aria-label="Search the guide" />
           </label>
           <div class="top-actions">
-            {% if inferred_kind == 'home' or solution or concept or is_deep_index or is_deep_post or is_data_topic or is_pattern_topic %}
+            {% if is_modern_page and inferred_kind == 'home' %}
+            {% elsif inferred_kind == 'home' or solution or concept or is_deep_index or is_deep_post or is_data_topic or is_pattern_topic %}
               <button class="icon-button rail-toggle" type="button" aria-label="Toggle right panel" aria-expanded="true" data-rail-toggle>☰</button>
             {% endif %}
             <button class="icon-button" type="button" aria-label="Toggle appearance">☼</button>
@@ -197,6 +205,15 @@
         </header>
 
         <main class="content-panel">
+          {% if is_modern_page %}
+            {% if inferred_kind == 'home' %}
+              {% include page/home.html content=rendered_content %}
+            {% elsif inferred_kind == 'track' %}
+              {% include page/track.html content=rendered_content %}
+            {% else %}
+              {% include page/article.html content=rendered_content %}
+            {% endif %}
+          {% else %}
           {% unless inferred_kind == 'home' or is_data_topic or is_pattern_topic %}
             <div class="breadcrumbs" aria-label="Breadcrumb">
               <a href="{{ '/' | relative_url }}">Home</a>
@@ -336,10 +353,30 @@
               {% endif %}
             </nav>
           {% endunless %}
+          {% endif %}
         </main>
       </div>
 
-      {% if inferred_kind == 'home' %}
+      {% if is_modern_page and inferred_kind != 'home' %}
+      <aside class="right-rail ux-context-rail" aria-label="Page context">
+        <div class="right-rail-inner">
+          {% include components/catalog_toc.html %}
+          {% if page.catalog_entry.related.size > 0 %}
+            <section class="rail-card ux-related-card">
+              <h2>Related Topics</h2>
+              <nav>
+                {% for item in page.catalog_entry.related limit:5 %}
+                  <a href="{{ item.url | relative_url }}">{{ item.title }} <span>→</span></a>
+                {% endfor %}
+              </nav>
+            </section>
+          {% endif %}
+          {% if page.catalog_entry.next %}
+            <a class="rail-card ux-next-card" href="{{ page.catalog_entry.next | relative_url }}"><span>Recommended Next</span><strong>Continue the learning path</strong><b>→</b></a>
+          {% endif %}
+        </div>
+      </aside>
+      {% elsif inferred_kind == 'home' %}
       <aside class="right-rail" aria-label="Page summary">
         <div class="right-rail-inner">
           <section class="rail-card popular-card">

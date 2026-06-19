@@ -1,4 +1,5 @@
 scripts/**
+!scripts/validate_content.rb
 _site/
 .sass-cache/
 .jekyll-cache/

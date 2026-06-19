@@ -1,7 +1,10 @@
 ---
 layout: default
 title: "Architecture Styles"
-page_type: deep-dive-index
+kind: track
+renderer: app
+track: architecture-patterns
+description: "Common architectural patterns used to design scalable, reliable, and maintainable systems."
 deep_dive_id: styles
 deep_title: "Architecture Styles"
 subtitle: "Monoliths, services, and layered domain boundaries."
@@ -95,8 +98,6 @@ categories: [interview-prep]
 difficulty: Intermediate
 reading_time: 5
 ---
-# Architecture Styles
-
 ## Topic: How To Use This Section
 
 Use this section as an interview map. Start with the simplest architecture that satisfies the requirements, then move to a more specialized option only when constraints justify it.

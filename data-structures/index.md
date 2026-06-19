@@ -1,9 +1,13 @@
 ---
 layout: default
 title: "Data Structures"
-page_type: data-structure-overview
-track: "Documentation"
-subtitle: "Core data structures, selection rules, and interview usage patterns. Use this overview to choose the article you need next."
+kind: track
+renderer: app
+track: data-structures
+description: "Learn the most important data structures, their operations, implementations, and real-world applications."
+hero:
+  visual: data-structures
+tags: [coding-interviews, fundamentals]
 date: 2026-06-08
 slug: index
 categories: [interview-prep]

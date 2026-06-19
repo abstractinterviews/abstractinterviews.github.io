@@ -1,0 +1,39 @@
+<article class="ux-track-page">
+  {% include components/catalog_breadcrumbs.html %}
+  <header class="ux-track-hero">
+    <div>
+      <span class="ux-eyebrow">{{ page.track | replace: '-', ' ' }}</span>
+      <h1>{{ page.title }}</h1>
+      <p>{{ page.description | default: page.subtitle | default: page.catalog_entry.description }}</p>
+      <div class="ux-badges">
+        {% if page.difficulty %}<span>{{ page.difficulty }}</span>{% endif %}
+        <span>{{ page.track | replace: '-', ' ' | capitalize }}</span>
+        <span>Interview Focused</span>
+      </div>
+    </div>
+    <div class="ux-track-visual" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
+  </header>
+  {% include components/section_tabs.html %}
+
+  <section class="ux-track-topics">
+    <div class="ux-section-heading"><h2>Core Topics</h2><span>{{ page.title }} learning path</span></div>
+    <div class="ux-topic-grid">
+      {% assign topic_count = 0 %}
+      {% for item in site.data.catalog.pages %}
+        {% if item.track == page.track and item.kind == 'topic' and item.url != page.url and topic_count < 8 %}
+          <a class="ux-topic-card" href="{{ item.url | relative_url }}">
+            <span class="ux-card-icon tone-{% cycle 'blue', 'cyan', 'violet', 'amber', 'green', 'red' %}">{% cycle '◇', '⌁', '▦', '▰', '♣', '⌘' %}</span>
+            <strong>{{ item.title }}</strong>
+            <p>{{ item.description | truncate: 104 }}</p>
+            <small>{{ item.reading_time }} min read</small>
+          </a>
+          {% assign topic_count = topic_count | plus: 1 %}
+        {% endif %}
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="ux-markdown-section page-content">
+    {{ include.content }}
+  </section>
+</article>

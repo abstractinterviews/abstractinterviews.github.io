@@ -1,0 +1,12 @@
+{% assign entry = page.catalog_entry %}
+{% if entry and entry.breadcrumbs.size > 1 %}
+  <nav class="ux-breadcrumbs" aria-label="Breadcrumb">
+    {% for crumb in entry.breadcrumbs %}
+      {% if forloop.last %}
+        <span aria-current="page">{{ crumb.title }}</span>
+      {% else %}
+        <a href="{{ crumb.url | relative_url }}">{{ crumb.title }}</a><span aria-hidden="true">›</span>
+      {% endif %}
+    {% endfor %}
+  </nav>
+{% endif %}

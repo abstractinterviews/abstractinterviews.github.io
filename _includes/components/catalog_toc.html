@@ -1,0 +1,11 @@
+{% assign headings = page.catalog_entry.headings %}
+{% if headings.size > 0 %}
+  <section class="rail-card ux-toc-card">
+    <h2>On This Page</h2>
+    <nav class="page-toc" data-catalog-toc>
+      {% for heading in headings %}
+        <a class="level-{{ heading.level }}{% if forloop.first %} is-active{% endif %}" href="#{{ heading.id }}">{{ heading.title }}</a>
+      {% endfor %}
+    </nav>
+  </section>
+{% endif %}

@@ -1,7 +1,10 @@
 ---
 layout: default
-title: "Fundamentals"
-page_type: deep-dive-index
+title: "System Design"
+kind: track
+renderer: app
+track: system-design
+description: "Learn how to design scalable, reliable, and efficient systems from core concepts through architecture patterns."
 deep_dive_id: fundamentals
 deep_title: "Deep Dive: Fundamentals"
 subtitle: "Core mental models for scaling, reliability, consistency, estimation, and distributed design patterns."
@@ -66,8 +69,6 @@ related_concepts:
   - title: "Case Studies"
     url: "/case-studies/"
 ---
-
-# Fundamentals
 
 This section builds the base mental models needed for every system design interview, from latency and availability to capacity and failure handling.
 

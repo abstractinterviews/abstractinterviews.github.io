@@ -1,0 +1,8 @@
+{% assign headings = page.catalog_entry.headings | where: "level", 2 %}
+{% if headings.size > 1 %}
+  <nav class="ux-section-tabs" aria-label="Page sections">
+    {% for heading in headings limit:8 %}
+      <a class="{% if forloop.first %}is-active{% endif %}" href="#{{ heading.id }}">{{ heading.title }}</a>
+    {% endfor %}
+  </nav>
+{% endif %}

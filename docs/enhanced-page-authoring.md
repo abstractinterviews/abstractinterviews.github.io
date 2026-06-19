@@ -1,5 +1,36 @@
 # Enhanced Page Authoring Guide
 
+## Markdown-first app pages
+
+New and migrated pages use one of four semantic kinds: `home`, `track`, `topic`, or `case-study`. Use `renderer: app` while the legacy renderers remain available during migration.
+
+Minimal topic front matter:
+
+```yaml
+---
+title: Queue
+kind: topic
+renderer: app
+track: data-structures
+description: First-in-first-out state for traversal and buffering.
+difficulty: beginner
+tags: [linear-data-structure, fifo]
+---
+```
+
+Author content with H2/H3 headings, paragraphs, lists, tables, GFM alerts, fenced code, Mermaid, and images. H2 headings generate the section tabs and H2/H3 headings generate the right-rail table of contents. Do not repeat the title as an H1 and do not use structural HTML in Markdown.
+
+Track pages use the same contract with `kind: track`. Child cards, counts, descriptions, reading time, breadcrumbs, recent pages, and related pages come from the generated in-memory catalog.
+
+Run these checks before committing:
+
+```powershell
+ruby scripts/validate_content.rb
+bundle exec jekyll build --trace
+```
+
+The sections below document the legacy enhanced renderers and remain relevant until their migration is complete.
+
 Use this guide when upgrading ordinary Markdown pages into the richer theme formats used by the guide. Keep content in the page Markdown. Generated files under `_data/solutions/` and `_data/concepts/` are build artifacts and should not be edited by hand.
 
 ## General Rules

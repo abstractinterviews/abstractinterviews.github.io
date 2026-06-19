@@ -1,0 +1,19 @@
+<article class="ux-article-page" data-reading-page="{{ page.url }}" data-reading-title="{{ page.title | escape }}">
+  {% include components/catalog_breadcrumbs.html %}
+  <header class="ux-article-hero">
+    <div>
+      <span class="ux-eyebrow">{{ page.track | replace: '-', ' ' }}</span>
+      <div class="ux-title-row"><h1>{{ page.title }}</h1>{% if page.difficulty %}<span class="ux-difficulty">{{ page.difficulty }}</span>{% endif %}</div>
+      <p>{{ page.description | default: page.subtitle | default: page.catalog_entry.description }}</p>
+      <div class="ux-badges">
+        {% for tag in page.tags limit:4 %}<span>{{ tag | replace: '-', ' ' }}</span>{% endfor %}
+        <span>{{ page.catalog_entry.reading_time }} min read</span>
+      </div>
+    </div>
+    <div class="ux-article-visual visual-{{ page.hero.visual | default: page.track }}" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+  </header>
+  {% include components/section_tabs.html %}
+  <div class="ux-article-body page-content">
+    {{ include.content }}
+  </div>
+</article>

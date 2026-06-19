@@ -1,14 +1,17 @@
 ---
 layout: default
-title: "URL Shortener Design - Solution"
-page_type: solution
+title: "Design TinyURL"
+kind: case-study
+renderer: app
+track: system-design
 solution_id: url_shortener
-subtitle: "Design a URL shortening service like bit.ly."
+description: "Design a URL shortening service that converts a long URL into a short alias and redirects to the original URL."
 difficulty: Medium
+hero:
+  visual: system-design
+tags: [system-design, scalability, high-availability, real-world-system]
 active_tab: overview
 ---
-
-# URL Shortener Design - Solution
 
 Design a URL shortening service like bit.ly.
 

@@ -1,0 +1,77 @@
+<article class="ux-home">
+  <header class="ux-home-hero">
+    <div>
+      <span class="ux-eyebrow">Structured interview preparation</span>
+      <h1>Master Interviews<br />Through Structured Learning</h1>
+      <p>{{ page.description | default: "Everything you need to crack technical interviews, from fundamentals to system design." }}</p>
+      <div class="ux-actions">
+        <a class="ux-button primary" href="{{ '/data-structures/' | relative_url }}">Start Learning <span>→</span></a>
+        <a class="ux-button" href="#popular-tracks">Explore Topics</a>
+      </div>
+    </div>
+    <div class="ux-learning-stairs" aria-label="Learning journey from data structures to architecture">
+      <a class="step step-1" href="{{ '/data-structures/' | relative_url }}"><span>◇</span><strong>Data<br />Structures</strong></a>
+      <a class="step step-2" href="{{ '/coding-round/algorithms/' | relative_url }}"><span>&lt;/&gt;</span><strong>Algorithms</strong></a>
+      <a class="step step-3" href="{{ '/coding-round/' | relative_url }}"><span>✦</span><strong>Problem<br />Solving</strong></a>
+      <a class="step step-4" href="{{ '/components/' | relative_url }}"><span>⌘</span><strong>Low Level<br />Design</strong></a>
+      <a class="step step-5" href="{{ '/fundamentals/' | relative_url }}"><span>☁</span><strong>High Level<br />Design</strong></a>
+      <a class="step step-6" href="{{ '/architecture/' | relative_url }}"><span>▥</span><strong>Architecture</strong></a>
+    </div>
+  </header>
+
+  <section class="ux-dashboard-section" id="learning-roadmap">
+    <div class="ux-section-heading"><h2>Your Learning Roadmap</h2><a href="{{ '/interview/' | relative_url }}">View Full Roadmap →</a></div>
+    <ol class="ux-roadmap">
+      <li><a href="{{ '/data-structures/' | relative_url }}"><span>◇</span>Data Structures</a></li>
+      <li><a href="{{ '/coding-round/algorithms/' | relative_url }}"><span>&lt;/&gt;</span>Algorithms</a></li>
+      <li><a href="{{ '/coding-round/' | relative_url }}"><span>✦</span>Problem Solving</a></li>
+      <li><a href="{{ '/components/' | relative_url }}"><span>⌘</span>Low Level Design</a></li>
+      <li><a href="{{ '/fundamentals/' | relative_url }}"><span>☁</span>High Level Design</a></li>
+      <li><a href="{{ '/architecture/' | relative_url }}"><span>▥</span>Architecture</a></li>
+    </ol>
+  </section>
+
+  <section class="ux-dashboard-section" id="popular-tracks">
+    <div class="ux-section-heading"><h2>Popular Tracks</h2><a href="{{ '/fundamentals/' | relative_url }}">Browse All Topics →</a></div>
+    <div class="ux-track-cards">
+      {% assign featured_tracks = site.data.catalog.tracks | where_exp: "track", "track.id == 'data-structures' or track.id == 'algorithms' or track.id == 'system-design'" %}
+      {% for track in featured_tracks limit:3 %}
+        <a class="ux-track-card tone-{% cycle 'green', 'cyan', 'blue' %}" href="{{ track.url | default: '/fundamentals/' | relative_url }}">
+          <span class="ux-card-icon">{% cycle '◇', '&lt;/&gt;', '☁' %}</span>
+          <span><strong>{{ track.title }}</strong><em>{{ track.count }} lessons</em></span>
+          <p>Structured guides, examples, diagrams, and interview-focused practice.</p>
+          <span class="ux-progress"><i style="width: {% cycle '78%', '70%', '38%' %}"></i></span>
+          <small>{% cycle 'Beginner Friendly', 'Beginner to Advanced', 'Intermediate to Advanced' %}</small>
+        </a>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="ux-home-columns">
+    <article class="ux-panel" data-continue-learning>
+      <h2>Continue Learning</h2>
+      <div class="ux-continue-empty">
+        <span class="ux-card-icon">⌘</span>
+        <div><strong>Two Pointers</strong><p>Your recent topic will appear here as you explore.</p><a class="ux-button primary" href="{{ '/coding-round/patterns/two-pointers/' | relative_url }}">Continue →</a></div>
+      </div>
+    </article>
+    <article class="ux-panel">
+      <h2>Quick Actions</h2>
+      <nav class="ux-action-list">
+        <a href="{{ '/coding-round/' | relative_url }}">Generate Random Quiz <span>→</span></a>
+        <a href="{{ '/case-studies/' | relative_url }}">Practice Problems <span>→</span></a>
+        <a href="{{ '/coding-round/mock-interviews/' | relative_url }}">Mock Interviews <span>→</span></a>
+        <a href="{{ '/coding-round/company-tracks/' | relative_url }}">Company Wise Questions <span>→</span></a>
+      </nav>
+    </article>
+  </section>
+
+  <section class="ux-dashboard-section">
+    <div class="ux-section-heading"><h2>Recent Articles</h2><a href="{{ '/fundamentals/' | relative_url }}">View All Articles →</a></div>
+    <div class="ux-article-list">
+      {% for item in site.data.catalog.recent limit:5 %}
+        <a href="{{ item.url | relative_url }}"><span>▤</span><strong>{{ item.title }}</strong><em>{{ item.track | replace: '-', ' ' | capitalize }}</em><small>{{ item.reading_time }} min read</small></a>
+      {% endfor %}
+    </div>
+  </section>
+</article>
