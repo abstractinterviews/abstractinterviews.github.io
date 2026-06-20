@@ -8254,3 +8254,44 @@ body {
 .page-content tbody tr:nth-child(even) td {
   background: #fcfcfd;
 }
+
+.ux-track-card,
+.ux-topic-card {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.ux-track-card:hover,
+.ux-topic-card:hover {
+  border-color: #d4ddfb;
+  box-shadow: 0 8px 20px rgba(16, 24, 40, 0.07);
+  transform: translateY(-2px);
+}
+
+.deep-topic-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.deep-topic-card:hover {
+  border-color: #d4ddfb;
+  box-shadow: 0 8px 22px rgba(16, 24, 40, 0.07);
+  transform: translateY(-2px);
+}
+
+.deep-topic-card em,
+.deep-topic-card small {
+  width: fit-content;
+  padding: 3px 8px;
+  border-radius: 999px;
+  font-weight: 750;
+}
+
+.deep-topic-card em {
+  color: #344054;
+  background: #f2f4f7;
+}
+
+.deep-topic-card small {
+  color: #047857;
+  background: #ecfdf3;
+}
